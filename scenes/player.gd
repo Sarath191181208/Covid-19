@@ -6,7 +6,7 @@ var velocity = Vector2(0,0)
 #setting the  linear velocity of the player
 const v = 300
 const GRAVITY = 30
-const JUMPFORCE = -900
+const JUMPFORCE = -700
 #funcion delta runs 60 times a second
 
 func _physics_process(delta):
