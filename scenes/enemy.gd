@@ -4,7 +4,7 @@ var move = Vector2.ZERO
 var speed = 0.7
 var direction = -1
 const GRAVITY = 20
-
+const LOOT = preload("res://scenes/coin.tscn")
 
 func _physics_process(delta):
 	$floor_checker.position.x = $CollisionShape2D.shape.get_extents().x * direction
@@ -44,11 +44,18 @@ func got_shot():
 	if player != null :
 		player = null
 	$AnimatedSprite.play("dead")
-	#queue_free()
 	$timer.connect("timeout", self, "queue_free")
 	$timer.set_wait_time(2)
 	$timer.start()
-# warning-ignore:unused_argument
+	$timer2.connect("timeout", self, "createLoot")
+	$timer2.set_wait_time(2.2)
+	$timer2.start()
+	var loot = LOOT.instance()
+	get_parent().add_child(loot)
+	loot.position = $Position2D.global_position
+func createLoot():
+	print("sucess ")
+
 func _on_detecting_range_body_exited(body) :
 	player = null
 	$AnimatedSprite.play("idle")
