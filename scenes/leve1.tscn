@@ -142,7 +142,9 @@ position = Vector2( 542.905, -23.9165 )
 
 [node name="coin2" parent="coins" instance=ExtResource( 6 )]
 position = Vector2( 368.314, -11.9582 )
+[connection signal="fired" from="player" to="CanvasLayer" method="_on_player_fired"]
 [connection signal="body_entered" from="Area2D" to="player" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="enemy/death_range" to="player" method="_on_death_range_body_entered"]
+[connection signal="coins_zero" from="CanvasLayer" to="player" method="_on_CanvasLayer_coins_zero"]
 [connection signal="coin_collected" from="coins/coin" to="CanvasLayer" method="_on_coin_coin_collected"]
 [connection signal="coin_collected" from="coins/coin2" to="CanvasLayer" method="_on_coin_coin_collected"]
