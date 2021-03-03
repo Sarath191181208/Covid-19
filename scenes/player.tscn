@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/buttons/tile100.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 28.6013
@@ -10,9 +11,6 @@ height = 32.7974
 [node name="player" type="KinematicBody2D"]
 collision_mask = 126
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -4, 2 )
@@ -23,7 +21,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 12
+frame = 2
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -32,3 +30,28 @@ current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 editor_draw_limits = true
+
+[node name="CanvasModulate" type="CanvasLayer" parent="."]
+
+[node name="up" type="TouchScreenButton" parent="CanvasModulate"]
+position = Vector2( 845.211, 565.746 )
+rotation = -1.5708
+scale = Vector2( 0.3, 0.3 )
+normal = ExtResource( 3 )
+action = "jump"
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="CanvasModulate"]
+position = Vector2( 127.236, 558.93 )
+rotation = 3.14159
+scale = Vector2( 0.3, 0.3 )
+normal = ExtResource( 3 )
+action = "left"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="CanvasModulate"]
+position = Vector2( 152.229, 495.312 )
+scale = Vector2( 0.3, 0.3 )
+normal = ExtResource( 3 )
+action = "right"
+visibility_mode = 1
