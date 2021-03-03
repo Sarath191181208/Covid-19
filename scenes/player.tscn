@@ -1,31 +1,27 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/buttons/tile100.png" type="Texture" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 28.6013
 height = 32.7974
 
 [node name="player" type="KinematicBody2D"]
-collision_mask = 126
+collision_mask = 30
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -4, 2 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
-texture = ExtResource( 4 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 5
+frame = 11
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -59,3 +55,6 @@ scale = Vector2( 0.3, 0.3 )
 normal = ExtResource( 3 )
 action = "right"
 visibility_mode = 1
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 10, 0 )

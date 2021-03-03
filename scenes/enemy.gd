@@ -33,14 +33,23 @@ func _physics_process(delta):
 	
 	if not $floor_checker.is_colliding():
 		move.x = 0
-		$AnimatedSprite.play("idle")
+		if player != null :
+			$AnimatedSprite.play("idle")
 	move = move_and_collide(move)
 func _on_detecting_range_body_entered(body):
 	if body != self :
 		player = body
 
-
+func got_shot():
+	if player != null :
+		player = null
+	$AnimatedSprite.play("dead")
+	#queue_free()
+	$timer.connect("timeout", self, "queue_free")
+	$timer.set_wait_time(2)
+	$timer.start()
 # warning-ignore:unused_argument
 func _on_detecting_range_body_exited(body) :
 	player = null
 	$AnimatedSprite.play("idle")
+
