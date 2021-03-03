@@ -3,10 +3,9 @@ var player =  null
 var move = Vector2.ZERO
 var speed = 0.7
 var direction = -1
-var set = true
 const GRAVITY = 20
 
-# warning-ignore:unused_argument
+
 func _physics_process(delta):
 	$floor_checker.position.x = $CollisionShape2D.shape.get_extents().x * direction
 	move = Vector2.ZERO
@@ -31,14 +30,11 @@ func _physics_process(delta):
 	else :
 		move.x = Vector2.ZERO.x
 	
-	move = move_and_collide(move)
+	
 	if not $floor_checker.is_colliding():
-		if player != null :
-			player = null
-		direction = - direction
-		$floor_checker.position.x = $CollisionShape2D.shape.get_extents().x * direction
+		move.x = 0
 		$AnimatedSprite.play("idle")
-		
+	move = move_and_collide(move)
 func _on_detecting_range_body_entered(body):
 	if body != self :
 		player = body

@@ -4,12 +4,16 @@ extends KinematicBody2D
 var velocity = Vector2(0,0)
 
 #setting the  linear velocity of the player
-const v = 300
+export var v = 300
 const GRAVITY = 30
-const JUMPFORCE = -700
+export var JUMPFORCE = -700
 #funcion delta runs 60 times a second
 
 func _physics_process(delta):
+	if $AnimatedSprite.flip_h == true :
+		$AnimatedSprite.position.x = -30
+	else :
+		$AnimatedSprite.position.x = 0
 	if Input.is_action_pressed("right"):
 		velocity.x = v
 		$AnimatedSprite.play("walk")
@@ -18,6 +22,7 @@ func _physics_process(delta):
 		velocity.x = -v
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = true
+	
 	else:
 		$AnimatedSprite.play("Idle")
 	if not is_on_floor():
