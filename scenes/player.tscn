@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/player.gd" type="Script" id=2]
@@ -6,16 +6,17 @@
 [ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/transparent-bathroom-icon-shampoo-icon-5f9bb136b9e384.4757588116040389667614.png" type="Texture" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Assets/buttons/tile071.png" type="Texture" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 56
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 60
 font_data = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 41.6507 )
 
 [node name="player" type="KinematicBody2D"]
@@ -32,7 +33,7 @@ editor_draw_limits = true
 [node name="CanvasModulate" type="CanvasLayer" parent="."]
 
 [node name="up" type="TouchScreenButton" parent="CanvasModulate"]
-position = Vector2( 845.211, 565.746 )
+position = Vector2( 108.376, 479.173 )
 rotation = -1.5708
 scale = Vector2( 0.3, 0.3 )
 normal = ExtResource( 3 )
@@ -54,6 +55,12 @@ normal = ExtResource( 3 )
 action = "right"
 visibility_mode = 1
 
+[node name="fire" type="TouchScreenButton" parent="CanvasModulate"]
+position = Vector2( 865.733, 475.191 )
+scale = Vector2( 0.3, 0.3 )
+normal = ExtResource( 7 )
+action = "fire"
+
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 10, 0 )
 
@@ -71,7 +78,7 @@ margin_left = 99.9981
 margin_top = 19.3308
 margin_right = 148.998
 margin_bottom = 87.3308
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.0627451, 0.843137, 0.921569, 1 )
 text = "X"
 align = 1
@@ -87,7 +94,7 @@ margin_left = 172.03
 margin_top = 3.0019
 margin_right = 107.406
 margin_bottom = 15.2019
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.0588235, 0.94902, 0.843137, 1 )
 text = "##
 "
@@ -117,12 +124,12 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 7
+frame = 15
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -4, 2 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
 position = Vector2( 0.38208, -3.05675 )
