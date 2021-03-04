@@ -18,7 +18,7 @@ script = ExtResource( 46 )
 scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 5
+frame = 1
 playing = true
 flip_h = true
 
@@ -51,7 +51,7 @@ autostart = true
 [node name="Position2D" type="Position2D" parent="."]
 
 [node name="timer2" type="Timer" parent="."]
-autostart = true
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="detecting_range" to="." method="_on_detecting_range_body_entered"]
 [connection signal="body_exited" from="detecting_range" to="." method="_on_detecting_range_body_exited"]
+[connection signal="timeout" from="timer2" to="." method="_on_timer2_timeout"]

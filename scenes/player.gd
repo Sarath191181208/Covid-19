@@ -1,9 +1,8 @@
 extends KinematicBody2D
-signal fired
-# velocity of player
+var coins = 0
 var velocity = Vector2(0,0)
 var coins_zero = false
-#setting the  linear velocity of the player
+
 export var v = 300
 const GRAVITY = 30
 export var JUMPFORCE = -700
@@ -11,6 +10,8 @@ export var JUMPFORCE = -700
 
 const FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
+func _ready():
+	$CanvasLayer/coins_collected.text = String(coins)
 func _physics_process(delta):
 
 	if $AnimatedSprite.flip_h == true :
@@ -36,10 +37,10 @@ func _physics_process(delta):
 		
 		
 	if Input.is_action_just_pressed("fire"):
-		emit_signal("fired")
-		if coins_zero != true :
+		if coins != 0 :
 			var fireball = FIREBALL.instance()
-	
+			coins -= 1
+			$CanvasLayer/coins_collected.text = String(coins)
 			if $AnimatedSprite.flip_h == true :
 				fireball.changingDirection(-1)
 			else :
@@ -49,24 +50,21 @@ func _physics_process(delta):
 			fireball.position = $Position2D.global_position
 	velocity = move_and_slide(velocity,Vector2.UP)
 	velocity.x = lerp(velocity.x , 0 , 0.2)
+func addcoin():
+	coins += 1
+	$CanvasLayer/coins_collected.text = String(coins)
 
 
 
 # warning-ignore:unused_argument
 func _on_Area2D_body_entered(body):
+
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/leve1.tscn")
-
-
 
 
 # warning-ignore:unused_argument
 func _on_death_range_body_entered(body):
+
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/leve1.tscn")
-
-
-
-
-func _on_CanvasLayer_coins_zero():
-	coins_zero = true

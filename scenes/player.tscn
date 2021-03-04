@@ -1,28 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/buttons/tile100.png" type="Texture" id=3]
+[ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/transparent-bathroom-icon-shampoo-icon-5f9bb136b9e384.4757588116040389667614.png" type="Texture" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 28.6013
-height = 32.7974
+[sub_resource type="DynamicFont" id=2]
+size = 56
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 41.6507 )
 
 [node name="player" type="KinematicBody2D"]
 collision_mask = 30
 script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -4, 2 )
-shape = SubResource( 1 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 30, 0 )
-scale = Vector2( 0.199, 0.2 )
-frames = ExtResource( 1 )
-animation = "Idle"
-frame = 11
-playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 0.199, 0.2 )
@@ -58,3 +56,75 @@ visibility_mode = 1
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 10, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+margin_right = 269.0
+margin_bottom = 101.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 99.9981
+margin_top = 19.3308
+margin_right = 148.998
+margin_bottom = 87.3308
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0627451, 0.843137, 0.921569, 1 )
+text = "X"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coins_collected" type="Label" parent="CanvasLayer"]
+anchor_right = 0.151
+anchor_bottom = 0.133
+margin_left = 172.03
+margin_top = 3.0019
+margin_right = 107.406
+margin_bottom = 15.2019
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.0588235, 0.94902, 0.843137, 1 )
+text = "##
+"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color( 0.00392157, 0.964706, 0.87451, 1 )
+margin_left = 23.0
+margin_top = 7.0
+margin_right = 89.0
+margin_bottom = 90.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 30, 0 )
+scale = Vector2( 0.199, 0.2 )
+frames = ExtResource( 1 )
+animation = "Idle"
+frame = 7
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4, 2 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( 0.38208, -3.05675 )
+scale = Vector2( 0.199995, 1 )
+texture = ExtResource( 6 )
