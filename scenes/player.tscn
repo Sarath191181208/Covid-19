@@ -1,12 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://scenes/player.gd" type="Script" id=2]
+[ext_resource path="res://scripts/player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/buttons/tile100.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/transparent-bathroom-icon-shampoo-icon-5f9bb136b9e384.4757588116040389667614.png" type="Texture" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://Assets/buttons/tile071.png" type="Texture" id=7]
+[ext_resource path="res://Assets/buttons/tile090.png" type="Texture" id=8]
+[ext_resource path="res://Assets/buttons/tile167.png" type="Texture" id=9]
+[ext_resource path="res://Assets/buttons/tile201.png" type="Texture" id=10]
+[ext_resource path="res://Assets/buttons/tile030.png" type="Texture" id=11]
+[ext_resource path="res://Assets/buttons/tile137.png" type="Texture" id=12]
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
@@ -30,17 +35,17 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 editor_draw_limits = true
 
-[node name="CanvasModulate" type="CanvasLayer" parent="."]
+[node name="input_buttons" type="CanvasLayer" parent="."]
 
-[node name="up" type="TouchScreenButton" parent="CanvasModulate"]
-position = Vector2( 108.376, 479.173 )
+[node name="up" type="TouchScreenButton" parent="input_buttons"]
+position = Vector2( 156.472, 477.249 )
 rotation = -1.5708
 scale = Vector2( 0.3, 0.3 )
 normal = ExtResource( 3 )
 action = "jump"
 visibility_mode = 1
 
-[node name="left" type="TouchScreenButton" parent="CanvasModulate"]
+[node name="left" type="TouchScreenButton" parent="input_buttons"]
 position = Vector2( 127.236, 558.93 )
 rotation = 3.14159
 scale = Vector2( 0.3, 0.3 )
@@ -48,14 +53,14 @@ normal = ExtResource( 3 )
 action = "left"
 visibility_mode = 1
 
-[node name="right" type="TouchScreenButton" parent="CanvasModulate"]
-position = Vector2( 152.229, 495.312 )
+[node name="right" type="TouchScreenButton" parent="input_buttons"]
+position = Vector2( 238.802, 501.084 )
 scale = Vector2( 0.3, 0.3 )
 normal = ExtResource( 3 )
 action = "right"
 visibility_mode = 1
 
-[node name="fire" type="TouchScreenButton" parent="CanvasModulate"]
+[node name="fire" type="TouchScreenButton" parent="input_buttons"]
 position = Vector2( 865.733, 475.191 )
 scale = Vector2( 0.3, 0.3 )
 normal = ExtResource( 7 )
@@ -124,14 +129,46 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 15
+frame = 12
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -4, 2 )
 shape = SubResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( 0.38208, -3.05675 )
-scale = Vector2( 0.199995, 1 )
-texture = ExtResource( 6 )
+[node name="pause_screen" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="pause_screen"]
+position = Vector2( 960, 0 )
+scale = Vector2( 0.25, 0.25 )
+normal = ExtResource( 8 )
+action = "ui_cancel"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer2"]
+pause_mode = 2
+visible = false
+position = Vector2( 528, 312 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 13 )
+
+[node name="exit" type="TouchScreenButton" parent="CanvasLayer2/Node2D"]
+position = Vector2( -272, -128 )
+normal = ExtResource( 12 )
+
+[node name="play" type="TouchScreenButton" parent="CanvasLayer2/Node2D"]
+position = Vector2( -552, -128 )
+normal = ExtResource( 11 )
+action = "ui_cancel"
+
+[node name="music" type="TouchScreenButton" parent="CanvasLayer2/Node2D"]
+position = Vector2( 48, -128 )
+normal = ExtResource( 10 )
+
+[node name="restart" type="TouchScreenButton" parent="CanvasLayer2/Node2D"]
+position = Vector2( 304, -128 )
+normal = ExtResource( 9 )
+action = "restart"
