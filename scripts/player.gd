@@ -18,7 +18,7 @@ func _physics_process(delta):
 	if $AnimatedSprite.flip_h == true :
 		$AnimatedSprite.position.x = -30
 	else :
-		$AnimatedSprite.position.x = 0
+		$AnimatedSprite.position.x = 30
 #checking the player input and playing animations
 	if Input.is_action_pressed("right"):
 		velocity.x = speed

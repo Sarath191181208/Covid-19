@@ -22,10 +22,10 @@ size = 60
 font_data = ExtResource( 4 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 10, 41.6507 )
+extents = Vector2( 25.3344, 41.6507 )
 
 [node name="player" type="KinematicBody2D"]
-collision_mask = 30
+collision_mask = 16
 script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -129,7 +129,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 12
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -172,3 +172,11 @@ normal = ExtResource( 10 )
 position = Vector2( 304, -128 )
 normal = ExtResource( 9 )
 action = "restart"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -4, 2 )
+shape = SubResource( 3 )

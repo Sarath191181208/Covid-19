@@ -5,6 +5,7 @@ var player =  null
 var move = Vector2.ZERO
 # sprite is facing left so direction = -ve
 var direction = -1
+var gotShot = false
 const GRAVITY = 20
 
 const LOOT = preload("res://scenes/coin.tscn")
@@ -43,29 +44,40 @@ func _physics_process(delta):
 		if player != null :
 			$AnimatedSprite.play("idle")
 	move = move_and_collide(move)
-func _on_detecting_range_body_entered(body):
-	if body != self :
-		player = body
 
 func got_shot():
 	if player != null :
 		player = null
-	
+	turnoff()
 	$AnimatedSprite.play("dead")
 # warning-ignore:return_value_discarded
 	$timer.connect("timeout", self, "queue_free")
+	gotShot = true
 	$timer.set_wait_time(2)
 	$timer.start()
 	timer.set_wait_time(2)
 	timer.start()
 
-
+func turnoff():
+	$death_range.set_collision_layer_bit(1,false)
+	$death_range.set_collision_mask_bit(0,false)
+	set_collision_layer_bit(3,false)
+	$detecting_range.queue_free()
+	$detecting_range/CollisionShape2D.queue_free()
+	$AnimatedSprite.play("dead")
 # warning-ignore:unused_argument
+
+func _on_detecting_range_body_entered(body):
+	if body != self :
+		player = body
+		
+
 func _on_detecting_range_body_exited(body) :
 	player = null
-	$AnimatedSprite.play("idle")
-
-
+	if gotShot == false :
+		$AnimatedSprite.play("idle")
+	else:
+		$AnimatedSprite.play("dead")
 
 func _on_timer2_timeout():
 	var loot = LOOT.instance()
