@@ -58,34 +58,34 @@ position = Vector2( 594.831, 349.688 )
 position = Vector2( 537.15, -43.2604 )
 move_to = Vector2( 512, 0 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="enemies" type="Node2D" parent="."]
 
-[node name="enemy" parent="Node2D" instance=ExtResource( 3 )]
+[node name="enemy" parent="enemies" instance=ExtResource( 3 )]
 position = Vector2( 1078.52, 377.911 )
 
-[node name="death_range" type="Area2D" parent="Node2D/enemy"]
+[node name="death_range" type="Area2D" parent="enemies/enemy"]
 modulate = Color( 0.768627, 0.894118, 0.054902, 0.647059 )
 collision_layer = 2
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/enemy/death_range"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemies/enemy/death_range"]
 modulate = Color( 0.0156863, 0.984314, 0.984314, 1 )
 position = Vector2( 4, 10 )
 shape = SubResource( 2 )
 
-[node name="enemy2" parent="Node2D" instance=ExtResource( 3 )]
+[node name="enemy2" parent="enemies" instance=ExtResource( 3 )]
 position = Vector2( 1519.13, 176.747 )
 
-[node name="death_range" type="Area2D" parent="Node2D/enemy2"]
+[node name="death_range" type="Area2D" parent="enemies/enemy2"]
 modulate = Color( 0.768627, 0.894118, 0.054902, 0.647059 )
 collision_layer = 2
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/enemy2/death_range"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemies/enemy2/death_range"]
 modulate = Color( 0.0156863, 0.984314, 0.984314, 1 )
 position = Vector2( 4, 10 )
 shape = SubResource( 2 )
@@ -93,5 +93,5 @@ __meta__ = {
 "_edit_group_": true
 }
 [connection signal="body_entered" from="Area2D" to="player" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="Node2D/enemy/death_range" to="player" method="_on_death_range_body_entered"]
-[connection signal="body_entered" from="Node2D/enemy2/death_range" to="player" method="_on_death_range_body_entered"]
+[connection signal="body_entered" from="enemies/enemy/death_range" to="player" method="_on_death_range_body_entered"]
+[connection signal="body_entered" from="enemies/enemy2/death_range" to="player" method="_on_death_range_body_entered"]
