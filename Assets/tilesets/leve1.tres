@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=17 format=2]
+[gd_resource type="TileSet" load_steps=25 format=2]
 
 [ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Tile (15).png" type="Texture" id=1]
 [ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Tile (5).png" type="Texture" id=2]
@@ -8,12 +8,22 @@
 [ext_resource path="res://Assets/tilesets/tile_sets/Tiles/BGTile (1).png" type="Texture" id=6]
 [ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Acid (1).png" type="Texture" id=7]
 [ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Tile (9).png" type="Texture" id=8]
+[ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Fence (3).png" type="Texture" id=9]
+[ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Fence (1).png" type="Texture" id=10]
+[ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Fence (2).png" type="Texture" id=11]
+[ext_resource path="res://Assets/tilesets/tile_sets/Tiles/Spike.png" type="Texture" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 16, 16, 0, 248, 0, 256, 16, 256, 48, 248, 64, 224, 64, 184, 104, 240, 104, 248, 112, 248, 120, 240, 128, 16, 128, 8, 120, 8, 112, 16, 104, 80, 104, 40, 64, 16, 64, 8, 56, 0, 48 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 248, 0, 256, 8, 256, 48, 248, 56, 248, 64, 224, 64, 184, 104, 248, 104, 248, 128, 8, 128 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( 0, 104, 0, 104, 256, 104, 256, 120, 0, 120 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 256, 128, 160, 128, 160, 256, 136, 256, 136, 104, 256, 104, 256, 104 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 80, 24, 80, 32, 72, 40, 72, 48, 80, 80, 80, 88, 72, 96, 80, 144, 80, 152, 72, 160, 72, 168, 80, 184, 72, 216, 80, 232, 80, 256, 80, 256, 256, 0, 256 )
@@ -32,6 +42,12 @@ points = PoolVector2Array( 0, 0, 256, 0, 256, 256, 0, 256 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 0, 0, 256, 0, 256, 128, 0, 128 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 0, 256, 0, 256, 40, 96, 64, 200, 88, 112, 104, 184, 128, 88, 152, 200, 176, 128, 192, 208, 216, 96, 256, 256 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( 0, 104, 0, 104, 120, 104, 120, 256, 104, 256, 104, 128, 0, 128 )
 
 [resource]
 0/name = "Tile (15).png 0"
@@ -202,3 +218,87 @@ points = PoolVector2Array( 0, 0, 256, 0, 256, 128, 0, 128 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 7/z_index = 0
+8/name = "Spike.png 8"
+8/texture = ExtResource( 12 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 256, 256 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape = SubResource( 11 )
+8/shape_one_way = false
+8/shape_one_way_margin = 1.0
+8/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+8/z_index = 0
+9/name = "Fence (3).png 9"
+9/texture = ExtResource( 9 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 0, 256, 256 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape = SubResource( 12 )
+9/shape_one_way = false
+9/shape_one_way_margin = 1.0
+9/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 12 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+9/z_index = 0
+10/name = "Fence (2).png 10"
+10/texture = ExtResource( 11 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 0, 0, 256, 256 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape = SubResource( 9 )
+10/shape_one_way = false
+10/shape_one_way_margin = 1.0
+10/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 9 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+10/z_index = 0
+11/name = "Fence (1).png 11"
+11/texture = ExtResource( 10 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 0, 0, 256, 256 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape = SubResource( 10 )
+11/shape_one_way = false
+11/shape_one_way_margin = 1.0
+11/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+11/z_index = 0

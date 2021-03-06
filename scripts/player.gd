@@ -73,3 +73,9 @@ func _on_death_range_body_entered(body):
 # warning-ignore:return_value_discarded
 # when collided with enemy restarting the scene
 	get_tree().change_scene("res://scenes/leve1.tscn")
+
+
+
+
+func _on_changeScene_area_entered(area):
+	pass # Replace with function body.
