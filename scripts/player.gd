@@ -6,7 +6,7 @@ export var speed = 300
 var coins = 0
 var velocity = Vector2(0,0)
 var coins_zero = false
-
+var snap = Vector2.ZERO
 const GRAVITY = 30
 const FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
@@ -32,6 +32,7 @@ func _physics_process(delta):
 		$AnimatedSprite.play("Idle")
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
 		velocity.y = JUMPFORCE
+	
 	if Input.is_action_just_pressed("fire"):
 		if coins != 0 :
 			var fireball = FIREBALL.instance()
@@ -46,16 +47,19 @@ func _physics_process(delta):
 			get_parent().add_child(fireball)
 			fireball.position = $Position2D.global_position
 	if not is_on_floor():
+		snap = Vector2.ZERO
 		$AnimatedSprite.play("jump")
+	else :
+		snap = Vector2.DOWN
 #Adding gravity to player this function runs about 60 times per second 
 # 	=> body accelerates due to continious change in velocity
 	velocity.y = velocity.y + GRAVITY
 
 		
 		
-
-	velocity = move_and_slide(velocity,Vector2.UP)
+	velocity = move_and_slide_with_snap(velocity,snap,Vector2.UP)
 	velocity.x = lerp(velocity.x , 0 , 0.2)
+
 func addcoin():
 	coins += 1
 	_ready()
