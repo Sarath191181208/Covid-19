@@ -1,0 +1,192 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/levelSelector.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="levelSelector" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 1260.0
+margin_bottom = 700.0
+color = Color( 0.054902, 0.635294, 0.709804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="levels" type="GridContainer" parent="."]
+modulate = Color( 0.627451, 0.529412, 1, 0.792157 )
+anchor_left = 10.0
+anchor_top = 10.0
+anchor_right = 10.0
+anchor_bottom = 10.0
+margin_left = 26.6428
+margin_top = 24.881
+margin_right = 341.643
+margin_bottom = 200.881
+grow_horizontal = 0
+grow_vertical = 0
+rect_scale = Vector2( 3, 3 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="Button" parent="levels"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="2" type="Button" parent="levels"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="3" type="Button" parent="levels"]
+margin_left = 108.0
+margin_right = 158.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="4" type="Button" parent="levels"]
+margin_left = 162.0
+margin_right = 212.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="5" type="Button" parent="levels"]
+margin_left = 216.0
+margin_right = 266.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="6" type="Button" parent="levels"]
+margin_left = 270.0
+margin_right = 320.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="7" type="Button" parent="levels"]
+margin_top = 54.0
+margin_right = 50.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="8" type="Button" parent="levels"]
+margin_left = 54.0
+margin_top = 54.0
+margin_right = 104.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="9" type="Button" parent="levels"]
+margin_left = 108.0
+margin_top = 54.0
+margin_right = 158.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="10" type="Button" parent="levels"]
+margin_left = 162.0
+margin_top = 54.0
+margin_right = 212.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="11" type="Button" parent="levels"]
+margin_left = 216.0
+margin_top = 54.0
+margin_right = 266.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"
+
+[node name="12" type="Button" parent="levels"]
+margin_left = 270.0
+margin_top = 54.0
+margin_right = 320.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+text = "1"

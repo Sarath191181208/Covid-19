@@ -48,10 +48,10 @@ animations = [ {
 "frames": [ ExtResource( 44 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 5 ), ExtResource( 38 ), ExtResource( 20 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walk",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 1 ), ExtResource( 28 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 16 ), ExtResource( 39 ), ExtResource( 21 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "dead",
-"speed": 5.0
+"speed": 8.0
 } ]

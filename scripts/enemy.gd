@@ -1,5 +1,5 @@
 extends KinematicBody2D
-export var speed = 0.7
+export var speed = 0.9
 # if a player enters the range the player == .the object 
 var player =  null 
 var move = Vector2.ZERO
@@ -53,9 +53,9 @@ func got_shot():
 # warning-ignore:return_value_discarded
 	$timer.connect("timeout", self, "queue_free")
 	gotShot = true
-	$timer.set_wait_time(2)
+	$timer.set_wait_time(1.4)
 	$timer.start()
-	timer.set_wait_time(2)
+	timer.set_wait_time(1.4)
 	timer.start()
 
 func turnoff():
@@ -81,6 +81,7 @@ func _on_detecting_range_body_exited(body) :
 
 func _on_timer2_timeout():
 	var loot = LOOT.instance()
+	loot.moreLoot()
 	get_parent().add_child(loot)
 	loot.position = $Position2D.global_position
 
