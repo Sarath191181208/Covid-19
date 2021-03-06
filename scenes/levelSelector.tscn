@@ -17,7 +17,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 1260.0
 margin_bottom = 700.0
-color = Color( 0.054902, 0.635294, 0.709804, 1 )
+color = Color( 0.235294, 0.0196078, 0.447059, 0.780392 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,10 +28,10 @@ anchor_left = 10.0
 anchor_top = 10.0
 anchor_right = 10.0
 anchor_bottom = 10.0
-margin_left = 26.6428
-margin_top = 24.881
-margin_right = 341.643
-margin_bottom = 200.881
+margin_left = 41.0488
+margin_top = 28.2883
+margin_right = 361.049
+margin_bottom = 132.288
 grow_horizontal = 0
 grow_vertical = 0
 rect_scale = Vector2( 3, 3 )
@@ -44,14 +44,15 @@ __meta__ = {
 }
 
 [node name="1" type="Button" parent="levels"]
+light_mask = -2147483647
 margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="2" type="Button" parent="levels"]
@@ -60,10 +61,10 @@ margin_right = 104.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="3" type="Button" parent="levels"]
@@ -72,10 +73,10 @@ margin_right = 158.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="4" type="Button" parent="levels"]
@@ -84,10 +85,10 @@ margin_right = 212.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="5" type="Button" parent="levels"]
@@ -96,10 +97,10 @@ margin_right = 266.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="6" type="Button" parent="levels"]
@@ -108,10 +109,10 @@ margin_right = 320.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="7" type="Button" parent="levels"]
@@ -120,10 +121,10 @@ margin_right = 50.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="8" type="Button" parent="levels"]
@@ -133,10 +134,10 @@ margin_right = 104.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="9" type="Button" parent="levels"]
@@ -146,10 +147,10 @@ margin_right = 158.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="10" type="Button" parent="levels"]
@@ -159,10 +160,10 @@ margin_right = 212.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="11" type="Button" parent="levels"]
@@ -172,10 +173,10 @@ margin_right = 266.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"
 
 [node name="12" type="Button" parent="levels"]
@@ -185,8 +186,8 @@ margin_right = 320.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 1, 0.14902, 0.14902, 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.843137, 0.843137, 0.223529, 1 )
-custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.223529, 1 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "1"

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile100.png-d9a73dab087eedd2683890e88905b86b.stex"
+path="res://.import/tile090-removebg-preview.png-bf81780710d9a4f882c3da27e4aa9865.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/buttons/tile100.png"
-dest_files=[ "res://.import/tile100.png-d9a73dab087eedd2683890e88905b86b.stex" ]
+source_file="res://Assets/buttons/tile090-removebg-preview.png"
+dest_files=[ "res://.import/tile090-removebg-preview.png-bf81780710d9a4f882c3da27e4aa9865.stex" ]
 
 [params]
 

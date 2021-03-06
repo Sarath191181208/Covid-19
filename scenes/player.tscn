@@ -1,28 +1,24 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
-[ext_resource path="res://Assets/buttons/tile100.png" type="Texture" id=3]
+[ext_resource path="res://Assets/buttons/tile071-removebg-preview.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/transparent-bathroom-icon-shampoo-icon-5f9bb136b9e384.4757588116040389667614.png" type="Texture" id=5]
-[ext_resource path="res://Assets/buttons/tile071.png" type="Texture" id=7]
-[ext_resource path="res://Assets/buttons/tile090.png" type="Texture" id=8]
+[ext_resource path="res://Assets/HUD/coin_gold.png" type="Texture" id=5]
+[ext_resource path="res://Assets/buttons/tile030-removebg-preview.png" type="Texture" id=6]
+[ext_resource path="res://Assets/buttons/tile090-removebg-preview.png" type="Texture" id=7]
+[ext_resource path="res://Assets/buttons/tile100-removebg-preview.png" type="Texture" id=8]
 [ext_resource path="res://Assets/buttons/tile167.png" type="Texture" id=9]
 [ext_resource path="res://Assets/buttons/tile201.png" type="Texture" id=10]
-[ext_resource path="res://Assets/buttons/tile030.png" type="Texture" id=11]
 [ext_resource path="res://Assets/buttons/tile137.png" type="Texture" id=12]
 [ext_resource path="res://scripts/Node2D.gd" type="Script" id=13]
 
-[sub_resource type="DynamicFont" id=1]
-size = 56
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 60
-font_data = ExtResource( 4 )
-
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 25.3344, 41.6507 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 4 )
 
 [node name="player" type="KinematicBody2D"]
 collision_mask = 16
@@ -41,7 +37,7 @@ editor_draw_limits = true
 position = Vector2( 862.825, 440.25 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 3 )
+normal = ExtResource( 8 )
 action = "jump"
 visibility_mode = 1
 
@@ -49,87 +45,31 @@ visibility_mode = 1
 position = Vector2( 128, 552 )
 rotation = 3.14159
 scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 3 )
+normal = ExtResource( 8 )
 action = "left"
 visibility_mode = 1
 
 [node name="right" type="TouchScreenButton" parent="input_buttons"]
 position = Vector2( 160, 448 )
 scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 3 )
+normal = ExtResource( 8 )
 action = "right"
 visibility_mode = 1
 
 [node name="fire" type="TouchScreenButton" parent="input_buttons"]
 position = Vector2( 865.733, 475.191 )
 scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 7 )
+normal = ExtResource( 3 )
 action = "fire"
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 10, 0 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-margin_right = 269.0
-margin_bottom = 101.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-margin_left = 99.9981
-margin_top = 19.3308
-margin_right = 148.998
-margin_bottom = 87.3308
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.0627451, 0.843137, 0.921569, 1 )
-text = "X"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="coins_collected" type="Label" parent="CanvasLayer"]
-anchor_right = 0.151
-anchor_bottom = 0.133
-margin_left = 172.03
-margin_top = 3.0019
-margin_right = 107.406
-margin_bottom = 15.2019
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.0588235, 0.94902, 0.843137, 1 )
-text = "##
-"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-modulate = Color( 0.00392157, 0.964706, 0.87451, 1 )
-margin_left = 23.0
-margin_top = 7.0
-margin_right = 89.0
-margin_bottom = 90.0
-texture = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -141,8 +81,8 @@ pause_mode = 2
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="pause_screen"]
 position = Vector2( 960, 0 )
-scale = Vector2( 0.25, 0.25 )
-normal = ExtResource( 8 )
+scale = Vector2( 0.35, 0.35 )
+normal = ExtResource( 7 )
 action = "ui_cancel"
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
@@ -162,7 +102,7 @@ action = "exit"
 
 [node name="play" type="TouchScreenButton" parent="CanvasLayer2/Node2D"]
 position = Vector2( -552, -128 )
-normal = ExtResource( 11 )
+normal = ExtResource( 6 )
 action = "ui_cancel"
 
 [node name="music" type="TouchScreenButton" parent="CanvasLayer2/Node2D"]
@@ -173,6 +113,46 @@ normal = ExtResource( 10 )
 position = Vector2( 304, -128 )
 normal = ExtResource( 9 )
 action = "restart"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+margin_right = 146.0
+margin_bottom = 62.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coins_collected" type="Label" parent="CanvasLayer"]
+anchor_right = 0.151
+anchor_bottom = 0.133
+margin_left = 57.0
+margin_top = 6.88774
+margin_right = -16.624
+margin_bottom = -11.9123
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.94902, 0.843137, 1 )
+text = "##
+"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_left = 23.0
+margin_top = 11.0
+margin_right = 68.0
+margin_bottom = 56.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
