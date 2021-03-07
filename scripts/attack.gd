@@ -15,8 +15,7 @@ func _physics_process(delta):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
-
-
+	
 func _on_attack_body_entered(body):
 	# goes to the body entered and checks for function got shot
 	body.got_shot()

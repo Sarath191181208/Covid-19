@@ -26,7 +26,6 @@ Global="*res://scripts/global.gd"
 [display]
 
 window/size/borderless=true
-window/size/fullscreen=true
 window/size/always_on_top=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
@@ -83,6 +82,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_4="Tiles"
 2d_physics/layer_5="items"
 2d_physics/layer_6="attacks"
+2d_physics/layer_7="attackPlayer"
 
 [rendering]
 

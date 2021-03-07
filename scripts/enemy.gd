@@ -59,11 +59,14 @@ func got_shot():
 	timer.start()
 
 func turnoff():
+	
 	$death_range.set_collision_layer_bit(1,false)
 	$death_range.set_collision_mask_bit(0,false)
 	set_collision_layer_bit(3,false)
-	$detecting_range.queue_free()
-	$detecting_range/CollisionShape2D.queue_free()
+	set_collision_mask_bit(5,false)
+	if $detecting_range != null :
+		$detecting_range.queue_free()
+		$detecting_range/CollisionShape2D.queue_free()
 	$AnimatedSprite.play("dead")
 # warning-ignore:unused_argument
 

@@ -53,9 +53,6 @@ func _physics_process(delta):
 #Adding gravity to player this function runs about 60 times per second 
 # 	=> body accelerates due to continious change in velocity
 	velocity.y = velocity.y + GRAVITY
-
-		
-		
 	velocity = move_and_slide_with_snap(velocity,snap * 64 ,Vector2.UP)
 	velocity.x = lerp(velocity.x , 0 , 0.2)
 
@@ -69,9 +66,8 @@ func _on_death_range_body_entered(body):
 # when collided with enemy restarting the scene
 	get_tree().change_scene("res://scenes/leve1.tscn")
 
-
-
-
+func got_shot():
+	get_tree().change_scene("res://scenes/levelSelector.tscn")
 # warning-ignore:unused_argument
 func _on_changeScene_area_entered(area):
 	pass # Replace with function body.

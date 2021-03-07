@@ -13,7 +13,7 @@
 [ext_resource path="res://Assets/buttons/tile137.png" type="Texture" id=12]
 [ext_resource path="res://scripts/Node2D.gd" type="Script" id=13]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.3344, 41.6507 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -23,6 +23,14 @@ font_data = ExtResource( 4 )
 [node name="player" type="KinematicBody2D"]
 collision_mask = 16
 script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 30, 0 )
+scale = Vector2( 0.199, 0.2 )
+frames = ExtResource( 1 )
+animation = "Idle"
+frame = 9
+playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 0.199, 0.2 )
@@ -65,16 +73,9 @@ action = "fire"
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 10, 0 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 30, 0 )
-scale = Vector2( 0.199, 0.2 )
-frames = ExtResource( 1 )
-animation = "Idle"
-playing = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -4, 2 )
-shape = SubResource( 3 )
+modulate = Color( 0.858824, 0.0313726, 0.0313726, 1 )
+shape = SubResource( 1 )
 
 [node name="pause_screen" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -160,4 +161,4 @@ collision_mask = 8
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -4, 2 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
