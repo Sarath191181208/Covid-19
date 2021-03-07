@@ -21,3 +21,7 @@ func _on_attack_body_entered(body):
 	body.got_shot()
 	# frees the object <fireball from space>
 	queue_free()
+
+
+func _on_Sprite_animation_finished():
+	queue_free()
