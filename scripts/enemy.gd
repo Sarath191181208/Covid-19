@@ -62,6 +62,7 @@ func turnoff():
 	
 	$death_range.set_collision_layer_bit(1,false)
 	$death_range.set_collision_mask_bit(0,false)
+	$CollisionShape2D.disabled = true
 	set_collision_layer_bit(3,false)
 	set_collision_mask_bit(5,false)
 	if $detecting_range != null :
