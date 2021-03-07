@@ -21,6 +21,9 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 256, 256 )
 format = 1
 
+[node name="enemy2" parent="Enemies" index="1"]
+position = Vector2( 3008, 704 )
+
 [node name="changeScene" parent="." index="5"]
 position = Vector2( 3236.53, 635.356 )
 

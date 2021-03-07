@@ -4,13 +4,13 @@
 [ext_resource path="res://Assets/Animations/follow_rocket.tres" type="SpriteFrames" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.09896, 17.2785 )
-
-[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 170.024, 24.6947 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 19.2001, 19.9271 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 43.2724, 18.3045 )
 
 [node name="follow_rocket" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
@@ -18,21 +18,17 @@ collision_layer = 4
 collision_mask = 33
 script = ExtResource( 1 )
 
-[node name="collissioinshape" type="CollisionShape2D" parent="."]
-scale = Vector2( 0.3, 1 )
-shape = SubResource( 1 )
-
 [node name="attackRange" type="Area2D" parent="."]
 collision_layer = 2
 
 [node name="range" type="CollisionShape2D" parent="attackRange"]
 position = Vector2( -158.193, 0.529732 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "idle"
-frame = 18
+frame = 19
 playing = true
 
 [node name="Position2D" type="Position2D" parent="."]
@@ -47,12 +43,19 @@ autostart = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="death_range"]
+modulate = Color( 0.866667, 0.121569, 0.717647, 1 )
 position = Vector2( -5.2973, 3.70812 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="timer" type="Timer" parent="."]
 
 [node name="Timer2" type="Timer" parent="."]
+
+[node name="collissioinshape" type="CollisionShape2D" parent="."]
+modulate = Color( 0.94902, 0.694118, 0.0862745, 1 )
+position = Vector2( -5.66965, 4.40972 )
+scale = Vector2( 0.3, 1 )
+shape = SubResource( 3 )
 [connection signal="body_entered" from="attackRange" to="." method="_on_attackRange_body_entered"]
 [connection signal="body_exited" from="attackRange" to="." method="_on_attackRange_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

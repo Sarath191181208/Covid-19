@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var JUMPFORCE = -700
 export var speed = 300
-
+export var time = 0
 var coins = 0
 var velocity = Vector2(0,0)
 var coins_zero = false
@@ -11,8 +11,13 @@ const GRAVITY = 30
 const FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
-#when the sene loads coins text will be chaged from ## to 0<coins>
+	$CanvasLayer/time.text = String(time)
 	$CanvasLayer/coins_collected.text = String(coins)
+	$level_timer.set_wait_time(1)
+	$level_timer.start()
+func Time():
+	time += 1
+	$CanvasLayer/time.text = String(time)
 func _physics_process(delta):
 #Doing this because of sprite being on oneside which causes problems with collission layers
 	if $AnimatedSprite.flip_h == true :
@@ -67,7 +72,11 @@ func _on_death_range_body_entered(body):
 	get_tree().change_scene("res://scenes/leve1.tscn")
 
 func got_shot():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/levelSelector.tscn")
 # warning-ignore:unused_argument
 func _on_changeScene_area_entered(area):
 	pass # Replace with function body.
+
+func _on_level_timer_timeout():
+	Time()

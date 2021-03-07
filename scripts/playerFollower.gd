@@ -5,18 +5,24 @@ var move = Vector2.ZERO
 var player = null
 var gotShot = false
 var LOOT = preload("res://scenes/coin.tscn")
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	move = Vector2.ZERO
 	if player != null :
 		move = position.direction_to(player.position) * speed
 	else:
 		move = Vector2.ZERO
+	if player != null and move.x < 0:
+		$AnimatedSprite.flip_h = true
+	elif player != null and move.x > 0:
+		$AnimatedSprite.flip_h = false
 	move = move_and_collide(move)
 
 func got_shot():
 		move = Vector2.ZERO
 		if player != null :
 			turnoff()
+# warning-ignore:return_value_discarded
 		$timer.connect("timeout", self, "queue_free")
 		$timer.set_wait_time(0.5)
 		$timer.start()
@@ -39,6 +45,7 @@ func _on_detection_range_body_entered(body):
 		player = body
 
 
+# warning-ignore:unused_argument
 func _on_detection_range_body_exited(body):
 	player = null
 	if gotShot == false :
@@ -52,3 +59,9 @@ func _on_Timer_timeout():
 	loot.moreLoot()
 	get_parent().add_child(loot)
 	loot.position = $Position2D.global_position
+
+
+# warning-ignore:unused_argument
+func _on_kill_range_body_entered(body):
+# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()

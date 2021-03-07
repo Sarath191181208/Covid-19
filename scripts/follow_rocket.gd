@@ -34,8 +34,13 @@ func turnoff():
 	player = null
 	$death_range.set_collision_layer_bit(1,false)
 	$death_range.set_collision_mask_bit(0,false)
+	$death_range/CollisionShape2D.disabled = true
+	$death_range.queue_free()
+	$death_range/CollisionShape2D.queue_free()
 	set_collision_layer_bit(3,false)
 	set_collision_mask_bit(5,false)
+	set_collision_mask_bit(0,false)
+	$attackRange/range.disabled = true
 	$attackRange.queue_free()
 	$attackRange/range.queue_free()
 	$Sprite.play("dead")
