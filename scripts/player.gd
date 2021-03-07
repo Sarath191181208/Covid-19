@@ -16,8 +16,10 @@ func _ready():
 	$level_timer.set_wait_time(1)
 	$level_timer.start()
 func Time():
-	time += 1
+	time -= 1
 	$CanvasLayer/time.text = String(time)
+	if time == 0 :
+		get_tree().reload_current_scene()
 func _physics_process(delta):
 #Doing this because of sprite being on oneside which causes problems with collission layers
 	if $AnimatedSprite.flip_h == true :

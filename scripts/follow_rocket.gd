@@ -11,7 +11,7 @@ func got_shot():
 		$timer.connect("timeout", self, "queue_free")
 		$timer.set_wait_time(1.4)
 		$timer.start()
-		$Sprite.play("death")
+		$Sprite.play("dead")
 		gotShot = true
 		$Timer2.set_wait_time(1.4)
 		$Timer2.start()
@@ -54,6 +54,8 @@ func _on_attackRange_body_entered(body):
 	if body != self and gotShot == false :
 		player = body
 		$Sprite.play("fire")
+	elif player != null and gotShot ==true :
+		$Sprite.play("dead")
 
 # warning-ignore:unused_argument
 func _on_attackRange_body_exited(body):
