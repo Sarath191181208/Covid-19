@@ -1,12 +1,15 @@
 extends KinematicBody2D
 
+export(int) var health = 100
 export var JUMPFORCE = -700
 export var speed = 300
 export var time = 0
+
 var coins = 0
 var velocity = Vector2(0,0)
 var coins_zero = false
 var snap = Vector2.ZERO
+
 const GRAVITY = 30
 const FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
@@ -19,8 +22,10 @@ func Time():
 	time -= 1
 	$CanvasLayer/time.text = String(time)
 	if time == 0 :
+# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 func _physics_process(delta):
+	$CanvasLayer/lifeBar.value = health
 #Doing this because of sprite being on oneside which causes problems with collission layers
 	if $AnimatedSprite.flip_h == true :
 		$AnimatedSprite.position.x = -30
@@ -45,6 +50,7 @@ func _physics_process(delta):
 			var fireball = FIREBALL.instance()
 			coins -= 1
 			_ready()
+
 # --> changing the direction of fireball based on players facing direction
 			if $AnimatedSprite.flip_h == true :
 				fireball.changingDirection(-1)
@@ -68,14 +74,11 @@ func addcoin():
 	_ready()
 
 # warning-ignore:unused_argument
-func _on_death_range_body_entered(body):
-# warning-ignore:return_value_discarded
-# when collided with enemy restarting the scene
-	get_tree().change_scene("res://scenes/leve1.tscn")
 
-func got_shot():
+
+func got_shot(enemy_damage):
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://scenes/levelSelector.tscn")
+	health -= enemy_damage
 # warning-ignore:unused_argument
 func _on_changeScene_area_entered(area):
 	pass # Replace with function body.

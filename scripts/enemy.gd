@@ -1,17 +1,21 @@
 extends KinematicBody2D
 export var speed = 0.9
+export var damage = 10
 # if a player enters the range the player == .the object 
 var player =  null 
+var colliding_player = null
 var move = Vector2.ZERO
 # sprite is facing left so direction = -ve
 var direction = -1
 var gotShot = false
+var is_colliding = false
 const GRAVITY = 20
 
 const LOOT = preload("res://scenes/coin.tscn")
 # running a function after a time interval
 onready var timer = get_node("timer2")
 # warning-ignore:unused_argument
+
 func _physics_process(delta):
 # poaitioning for checkking if the enemy is colliding with player or not
 	$floor_checker.position.x = $CollisionShape2D.shape.get_extents().x * direction
@@ -27,11 +31,13 @@ func _physics_process(delta):
 # playing animations and flipping the enemy
 		if move.x > 0 :
 			direction = 1
-			$AnimatedSprite.play("walk")
+			if is_colliding == false :
+				$AnimatedSprite.play("walk")
 			$AnimatedSprite.flip_h = false
 		elif move.x < 0 :
 			direction = -1
-			$AnimatedSprite.play("walk")
+			if is_colliding == false:
+				$AnimatedSprite.play("walk")
 			$AnimatedSprite.flip_h = true
 		else :
 			$AnimatedSprite.play("idle")
@@ -59,9 +65,6 @@ func got_shot():
 	timer.start()
 
 func turnoff():
-	
-	$death_range.set_collision_layer_bit(1,false)
-	$death_range.set_collision_mask_bit(0,false)
 	$CollisionShape2D.disabled = true
 	set_collision_layer_bit(3,false)
 	set_collision_mask_bit(5,false)
@@ -75,7 +78,6 @@ func _on_detecting_range_body_entered(body):
 	if body != self :
 		player = body
 		
-
 func _on_detecting_range_body_exited(body) :
 	player = null
 	if gotShot == false :
@@ -89,3 +91,22 @@ func _on_timer2_timeout():
 	get_parent().add_child(loot)
 	loot.position = $Position2D.global_position
 
+func _on_collision_range_body_entered(body):
+	is_colliding = true
+	colliding_player = body
+	$AnimatedSprite.play("attack")
+	$attackTimer.set_wait_time(1)
+	$attackTimer.start()
+	
+func _on_attackTimer_timeout():
+	if colliding_player != null :
+		colliding_player.got_shot(damage)
+
+
+func _on_collision_range_body_exited(body):
+	if colliding_player != null :
+		colliding_player = null
+		if gotShot == false :
+			$AnimatedSprite.play("idle")
+		else :
+			$AnimatedSprite.play("dead")

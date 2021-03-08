@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -10,8 +10,10 @@
 [ext_resource path="res://Assets/buttons/tile100-removebg-preview.png" type="Texture" id=8]
 [ext_resource path="res://Assets/buttons/tile167.png" type="Texture" id=9]
 [ext_resource path="res://Assets/buttons/tile201.png" type="Texture" id=10]
+[ext_resource path="res://Assets/healthBar/healthBar_hidden.png" type="Texture" id=11]
 [ext_resource path="res://Assets/buttons/tile137.png" type="Texture" id=12]
 [ext_resource path="res://scripts/Node2D.gd" type="Script" id=13]
+[ext_resource path="res://Assets/healthBar/health.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.3344, 41.6507 )
@@ -33,7 +35,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 6
+frame = 5
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -130,8 +132,10 @@ action = "restart"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-margin_right = 146.0
-margin_bottom = 147.0
+margin_left = 8.0
+margin_top = 128.0
+margin_right = 154.0
+margin_bottom = 275.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -139,29 +143,28 @@ __meta__ = {
 [node name="coins_collected" type="Label" parent="CanvasLayer"]
 anchor_right = 0.151
 anchor_bottom = 0.133
-margin_left = 57.0
-margin_top = 6.88774
-margin_right = -16.624
-margin_bottom = -11.9123
+margin_left = 65.4519
+margin_top = 140.356
+margin_right = -8.17206
+margin_bottom = 121.556
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.0588235, 0.94902, 0.843137, 1 )
+custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
 text = "##
 "
 align = 1
 valign = 1
 autowrap = true
 clip_text = true
-uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="time" type="Label" parent="CanvasLayer"]
 modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
-margin_left = 24.0
-margin_top = 58.0
-margin_right = 123.0
-margin_bottom = 123.0
+margin_left = 16.0
+margin_top = 192.0
+margin_right = 115.0
+margin_bottom = 257.0
 custom_fonts/font = SubResource( 3 )
 text = "##"
 align = 1
@@ -174,12 +177,33 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_left = 23.0
-margin_top = 11.0
-margin_right = 68.0
-margin_bottom = 56.0
+margin_left = 32.0
+margin_top = 144.0
+margin_right = 77.0
+margin_bottom = 189.0
 texture = ExtResource( 5 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+margin_right = 512.0
+margin_bottom = 120.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
+anchor_left = 0.00203037
+anchor_right = 0.00203037
+margin_left = 125.921
+margin_top = 32.0
+margin_right = 637.921
+margin_bottom = 152.0
+value = 100.0
+texture_progress = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

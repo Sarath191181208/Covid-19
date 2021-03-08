@@ -76,4 +76,4 @@ func _on_Timer2_timeout():
 # warning-ignore:unused_argument
 func _on_death_range_body_entered(body):
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://scenes/levelSelector.tscn")
+	body.got_shot(100)

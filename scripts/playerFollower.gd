@@ -1,7 +1,10 @@
 extends KinematicBody2D
 
+export var damage = 10
 export var speed = 0.8
 var move = Vector2.ZERO
+var colliding_player = null
+var is_colliding = false
 var player = null
 var gotShot = false
 var LOOT = preload("res://scenes/coin.tscn")
@@ -30,6 +33,7 @@ func got_shot():
 		gotShot = true
 		$Timer2.set_wait_time(0.5)
 		$Timer2.start()
+
 func turnoff():
 	player = null
 	$kill_range.set_collision_layer_bit(1,false)
@@ -39,11 +43,10 @@ func turnoff():
 	$detection_range.queue_free()
 	$detection_range/CollisionShape2D.queue_free()
 	$AnimatedSprite.play("hit")
-	
+
 func _on_detection_range_body_entered(body):
 	if body != self and gotShot == false :
 		player = body
-
 
 # warning-ignore:unused_argument
 func _on_detection_range_body_exited(body):
@@ -53,15 +56,38 @@ func _on_detection_range_body_exited(body):
 	else:
 		$AnimatedSprite.play("hit")
 
-
 func _on_Timer_timeout():
 	var loot = LOOT.instance()
 	loot.moreLoot()
 	get_parent().add_child(loot)
 	loot.position = $Position2D.global_position
 
-
 # warning-ignore:unused_argument
 func _on_kill_range_body_entered(body):
-# warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
+	body.got_shot(10)
+
+
+func _on_collision_range_body_entered(body):
+		is_colliding = true
+		colliding_player = body
+		$AnimatedSprite.play("attack")
+		$attackTimer.set_wait_time(1)
+		$attackTimer.start()
+
+
+func _on_collision_range_body_exited(body):
+	if colliding_player != null :
+		colliding_player = null
+		if gotShot == false :
+			$AnimatedSprite.play("idle")
+		else :
+			$AnimatedSprite.play("dead")
+
+
+
+func _on_attackTimer_timeout():
+	if colliding_player != null :
+		$AnimationPlayer.play("attack")
+	if colliding_player != null :
+		colliding_player.got_shot(damage)
+
