@@ -16,7 +16,7 @@ tile_data = PoolIntArray( 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0
 position = Vector2( 79.37, -41.2725 )
 
 [node name="playerFollower" parent="Enemies" index="2" instance=ExtResource( 4 )]
-position = Vector2( 358, 244 )
+position = Vector2( 350.208, 228.416 )
 speed = 2.0
 
 [node name="StaticBody2D" parent="collisions" index="0"]

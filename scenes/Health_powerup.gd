@@ -7,6 +7,8 @@ func _ready():
 
 func _on_Health_powerup_body_entered(body):
 	body.health += heal
+	if body.health > 100 :
+		body.health = 100
 	$AnimationPlayer.play("bounce")
 	set_collision_layer_bit(4,false)
 	$CollisionShape2D.disabled = true
