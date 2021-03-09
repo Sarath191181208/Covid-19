@@ -94,7 +94,8 @@ func _on_timer2_timeout():
 func _on_collision_range_body_entered(body):
 	is_colliding = true
 	colliding_player = body
-	$AnimatedSprite.play("attack")
+	if gotShot == false :
+		$AnimatedSprite.play("attack")
 	$attackTimer.set_wait_time(1)
 	$attackTimer.start()
 	

@@ -25,6 +25,8 @@ func Time():
 # warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 func _physics_process(delta):
+	if health <= 0 :
+		get_tree().change_scene("res://scenes/levelSelector.tscn")
 	$CanvasLayer/lifeBar.value = health
 #Doing this because of sprite being on oneside which causes problems with collission layers
 	if $AnimatedSprite.flip_h == true :
