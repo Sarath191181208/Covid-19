@@ -84,3 +84,13 @@ expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+margin_left = 538.367
+margin_top = 285.195
+margin_right = 1074.37
+margin_bottom = 505.195
+text = "changeLevel"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -16,10 +16,13 @@ func _ready():
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	_ready()
-	$Button.pressed
+	$Button.connect("pressed",self,"changeScene")
 	
 			
 func change_level(lvl_number):
 	print("changed" +  " " + lvl_number)
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/leve" + String(lvl_number) + ".tscn")
+	
+func changeScene():
+	get_tree().change_scene("res://scenes/shop.tscn")

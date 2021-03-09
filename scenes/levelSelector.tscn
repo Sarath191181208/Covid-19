@@ -194,10 +194,10 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "12"
 
 [node name="Button" type="Button" parent="."]
-margin_left = 41.0488
-margin_top = 328.288
-margin_right = 241.049
-margin_bottom = 528.288
+margin_left = 596.208
+margin_top = 343.12
+margin_right = 796.208
+margin_bottom = 543.12
 text = "shop"
 expand_icon = true
 __meta__ = {
