@@ -5,7 +5,7 @@ export var JUMPFORCE = -700
 export var speed = 300
 export var time = 0
 
-var coins = 0
+var coins = 0  + Global.ammo
 var velocity = Vector2(0,0)
 var coins_zero = false
 var snap = Vector2.ZERO
@@ -16,6 +16,8 @@ const FIREBALL = preload("res://scenes/attack.tscn")
 func _ready():
 	$CanvasLayer/time.text = String(time)
 	$CanvasLayer/coins_collected.text = String(coins)
+	Global.coins += coins
+	print(Global.coins)
 	$level_timer.set_wait_time(1)
 	$level_timer.start()
 func Time():

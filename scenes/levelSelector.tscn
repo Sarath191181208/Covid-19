@@ -192,3 +192,14 @@ custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
 text = "12"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 41.0488
+margin_top = 328.288
+margin_right = 241.049
+margin_bottom = 528.288
+text = "shop"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

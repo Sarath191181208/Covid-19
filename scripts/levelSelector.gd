@@ -11,10 +11,13 @@ func _ready():
 			level.connect('pressed',self,'change_level',[level.name])
 		else :
 			level.disabled = true
-			
+		print(level)
+		
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	_ready()
+	$Button.pressed
+	
 			
 func change_level(lvl_number):
 	print("changed" +  " " + lvl_number)
