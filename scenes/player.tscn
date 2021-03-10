@@ -35,7 +35,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 4
+frame = 3
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -188,8 +188,10 @@ __meta__ = {
 }
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-margin_right = 512.0
-margin_bottom = 120.0
+margin_left = 29.6902
+margin_top = 21.443
+margin_right = 541.69
+margin_bottom = 141.443
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 11 )
 __meta__ = {
@@ -199,10 +201,10 @@ __meta__ = {
 [node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
 anchor_left = 0.00203037
 anchor_right = 0.00203037
-margin_left = 63.2416
-margin_top = 15.5054
-margin_right = 575.242
-margin_bottom = 135.505
+margin_left = 91.2824
+margin_top = 36.9484
+margin_right = 603.283
+margin_bottom = 156.948
 rect_scale = Vector2( 0.5, 0.5 )
 value = 100.0
 texture_progress = ExtResource( 14 )

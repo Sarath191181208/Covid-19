@@ -1,14 +1,18 @@
 extends Node2D
 
 func _physics_process(delta):
-	$GridContainer/Button.connect("pressed",self,"addCoin")
+	$Add_ammo.connect("pressed",self,"addCoin")
 	$Button.connect("pressed",self,"changeScene")
-	
+func _ready():
+	$CanvasLayer/Label.text = String(Global.coins)
 func addCoin():
-	if Global.coins != 0:
+	if Global.coins > 0:
 		Global.coins -= 1
-	Global.ammo += 1
-	print(Global.coins)
+		Global.ammo += 1
+	else :
+		$Add_ammo.disabled = true
+	_ready()
+
 	
 
 func changeScene():

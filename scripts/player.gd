@@ -16,8 +16,6 @@ const FIREBALL = preload("res://scenes/attack.tscn")
 func _ready():
 	$CanvasLayer/time.text = String(time)
 	$CanvasLayer/coins_collected.text = String(coins)
-	Global.coins += coins
-	print(Global.coins)
 	$level_timer.set_wait_time(1)
 	$level_timer.start()
 func Time():
@@ -83,9 +81,7 @@ func addcoin():
 func got_shot(enemy_damage):
 # warning-ignore:return_value_discarded
 	health -= enemy_damage
-# warning-ignore:unused_argument
-func _on_changeScene_area_entered(area):
-	pass # Replace with function body.
+
 
 func _on_level_timer_timeout():
 	Time()

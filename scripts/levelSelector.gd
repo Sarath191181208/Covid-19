@@ -11,12 +11,8 @@ func _ready():
 			level.connect('pressed',self,'change_level',[level.name])
 		else :
 			level.disabled = true
-		print(level)
-		
-# warning-ignore:unused_argument
-func _physics_process(delta):
-	_ready()
 	$Button.connect("pressed",self,"changeScene")
+# warning-ignore:unused_argumen
 	
 			
 func change_level(lvl_number):
