@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/tile_sets/Objects/DoorLocked.png" type="Texture" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/tile_sets/tres/2.tres" type="TileSet" id=5]
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/Area2D.gd" type="Script" id=7]
+[ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/changeScene.gd" type="Script" id=20]
 [ext_resource path="res://Assets/tile_sets/Objects/DoorOpen.png" type="Texture" id=21]
 
@@ -14,7 +15,7 @@
 extents = Vector2( 44.7822, 61.7336 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 224, 17.7039 )
+extents = Vector2( 193.682, 17.7039 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 721.248, 5.15234 )
@@ -81,6 +82,11 @@ texture = ExtResource( 1 )
 position = Vector2( 53.8058, 155.314 )
 JUMPFORCE = -1000
 time = 60
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="player"]
+layer = 50
+
+[node name="Dialog_box" parent="player/CanvasLayer3" instance=ExtResource( 8 )]
 
 [node name="collisions" type="Node2D" parent="."]
 

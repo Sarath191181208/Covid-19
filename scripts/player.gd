@@ -11,9 +11,15 @@ var coins_zero = false
 var snap = Vector2.ZERO
 
 const GRAVITY = 30
+const SHIELD = preload("res://scenes/shield.tscn")
 const FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
+	if Global.shield == true:
+		var shield = SHIELD.instance()
+		add_child(shield)
+		shield.position = $shieldPosition.position 
+		Global.shield = false
 	$CanvasLayer/time.text = String(time)
 	$CanvasLayer/coins_collected.text = String(coins)
 	$level_timer.set_wait_time(1)
@@ -52,7 +58,6 @@ func _physics_process(delta):
 			var fireball = FIREBALL.instance()
 			coins -= 1
 			_ready()
-
 # --> changing the direction of fireball based on players facing direction
 			if $AnimatedSprite.flip_h == true :
 				fireball.changingDirection(-1)
@@ -61,6 +66,8 @@ func _physics_process(delta):
 			#adding fireball
 			get_parent().add_child(fireball)
 			fireball.position = $Position2D.global_position
+			
+
 	if not is_on_floor():
 		snap = Vector2.DOWN
 		$AnimatedSprite.play("jump")

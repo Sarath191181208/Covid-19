@@ -16,7 +16,6 @@ func _ready():
 	
 			
 func change_level(lvl_number):
-	print("changed" +  " " + lvl_number)
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/leve" + String(lvl_number) + ".tscn")
 	

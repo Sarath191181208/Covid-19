@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/Dialog Box.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/fonts/Montserrat-MediumItalic.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/buttons/doctor-removebg-preview(1).png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 1
+outline_color = Color( 0.435294, 0.396078, 0.396078, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "load"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 232, 56 ), Vector2( 232, 50 ), Vector2( 232, 45 ) ]
+}
+
+[node name="Dialog_box" type="ColorRect"]
+pause_mode = 2
+margin_top = 400.0
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 1, 1, 1, 0.658824 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="RichTextLabel" parent="."]
+margin_left = 22.0
+margin_top = 7.0
+margin_right = 344.0
+margin_bottom = 72.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="."]
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 832.0
+margin_bottom = 184.0
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0.00392157, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Indicator" type="Polygon2D" parent="."]
+position = Vector2( 232, 56 )
+scale = Vector2( 0.75, 0.625 )
+color = Color( 0.415686, 0.929412, 1, 1 )
+polygon = PoolVector2Array( 896, 112, 960, 112, 928, 176 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Indicator"]
+autoplay = "load"
+anims/load = SubResource( 1 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Indicator"]
+position = Vector2( 885.334, 89.5999 )
+scale = Vector2( 0.197531, 0.17747 )
+normal = ExtResource( 4 )
+action = "ui_accept"
+
+[node name="Portrait" type="Sprite" parent="."]
+position = Vector2( 940.409, -91.0204 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="Timer" type="Timer" parent="."]

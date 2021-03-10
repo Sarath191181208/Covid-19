@@ -16,7 +16,7 @@
 [ext_resource path="res://Assets/healthBar/health.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25.3344, 41.6507 )
+extents = Vector2( 13.022, 41.6507 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
@@ -29,6 +29,10 @@ font_data = ExtResource( 4 )
 [node name="player" type="KinematicBody2D"]
 collision_mask = 16
 script = ExtResource( 2 )
+
+[node name="shieldPosition" type="Position2D" parent="."]
+position = Vector2( -4.57764e-05, 0 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 30, 0 )

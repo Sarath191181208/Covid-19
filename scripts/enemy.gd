@@ -56,9 +56,9 @@ func got_shot():
 		player = null
 	turnoff()
 	$AnimatedSprite.play("dead")
+	gotShot = true
 # warning-ignore:return_value_discarded
 	$timer.connect("timeout", self, "queue_free")
-	gotShot = true
 	$timer.set_wait_time(1.4)
 	$timer.start()
 	timer.set_wait_time(1.4)
@@ -79,11 +79,9 @@ func _on_detecting_range_body_entered(body):
 		player = body
 		
 func _on_detecting_range_body_exited(body) :
+	move = Vector2.ZERO
 	player = null
-	if gotShot == false :
-		$AnimatedSprite.play("idle")
-	else:
-		$AnimatedSprite.play("dead")
+
 
 func _on_timer2_timeout():
 	var loot = LOOT.instance()
@@ -96,6 +94,7 @@ func _on_collision_range_body_entered(body):
 	colliding_player = body
 	if gotShot == false :
 		$AnimatedSprite.play("attack")
+		
 	$attackTimer.set_wait_time(1)
 	$attackTimer.start()
 	
@@ -105,6 +104,7 @@ func _on_attackTimer_timeout():
 
 
 func _on_collision_range_body_exited(body):
+	is_colliding = false
 	if colliding_player != null :
 		colliding_player = null
 		if gotShot == false :
