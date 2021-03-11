@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Area2D.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/box_level.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44.7822, 61.7336 )
@@ -20,7 +21,7 @@ extents = Vector2( 44.7822, 61.7336 )
 extents = Vector2( 193.682, 17.7039 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 721.248, 5.15234 )
+extents = Vector2( 704, 0 )
 
 [node name="leve2" type="Node2D"]
 
@@ -31,7 +32,7 @@ cell_size = Vector2( 256, 256 )
 collision_layer = 8
 collision_mask = 5
 format = 1
-tile_data = PoolIntArray( 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 720903, 2, 0, 786439, 2, 0, 851975, 2, 0, 852009, 0, 0, 852010, 1, 0, 852011, 1, 0, 852012, 1, 0, 852013, 1, 0, 852014, 1, 0, 852015, 1, 0, 852016, 1, 0, 852017, 1, 0, 852018, 1, 0, 917511, 2, 0, 917512, 2, 0, 917513, 2, 0, 917516, 2, 0, 917517, 2, 0, 917518, 2, 0, 917519, 2, 0, 917520, 2, 0, 917521, 2, 0, 917522, 2, 0, 917523, 2, 0, 917524, 2, 0, 917525, 2, 0, 917526, 2, 0, 917527, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0 )
+tile_data = PoolIntArray( 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 720903, 2, 0, 786439, 2, 0, 851975, 2, 0, 852009, 0, 0, 852010, 1, 0, 852011, 1, 0, 852012, 1, 0, 852013, 1, 0, 852014, 1, 0, 852015, 1, 0, 852016, 1, 0, 852017, 1, 0, 852018, 1, 0, 917511, 2, 0, 917512, 2, 0, 917513, 2, 0, 917516, 2, 0, 917517, 2, 0, 917518, 2, 0, 917519, 2, 0, 917520, 2, 0, 917521, 2, 0, 917522, 2, 0, 917523, 2, 0, 917524, 2, 0, 917525, 2, 0, 917526, 2, 0, 917527, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0, 1245217, 0, 0 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 position = Vector2( -64, -64 )
@@ -116,6 +117,9 @@ position = Vector2( 2560, 896 )
 [node name="collisionObjects5" parent="collisions" instance=ExtResource( 6 )]
 position = Vector2( 2624, 896 )
 
+[node name="collisionObjects2" parent="collisions" instance=ExtResource( 6 )]
+position = Vector2( 1152, 1152 )
+
 [node name="Area2D" type="Area2D" parent="collisions"]
 position = Vector2( -311.131, 941.758 )
 collision_layer = 2
@@ -124,17 +128,64 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
 shape = SubResource( 3 )
 
-[node name="collisionObjects2" parent="collisions" instance=ExtResource( 6 )]
-position = Vector2( 1152, 1152 )
+[node name="Area2D2" type="Area2D" parent="collisions"]
+position = Vector2( -311.131, 941.758 )
+scale = Vector2( 1.46877, 1 )
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D2"]
+position = Vector2( 2615.13, 594.242 )
+shape = SubResource( 3 )
+
+[node name="Area2D3" type="Area2D" parent="collisions"]
+position = Vector2( -311.131, 941.758 )
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D3"]
+position = Vector2( 2615.13, 594.242 )
+shape = SubResource( 3 )
+
+[node name="box_level2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 356, 588 )
 
 [node name="moving platforms" type="Node2D" parent="."]
 
-[node name="movingPlatform" parent="moving platforms" instance=ExtResource( 3 )]
+[node name="1" type="Node2D" parent="moving platforms"]
+
+[node name="movingPlatform" parent="moving platforms/1" instance=ExtResource( 3 )]
 position = Vector2( 1792, 832 )
 move_to = Vector2( 256, -200 )
 
-[node name="movingPlatform2" parent="moving platforms" instance=ExtResource( 3 )]
-position = Vector2( 1856, 832 )
+[node name="movingPlatform2" parent="moving platforms/1/movingPlatform" instance=ExtResource( 3 )]
+position = Vector2( 64, 0 )
 move_to = Vector2( 256, -200 )
+
+[node name="2" type="Node2D" parent="moving platforms"]
+position = Vector2( 2240, 1280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="movingPlatform" parent="moving platforms/2" instance=ExtResource( 3 )]
+move_to = Vector2( 1280, 0 )
+
+[node name="movingPlatform2" parent="moving platforms/2" instance=ExtResource( 3 )]
+position = Vector2( 64, 0 )
+move_to = Vector2( 1280, 0 )
+
+[node name="3" type="Node2D" parent="moving platforms"]
+position = Vector2( 3584, 1280 )
+
+[node name="movingPlatform" parent="moving platforms/3" instance=ExtResource( 3 )]
+position = Vector2( -0.000244141, 0 )
+move_to = Vector2( 0, -1024 )
+
+[node name="movingPlatform2" parent="moving platforms/3" instance=ExtResource( 3 )]
+position = Vector2( 63.9998, 0 )
+move_to = Vector2( 0, -1024 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D3" to="collisions/Area2D3" method="_on_Area2D_body_entered"]

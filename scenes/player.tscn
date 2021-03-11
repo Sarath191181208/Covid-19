@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -22,6 +22,14 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.022, 41.6507 )
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0470588, 0.0470588, 0.0470588, 0.529412 )
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_bottom_right = 10
+
 [sub_resource type="DynamicFont" id=2]
 size = 50
 font_data = ExtResource( 4 )
@@ -43,7 +51,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 13
+frame = 12
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -140,10 +148,9 @@ action = "restart"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-margin_left = 8.0
-margin_top = 128.0
-margin_right = 154.0
-margin_bottom = 275.0
+margin_right = 295.0
+margin_bottom = 142.0
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -151,10 +158,10 @@ __meta__ = {
 [node name="coins_collected" type="Label" parent="CanvasLayer"]
 anchor_right = 0.151
 anchor_bottom = 0.133
-margin_left = 65.4519
-margin_top = 140.356
-margin_right = -8.17206
-margin_bottom = 121.556
+margin_left = 67.1427
+margin_top = 73.3385
+margin_right = -6.48126
+margin_bottom = 54.5385
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
 text = "##
@@ -169,10 +176,10 @@ __meta__ = {
 
 [node name="time" type="Label" parent="CanvasLayer"]
 modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
-margin_left = 16.0
-margin_top = 192.0
-margin_right = 115.0
-margin_bottom = 257.0
+margin_left = 136.671
+margin_top = 70.5285
+margin_right = 235.671
+margin_bottom = 135.529
 custom_fonts/font = SubResource( 3 )
 text = "##"
 align = 1
@@ -185,10 +192,10 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_left = 32.0
-margin_top = 144.0
-margin_right = 77.0
-margin_bottom = 189.0
+margin_left = 17.7456
+margin_top = 78.0735
+margin_right = 62.7456
+margin_bottom = 123.074
 texture = ExtResource( 5 )
 expand = true
 __meta__ = {
@@ -196,10 +203,10 @@ __meta__ = {
 }
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-margin_left = 29.6902
-margin_top = 21.443
-margin_right = 541.69
-margin_bottom = 141.443
+margin_left = 18.9994
+margin_top = 12.534
+margin_right = 530.999
+margin_bottom = 132.534
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 11 )
 __meta__ = {
@@ -209,10 +216,10 @@ __meta__ = {
 [node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
 anchor_left = 0.00203037
 anchor_right = 0.00203037
-margin_left = 91.2824
-margin_top = 36.9484
-margin_right = 603.283
-margin_bottom = 156.948
+margin_left = 81.937
+margin_top = 28.8212
+margin_right = 593.938
+margin_bottom = 148.821
 rect_scale = Vector2( 0.5, 0.5 )
 value = 100.0
 texture_progress = ExtResource( 14 )
@@ -229,6 +236,8 @@ autostart = true
 
 [node name="jump" type="AudioStreamPlayer" parent="Musics"]
 stream = ExtResource( 15 )
+volume_db = -20.0
+pitch_scale = 0.63
 
 [node name="walk" type="AudioStreamPlayer" parent="Musics"]
 stream = ExtResource( 16 )

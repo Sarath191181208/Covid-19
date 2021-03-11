@@ -4,6 +4,7 @@ var random = RandomNumberGenerator.new()
 func _on_coin_body_entered(body):
 #goes to body that entered  and checks for add coin function
 	body.addcoin()
+	$AudioStreamPlayer.play()
 	if add == true :
 		body.addcoin()
 		add = false
@@ -20,3 +21,4 @@ func moreLoot():
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 	queue_free()
+

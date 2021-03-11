@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Dialog Box.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/fonts/Montserrat-MediumItalic.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/buttons/doctor-removebg-preview(1).png" type="Texture" id=4]
-[ext_resource path="res://Assets/sounds/typing.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/sounds/Typing (2).wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/fonts/Montserrat-SemiBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/themes/pressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://Assets/themes/levelSelector.tres" type="StyleBox" id=8]
+[ext_resource path="res://Assets/themes/disable.tres" type="StyleBox" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -31,6 +35,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 232, 56 ), Vector2( 232, 50 ), Vector2( 232, 45 ) ]
 }
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = ExtResource( 6 )
 
 [node name="Dialog_box" type="ColorRect"]
 pause_mode = 2
@@ -68,7 +76,7 @@ __meta__ = {
 [node name="Indicator" type="Polygon2D" parent="."]
 position = Vector2( 232, 56 )
 scale = Vector2( 0.75, 0.625 )
-color = Color( 0.415686, 0.929412, 1, 1 )
+color = Color( 0.415686, 0.54902, 1, 1 )
 polygon = PoolVector2Array( 896, 112, 960, 112, 928, 176 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Indicator"]
@@ -89,3 +97,25 @@ scale = Vector2( 0.25, 0.25 )
 
 [node name="typing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -5.0
+
+[node name="skip" type="Button" parent="."]
+margin_left = 872.0
+margin_top = 16.0
+margin_right = 1016.0
+margin_bottom = 80.0
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 9 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = SubResource( 4 )
+text = "Skip"
+clip_text = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="skip"]
+polygon = PoolVector2Array( 104, 24, 104, 40, 120, 32 )

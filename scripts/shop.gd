@@ -1,6 +1,10 @@
 extends Node2D
 
 func _ready():
+	if Global.coins < 10 :
+		$Add_shield.disabled = true
+	if Global.coins < 1 :
+		$Add_ammo.disabled = true
 	$Add_ammo.connect("pressed",self,"addCoin")
 	$Button.connect("pressed",self,"changeScene")
 	$Add_shield.connect("pressed",self,"addShield")

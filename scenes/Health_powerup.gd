@@ -7,6 +7,7 @@ func _ready():
 
 func _on_Health_powerup_body_entered(body):
 	body.health += heal
+	$AudioStreamPlayer.play()
 	if body.health > 100 :
 		body.health = 100
 	$AnimationPlayer.play("bounce")

@@ -7,4 +7,5 @@ func got_shot(damage):
 	$AnimatedSprite.play("fade")
 	$CollisionShape2D.disabled = true
 	$timer.connect("timeout", self, "queue_free")
+	Global.shield  = false
 	$timer.start()

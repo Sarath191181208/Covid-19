@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/follow_rocket.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/movingPlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/playerFollower.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/collisionObjects.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Health_powerup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/Area2D.gd" type="Script" id=7]
@@ -15,6 +14,7 @@
 [ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/box_level.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44.7822, 61.7336 )
@@ -22,8 +22,14 @@ extents = Vector2( 44.7822, 61.7336 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 192, 17.7039 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 125.65, 10 )
+
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 721.248, 5.15234 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 1292.11, 2.58594 )
 
 [node name="leve3" type="Node2D"]
 
@@ -34,7 +40,7 @@ cell_size = Vector2( 256, 256 )
 collision_layer = 8
 collision_mask = 5
 format = 1
-tile_data = PoolIntArray( 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589869, 1, 0, 589870, 1, 0, 589871, 1, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0 )
+tile_data = PoolIntArray( 75, 1, 0, 76, 1, 0, 131150, 1, 0, 262224, 1, 0, 327761, 1, 0, 393298, 1, 0, 458835, 1, 0, 524373, 1, 0, 524374, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589869, 1, 0, 589870, 1, 0, 589871, 1, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0, 589876, 0, 0, 786535, 1, 0, 786536, 1, 0, 786537, 1, 0, 786538, 1, 0, 786539, 1, 0, 786540, 1, 0, 786541, 1, 0, 917558, 1, 0, 917559, 1, 0, 917560, 1, 0, 917561, 1, 0, 917562, 1, 0, 917563, 1, 0, 917576, 1, 0, 917577, 1, 0, 917578, 1, 0, 917579, 1, 0, 917580, 1, 0, 917581, 1, 0, 917602, 1, 0, 917603, 1, 0, 917604, 1, 0, 917605, 1, 0, 983099, -1610612735, 0, 983112, -1073741823, 0, 983166, 1, 0, 1048635, -1610612735, 0, 1048648, -1073741823, 0, 1048669, 1, 0, 1048670, 1, 0, 1048671, 1, 0, 1048672, 1, 0, 1048688, 1, 0, 1114171, -1610612735, 0, 1114184, -1073741823, 0, 1114236, 1, 0, 1179707, -1610612735, 0, 1179736, 1, 0, 1179737, 1, 0, 1179738, 1, 0, 1179739, 1, 0, 1179762, 1, 0, 1245243, -1610612735, 0, 1245306, 1, 0, 1310779, -1073741823, 0, 1310780, 1, 0, 1310781, 1, 0, 1310782, 1, 0, 1310783, 1, 0, 1310784, 1, 0, 1310785, 1, 0, 1310786, 1, 0, 1310787, 1, 0, 1310788, 1, 0, 1310789, 1, 0, 1310790, 1, 0, 1310791, 1, 0, 1310792, -1610612735, 0, 1310805, 1, 0, 1310806, 1, 0, 1310836, 1, 0, 1310838, 1, 0, 1310840, 1, 0 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 position = Vector2( 79.37, -41.2725 )
@@ -42,7 +48,7 @@ scale = Vector2( 0.25, 0.25 )
 tile_set = ExtResource( 11 )
 cell_size = Vector2( 256, 256 )
 format = 1
-tile_data = PoolIntArray( 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0 )
+tile_data = PoolIntArray( -131000, 0, 0, -130999, 0, 0, -130998, 0, 0, -130997, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0 )
 
 [node name="coins" type="Node2D" parent="."]
 position = Vector2( 181.766, 373.098 )
@@ -56,6 +62,9 @@ position = Vector2( 368.314, -11.9582 )
 [node name="coin3" parent="coins" instance=ExtResource( 1 )]
 position = Vector2( 1703.15, -113.406 )
 
+[node name="box_level" parent="coins" instance=ExtResource( 16 )]
+position = Vector2( 7915.12, 551.946 )
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="enemy" parent="Enemies" instance=ExtResource( 14 )]
@@ -64,12 +73,14 @@ position = Vector2( 1252.85, 459.686 )
 [node name="enemy2" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 2907.13, 424.747 )
 
-[node name="playerFollower" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 350.208, 228.416 )
-speed = 2.0
+[node name="tank" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 4647.22, 1214.19 )
+
+[node name="tank2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 7019.06, 723.226 )
 
 [node name="changeScene" type="Area2D" parent="."]
-position = Vector2( 3232.04, 491.681 )
+position = Vector2( 5888, -256 )
 collision_layer = 2
 script = ExtResource( 8 )
 __meta__ = {
@@ -110,6 +121,20 @@ position = Vector2( 47.119, 0 )
 shape = SubResource( 2 )
 one_way_collision = true
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="collisions"]
+position = Vector2( 4687.12, -192 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D2"]
+position = Vector2( 141.893, 35.6762 )
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="collisionObjects" parent="collisions" instance=ExtResource( 5 )]
+position = Vector2( 2831.12, 576 )
+
+[node name="collisionObjects2" parent="collisions" instance=ExtResource( 5 )]
+position = Vector2( 2767.12, 576 )
+
 [node name="Area2D" type="Area2D" parent="collisions"]
 position = Vector2( -311.131, 941.758 )
 collision_layer = 2
@@ -118,16 +143,42 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
 shape = SubResource( 3 )
 
-[node name="collisionObjects" parent="collisions" instance=ExtResource( 5 )]
-position = Vector2( 2816, 576 )
+[node name="Area2D2" type="Area2D" parent="collisions"]
+position = Vector2( 787.675, 1030.84 )
+collision_layer = 2
+script = ExtResource( 7 )
 
-[node name="collisionObjects2" parent="collisions" instance=ExtResource( 5 )]
-position = Vector2( 2752, 576 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D2"]
+position = Vector2( 1379.88, -145.072 )
+shape = SubResource( 5 )
 
-[node name="tanks" type="Node2D" parent="."]
+[node name="Area2D8" type="Area2D" parent="collisions"]
+position = Vector2( 787.675, 1030.84 )
+collision_layer = 2
+script = ExtResource( 7 )
 
-[node name="follow_rocket" parent="tanks" instance=ExtResource( 2 )]
-position = Vector2( 1632, 528 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D8"]
+position = Vector2( 2055.19, 540.326 )
+shape = SubResource( 5 )
+
+[node name="Area2D9" type="Area2D" parent="collisions"]
+position = Vector2( 787.675, 1030.84 )
+collision_layer = 2
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D9"]
+position = Vector2( 4625.43, 550.405 )
+shape = SubResource( 5 )
+
+[node name="Area2D10" type="Area2D" parent="collisions"]
+position = Vector2( 1687.41, -2199.85 )
+rotation = 0.785398
+collision_layer = 2
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D10"]
+position = Vector2( 3647.74, -437.373 )
+shape = SubResource( 5 )
 
 [node name="movingPlatforms" type="Node2D" parent="."]
 
@@ -145,9 +196,49 @@ position = Vector2( 127.376, -0.0632629 )
 [node name="movingPlatform4" parent="movingPlatforms/1" instance=ExtResource( 3 )]
 position = Vector2( 191.376, -0.0632629 )
 
+[node name="2" type="Node2D" parent="movingPlatforms"]
+position = Vector2( 4748.88, 1279.23 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="movingPlatform" parent="movingPlatforms/2" instance=ExtResource( 3 )]
+position = Vector2( -35.1055, 45.218 )
+move_to = Vector2( 786, 0 )
+
+[node name="movingPlatform2" parent="movingPlatforms/2" instance=ExtResource( 3 )]
+position = Vector2( 28.8945, 45.218 )
+move_to = Vector2( 786, 0 )
+
+[node name="movingPlatform3" parent="movingPlatforms/2" instance=ExtResource( 3 )]
+position = Vector2( 92.8945, 45.218 )
+move_to = Vector2( 786, 0 )
+
+[node name="3" type="Node2D" parent="movingPlatforms"]
+position = Vector2( 5632, 1024 )
+
+[node name="movingPlatform" parent="movingPlatforms/3" instance=ExtResource( 3 )]
+move_to = Vector2( 0, -512 )
+
+[node name="4" type="Node2D" parent="movingPlatforms"]
+position = Vector2( 4992, -128 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="movingPlatform" parent="movingPlatforms/4" instance=ExtResource( 3 )]
+move_to = Vector2( 640, 0 )
+
+[node name="movingPlatform2" parent="movingPlatforms/4" instance=ExtResource( 3 )]
+move_to = Vector2( 640, 0 )
+
 [node name="powerUps" type="Node2D" parent="."]
 
 [node name="Health_powerup" parent="powerUps" instance=ExtResource( 6 )]
-position = Vector2( 389.699, 509.676 )
+position = Vector2( 6406.9, 833.31 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D8" to="collisions/Area2D8" method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D9" to="collisions/Area2D9" method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D10" to="collisions/Area2D10" method="_on_Area2D2_body_entered"]

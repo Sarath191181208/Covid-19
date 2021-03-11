@@ -7,10 +7,13 @@ export var time = 0
 
 var coins = 0  + Global.ammo
 var velocity = Vector2(0,0)
-var coins_zero = false
 var snap = Vector2.ZERO
 
+var coins_zero = false
+var alreadyPlayed = true
+
 const GRAVITY = 30
+
 const SHIELD = preload("res://scenes/shield.tscn")
 const FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
@@ -62,6 +65,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
 		velocity.y = JUMPFORCE
 		snap = Vector2.ZERO
+		alreadyPlayed = false
 	if Input.is_action_just_pressed("fire"):
 		Input.vibrate_handheld(350)
 		if coins != 0 :
@@ -78,11 +82,12 @@ func _physics_process(delta):
 			get_parent().add_child(fireball)
 			fireball.position = $Position2D.global_position
 			
-
 	if not is_on_floor():
 		snap = Vector2.DOWN
 		$AnimatedSprite.play("jump")
-		$Musics/jump.play()
+		if $Musics/jump.playing == false and alreadyPlayed == false :
+			$Musics/jump.play()
+			alreadyPlayed = true
 
 #Adding gravity to player this function runs about 60 times per second 
 # 	=> body accelerates due to continious change in velocity

@@ -9,8 +9,12 @@ var colliding_player = null
 var move = Vector2.ZERO
 # sprite is facing left so direction = -ve
 var direction = -1
+
 var gotShot = false
 var is_colliding = false
+var is_played_walk = false
+var is_played_dead = false
+
 const GRAVITY = 20
 
 const BOX = preload("res://scenes/box.tscn")
@@ -59,6 +63,9 @@ func got_shot():
 		player = null
 	turnoff()
 	$AnimatedSprite.play("dead")
+	if $Audio/dead.playing == false and is_played_dead == false:
+		$Audio/dead.play()
+		is_played_dead = true
 	gotShot = true
 # warning-ignore:return_value_discarded
 	$timer.connect("timeout", self, "queue_free")
@@ -83,6 +90,8 @@ func _on_detecting_range_body_entered(body):
 		
 func _on_detecting_range_body_exited(body) :
 	move = Vector2.ZERO
+	if gotShot == false:
+		$AnimatedSprite.play("idle")
 	player = null
 
 
@@ -111,7 +120,6 @@ func _on_attackTimer_timeout():
 	if colliding_player != null :
 		colliding_player.got_shot(damage)
 
-
 # warning-ignore:unused_argument
 func _on_collision_range_body_exited(body):
 	is_colliding = false
@@ -120,4 +128,7 @@ func _on_collision_range_body_exited(body):
 		if gotShot == false :
 			$AnimatedSprite.play("idle")
 		else :
+			if $Audio/dead.playing == false and is_played_dead == false:
+				$Audio/dead.play()
+				is_played_dead = true
 			$AnimatedSprite.play("dead")

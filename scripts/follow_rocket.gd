@@ -28,6 +28,7 @@ func fire():
 		get_parent().get_parent().add_child(fireball)
 		$Timer.set_wait_time(2)
 		$Timer.start()
+		
 
 
 func turnoff():

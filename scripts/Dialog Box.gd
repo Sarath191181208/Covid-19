@@ -14,6 +14,7 @@ func _ready():
 	$Timer.wait_time = textSpeed
 	dialog = getDialog()
 	nextPhrase()
+	$skip.connect('pressed',self,'set_nextPhrase')
 func _process(_delta):
 	if finished == true :
 		$typing.stop()
@@ -28,7 +29,9 @@ func getDialog() -> Array:
 		return Dialog
 	else:
 		return []
- 
+func set_nextPhrase():
+	phraseNum = len(dialog)
+	nextPhrase()
 func nextPhrase() -> void:
 	if phraseNum >= len(dialog):
 		queue_free()
