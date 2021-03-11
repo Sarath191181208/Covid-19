@@ -15,6 +15,8 @@ func _ready():
 	dialog = getDialog()
 	nextPhrase()
 func _process(_delta):
+	if finished == true :
+		$typing.stop()
 	if Input.is_action_just_pressed("ui_accept"):
 		if finished:
 			nextPhrase()
@@ -22,7 +24,6 @@ func _process(_delta):
 			$Text.visible_characters = len($Text.text)
  
 func getDialog() -> Array:
-
 	if typeof(Dialog) == TYPE_ARRAY:
 		return Dialog
 	else:
@@ -35,7 +36,6 @@ func nextPhrase() -> void:
 		return
 	
 	finished = false
-	
 	$Name.bbcode_text = dialog[phraseNum]["Name"]
 	$Text.bbcode_text = dialog[phraseNum]["Text"]
 	
@@ -51,8 +51,9 @@ func nextPhrase() -> void:
 #
 	while $Text.visible_characters < len($Text.text):
 		$Text.visible_characters += 1
-		
 		$Timer.start()
+		if $typing.playing == false:
+			$typing.play()
 		yield($Timer, "timeout")
 	
 	finished = true

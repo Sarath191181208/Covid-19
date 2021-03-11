@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/healthDecrease.ogg-5fc6aa0e2d087b38b8f6f69fa7990dcd.oggstr"
+
+[deps]
+
+source_file="res://Assets/sounds/healthDecrease.ogg"
+dest_files=[ "res://.import/healthDecrease.ogg-5fc6aa0e2d087b38b8f6f69fa7990dcd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

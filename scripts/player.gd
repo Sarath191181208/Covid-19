@@ -40,21 +40,32 @@ func _physics_process(delta):
 	else :
 		$AnimatedSprite.position.x = 30
 #checking the player input and playing animations
+	if $Musics/walk.playing == true and Input.is_action_just_released("right"):
+		$Musics/walk.stop()
+	if $Musics/walk.playing == true and Input.is_action_just_released("left"):
+		$Musics/walk.stop()
 	if Input.is_action_pressed("right"):
 		velocity.x = speed
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = false
+		if $Musics/walk.playing == false:
+			$Musics/walk.play()
 	elif Input.is_action_pressed("left"):
 		velocity.x = -speed
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = true
+		if $Musics/walk.playing == false:
+			$Musics/walk.play()
+	
 	else:
 		$AnimatedSprite.play("Idle")
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
 		velocity.y = JUMPFORCE
 		snap = Vector2.ZERO
 	if Input.is_action_just_pressed("fire"):
+		Input.vibrate_handheld(350)
 		if coins != 0 :
+			$Musics/fire.play()
 			var fireball = FIREBALL.instance()
 			coins -= 1
 			_ready()
@@ -71,6 +82,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		snap = Vector2.DOWN
 		$AnimatedSprite.play("jump")
+		$Musics/jump.play()
 
 #Adding gravity to player this function runs about 60 times per second 
 # 	=> body accelerates due to continious change in velocity
@@ -88,7 +100,12 @@ func addcoin():
 func got_shot(enemy_damage):
 # warning-ignore:return_value_discarded
 	health -= enemy_damage
+	$Musics/damage.play()
+	Input.vibrate_handheld(350)
 
+
+func get_position():
+	return $CanvasLayer/Position2D2.position
 
 func _on_level_timer_timeout():
 	Time()

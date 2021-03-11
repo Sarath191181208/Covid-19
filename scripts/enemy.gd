@@ -1,6 +1,8 @@
 extends KinematicBody2D
 export var speed = 0.9
 export var damage = 10
+
+var random = RandomNumberGenerator.new()
 # if a player enters the range the player == .the object 
 var player =  null 
 var colliding_player = null
@@ -11,6 +13,7 @@ var gotShot = false
 var is_colliding = false
 const GRAVITY = 20
 
+const BOX = preload("res://scenes/box.tscn")
 const LOOT = preload("res://scenes/coin.tscn")
 # running a function after a time interval
 onready var timer = get_node("timer2")
@@ -87,6 +90,12 @@ func _on_timer2_timeout():
 	var loot = LOOT.instance()
 	loot.moreLoot()
 	get_parent().add_child(loot)
+	random.randomize()
+	var random_number = random.randf_range(0,100)
+	if random_number >= 95 :
+		var box = BOX.instance()
+		box.position = $Position2D.global_position
+		get_parent().add_child(box)
 	loot.position = $Position2D.global_position
 
 func _on_collision_range_body_entered(body):
@@ -103,6 +112,7 @@ func _on_attackTimer_timeout():
 		colliding_player.got_shot(damage)
 
 
+# warning-ignore:unused_argument
 func _on_collision_range_body_exited(body):
 	is_colliding = false
 	if colliding_player != null :

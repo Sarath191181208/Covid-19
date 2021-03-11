@@ -1,9 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/levelSelector.gd" type="Script" id=1]
-[ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/fonts/Montserrat-MediumItalic.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/themes/levelSelector.tres" type="StyleBox" id=3]
+[ext_resource path="res://Assets/themes/pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/themes/disable.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/shop/pharmacy-removebg-preview.png" type="Texture" id=6]
+[ext_resource path="res://Assets/music/Swinging Pants.ogg" type="AudioStream" id=7]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 1
+outline_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
 font_data = ExtResource( 2 )
 
 [node name="levelSelector" type="Control"]
@@ -17,7 +25,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 1260.0
 margin_bottom = 700.0
-color = Color( 0.235294, 0.0196078, 0.447059, 0.780392 )
+color = Color( 0.403922, 0.294118, 0.513726, 0.780392 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -29,26 +37,32 @@ anchor_top = 10.0
 anchor_right = 10.0
 anchor_bottom = 10.0
 margin_left = 41.0488
-margin_top = 28.2883
-margin_right = 361.049
-margin_bottom = 132.288
+margin_top = 28.288
+margin_right = 1065.05
+margin_bottom = 328.288
 grow_horizontal = 0
 grow_vertical = 0
-rect_scale = Vector2( 3, 3 )
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 6
+custom_constants/vseparation = 25
+custom_constants/hseparation = 25
+columns = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="1" type="Button" parent="levels"]
 light_mask = -2147483647
-margin_right = 50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+margin_right = 165.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -56,11 +70,17 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="2" type="Button" parent="levels"]
-margin_left = 54.0
-margin_right = 104.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 190.0
+margin_right = 355.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -68,11 +88,17 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="3" type="Button" parent="levels"]
-margin_left = 108.0
-margin_right = 158.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 380.0
+margin_right = 545.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -80,11 +106,17 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="4" type="Button" parent="levels"]
-margin_left = 162.0
-margin_right = 212.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 570.0
+margin_right = 735.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -92,11 +124,17 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="5" type="Button" parent="levels"]
-margin_left = 216.0
-margin_right = 266.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 760.0
+margin_right = 925.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -104,11 +142,17 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="6" type="Button" parent="levels"]
-margin_left = 270.0
-margin_right = 320.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_top = 165.0
+margin_right = 165.0
+margin_bottom = 305.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -116,11 +160,18 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="7" type="Button" parent="levels"]
-margin_top = 54.0
-margin_right = 50.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 190.0
+margin_top = 165.0
+margin_right = 355.0
+margin_bottom = 305.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -128,12 +179,18 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="8" type="Button" parent="levels"]
-margin_left = 54.0
-margin_top = 54.0
-margin_right = 104.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 380.0
+margin_top = 165.0
+margin_right = 545.0
+margin_bottom = 305.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -141,12 +198,18 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="9" type="Button" parent="levels"]
-margin_left = 108.0
-margin_top = 54.0
-margin_right = 158.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 570.0
+margin_top = 165.0
+margin_right = 735.0
+margin_bottom = 305.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -154,38 +217,18 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="10" type="Button" parent="levels"]
-margin_left = 162.0
-margin_top = 54.0
-margin_right = 212.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
-custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
-custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
-text = "1"
-
-[node name="11" type="Button" parent="levels"]
-margin_left = 216.0
-margin_top = 54.0
-margin_right = 266.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
-custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
-custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
-custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
-text = "1"
-
-[node name="12" type="Button" parent="levels"]
-margin_left = 270.0
-margin_top = 54.0
-margin_right = 320.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 50, 50 )
-custom_fonts/font = SubResource( 1 )
+light_mask = -2147483647
+margin_left = 760.0
+margin_top = 165.0
+margin_right = 925.0
+margin_bottom = 305.0
+rect_min_size = Vector2( 165, 140 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
 custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
 custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
@@ -193,11 +236,18 @@ custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 
 text = "1"
 
 [node name="Button" type="Button" parent="."]
-margin_left = 736.555
-margin_top = 387.326
-margin_right = 926.555
-margin_bottom = 528.326
-text = "MedicalStore"
+margin_left = 767.0
+margin_top = 425.0
+margin_right = 1359.0
+margin_bottom = 861.0
+rect_scale = Vector2( 0.3, 0.3 )
+icon = ExtResource( 6 )
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0
+autoplay = true
