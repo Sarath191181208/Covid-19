@@ -80,10 +80,10 @@ func _physics_process(delta):
 		alreadyPlayed = false
 	if Input.is_action_just_pressed("fire"):
 		Input.vibrate_handheld(350)
-		if coins != 0 :
+		if coins > 1:
 			$Musics/fire.play()
 			var fireball = FIREBALL.instance()
-			coins -= 1
+			coins -= 2
 			_ready()
 # --> changing the direction of fireball based on players facing direction
 			if $AnimatedSprite.flip_h == true :

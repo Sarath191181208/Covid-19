@@ -254,7 +254,19 @@ volume_db = -10.0
 autoplay = true
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2( 654.183, 428.387 )
+position = Vector2( 54.5269, 449.576 )
 scale = Vector2( 0.18871, 0.168613 )
 normal = ExtResource( 8 )
 action = "save"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 64.7798
+margin_top = 483.52
+margin_right = 134.78
+margin_bottom = 500.52
+text = "Save"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

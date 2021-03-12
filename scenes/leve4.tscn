@@ -54,6 +54,21 @@ position = Vector2( 368.314, -11.9582 )
 [node name="coin3" parent="coins" instance=ExtResource( 1 )]
 position = Vector2( 1703.15, -113.406 )
 
+[node name="coin4" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 4725.98, -170.681 )
+
+[node name="coin5" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 4976.02, -221.535 )
+
+[node name="coin6" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 5166.72, -107.113 )
+
+[node name="coin7" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 5327.76, 28.4983 )
+
+[node name="coin8" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 5459.13, 164.11 )
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="enemy" parent="Enemies" instance=ExtResource( 12 )]
@@ -63,19 +78,22 @@ position = Vector2( 1252.85, 459.686 )
 position = Vector2( 3941.86, 760.138 )
 
 [node name="enemy3" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 5504, 512 )
+position = Vector2( 3754.94, 781.087 )
 
 [node name="enemy6" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 5760, 640 )
+position = Vector2( 5083.92, 764.453 )
 
 [node name="enemy7" parent="Enemies" instance=ExtResource( 12 )]
 position = Vector2( 4992, 768 )
 
+[node name="enemy8" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 5657.34, 768 )
+
 [node name="enemy4" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 5248, 384 )
+position = Vector2( 5073.09, 451.272 )
 
 [node name="enemy5" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 4992, 256 )
+position = Vector2( 4335.02, 373.972 )
 
 [node name="changeScene" type="Area2D" parent="."]
 position = Vector2( 5758.28, -321.401 )
@@ -135,6 +153,9 @@ position = Vector2( 4544, 832 )
 
 [node name="collisionObjects3" parent="collisions" instance=ExtResource( 4 )]
 position = Vector2( 4480, 832 )
+
+[node name="collisionObjects4" parent="collisions" instance=ExtResource( 4 )]
+position = Vector2( 5923.79, 703.483 )
 
 [node name="tanks" type="Node2D" parent="."]
 

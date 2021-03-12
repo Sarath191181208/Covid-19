@@ -80,7 +80,7 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="player" parent="." instance=ExtResource( 13 )]
-position = Vector2( 53.8058, 155.314 )
+position = Vector2( 2583.22, 478.218 )
 JUMPFORCE = -1000
 time = 60
 

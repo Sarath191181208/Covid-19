@@ -61,12 +61,13 @@ var Dialogs = [
 #level 2 story ends
 [
 {"Name": "Doctor","Emotion" : "Happy","Text" : "Hey there I hope you are doing well ? "},
-{"Name": "Doctor","Emotion" : "Happy","Text" : "Let me tell you that doofus had succeded in creating a tank he is using it to stop you BEWARE !!! "}
+{"Name": "Doctor","Emotion" : "Happy","Text" : "Let me tell you that doofus had succeded in creating a tank he is using it to stop you BEWARE !!! "},
+{"Name": "Doctor","Emotion" : "Happy","Text" : "If you hit the tank you will die"}
 ],
 #level 3 story ends
 [
 {"Name": "Doctor","Emotion" : "Happy","Text" : "Hey there I hope you are doing well ? "},
-{"Name": "Doctor","Emotion" : "Happy","Text" : "Let me tell you that doofus had succeded in creating a tank he is using it to stop you BEWARE !!! "}
+{"Name": "Doctor","Emotion" : "Happy","Text" : "The docotor is trying to make a  wild bird beware"}
 ],
 #level 4 story ends
 [
