@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/follow_rocket.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/movingPlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/playerFollower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/collisionObjects.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Area2D.gd" type="Script" id=5]
 [ext_resource path="res://scenes/changeScene.gd" type="Script" id=6]
 [ext_resource path="res://Assets/tile_sets/Objects/DoorLocked.png" type="Texture" id=7]
@@ -18,10 +18,10 @@
 extents = Vector2( 44.7822, 61.7336 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 192, 17.7039 )
+extents = Vector2( 225.662, 11.1286 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 721.248, 5.15234 )
+extents = Vector2( 4587.77, 10.4788 )
 
 [node name="leve4" type="Node2D"]
 
@@ -32,7 +32,7 @@ cell_size = Vector2( 256, 256 )
 collision_layer = 8
 collision_mask = 5
 format = 1
-tile_data = PoolIntArray( 458809, 0, 0, 458810, 0, 0, 458811, 1, 0, 458812, 1, 0, 458813, 1, 0, 458814, 1, 0, 458815, 1, 0, 524352, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589867, 1, 0, 589868, 1, 0, 589869, 1, 0, 589870, 1, 0, 589871, 1, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0, 589889, 1, 0, 655426, 1, 0, 720963, 1, 0, 786500, 1, 0, 786501, 1, 0, 786502, 1, 0, 786503, 1, 0 )
+tile_data = PoolIntArray( 327755, 1, 0, 327756, 1, 0, 327757, 1, 0, 327758, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589867, 1, 0, 589868, 1, 0, 589869, 1, 0, 589870, 1, 0, 589871, 1, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0, 852025, 0, 0, 852026, 1, 0, 852027, 1, 0, 852028, 1, 0, 852029, 1, 0, 852030, 1, 0, 852031, 1, 0, 852032, 1, 0, 852033, 1, 0, 852034, 1, 0, 852035, 1, 0, 852036, 1, 0, 852040, 1, 0, 852041, 1, 0, 852042, 1, 0, 852043, 1, 0, 852044, 1, 0, 852045, 1, 0, 852046, 1, 0, 852047, 1, 0, 852048, 1, 0, 852049, 1, 0, 852050, 1, 0, 852051, 1, 0, 852052, 1, 0, 852053, 1, 0, 852054, 1, 0, 852055, 1, 0, 852056, 1, 0, 852057, 1, 0, 852058, 1, 0 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 position = Vector2( 79.37, -41.2725 )
@@ -60,14 +60,25 @@ position = Vector2( 1703.15, -113.406 )
 position = Vector2( 1252.85, 459.686 )
 
 [node name="enemy2" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 4197.78, 526.666 )
+position = Vector2( 3941.86, 760.138 )
 
-[node name="playerFollower" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 358, 244 )
-speed = 2.0
+[node name="enemy3" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 5504, 512 )
+
+[node name="enemy6" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 5760, 640 )
+
+[node name="enemy7" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 4992, 768 )
+
+[node name="enemy4" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 5248, 384 )
+
+[node name="enemy5" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 4992, 256 )
 
 [node name="changeScene" type="Area2D" parent="."]
-position = Vector2( 4576, 216 )
+position = Vector2( 5758.28, -321.401 )
 collision_layer = 2
 script = ExtResource( 6 )
 __meta__ = {
@@ -103,16 +114,27 @@ position = Vector2( 1968, 360 )
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D"]
+position = Vector2( -1.78162, -3.5636 )
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Area2D" type="Area2D" parent="collisions"]
-position = Vector2( -311.131, 941.758 )
+position = Vector2( 1385.93, 1077.52 )
 collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
+position = Vector2( 1284.11, -130.108 )
 shape = SubResource( 3 )
+
+[node name="collisionObjects" parent="collisions" instance=ExtResource( 4 )]
+position = Vector2( 4416, 832 )
+
+[node name="collisionObjects2" parent="collisions" instance=ExtResource( 4 )]
+position = Vector2( 4544, 832 )
+
+[node name="collisionObjects3" parent="collisions" instance=ExtResource( 4 )]
+position = Vector2( 4480, 832 )
 
 [node name="tanks" type="Node2D" parent="."]
 
@@ -123,6 +145,23 @@ position = Vector2( 3253.25, 521.273 )
 position = Vector2( 1390.44, 532.238 )
 
 [node name="movingPlatforms" type="Node2D" parent="."]
+
+[node name="1" type="Node2D" parent="movingPlatforms"]
+position = Vector2( 4387.34, 606.902 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="movingPlatform" parent="movingPlatforms/1" instance=ExtResource( 3 )]
+move_to = Vector2( 425, -320 )
+
+[node name="movingPlatform2" parent="movingPlatforms/1" instance=ExtResource( 3 )]
+position = Vector2( 63.3765, -0.0632629 )
+move_to = Vector2( 425, -320 )
+
+[node name="movingPlatform3" parent="movingPlatforms/1" instance=ExtResource( 3 )]
+position = Vector2( 127.376, -0.0632629 )
+move_to = Vector2( 425, -320 )
 
 [node name="2" type="Node2D" parent="movingPlatforms"]
 __meta__ = {
@@ -159,21 +198,12 @@ move_to = Vector2( 0, -330 )
 position = Vector2( 2312, 288 )
 move_to = Vector2( 0, -330 )
 
-[node name="1" type="Node2D" parent="movingPlatforms"]
-position = Vector2( 4387.34, 606.902 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="4" type="Node2D" parent="movingPlatforms"]
+position = Vector2( 6016, 768 )
 
-[node name="movingPlatform" parent="movingPlatforms/1" instance=ExtResource( 3 )]
-move_to = Vector2( 425, -320 )
+[node name="movingPlatform" parent="movingPlatforms/4" instance=ExtResource( 3 )]
 
-[node name="movingPlatform2" parent="movingPlatforms/1" instance=ExtResource( 3 )]
-position = Vector2( 63.3765, -0.0632629 )
-move_to = Vector2( 425, -320 )
-
-[node name="movingPlatform3" parent="movingPlatforms/1" instance=ExtResource( 3 )]
-position = Vector2( 127.376, -0.0632629 )
-move_to = Vector2( 425, -320 )
+[node name="movingPlatform2" parent="movingPlatforms/4" instance=ExtResource( 3 )]
+position = Vector2( 64.0005, 0 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]

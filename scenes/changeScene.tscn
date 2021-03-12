@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/tile_sets/Objects/DoorOpen.png" type="Texture" id=1]
+[ext_resource path="res://scenes/changeScene.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 44.7822, 61.7336 )
+
+[node name="changeScene" type="Area2D"]
+collision_layer = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_changeScene_body_entered"]

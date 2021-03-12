@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/sounds/collect.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 34.6347
+radius = 35.873
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {

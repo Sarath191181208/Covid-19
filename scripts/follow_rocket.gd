@@ -3,7 +3,7 @@ var player = null
 const FIREBALL = preload("res://scenes/attackPlayer.tscn")
 const LOOT = preload("res://scenes/coin.tscn")
 var gotShot = false
-
+var audio_played = false
 func got_shot():
 		if player != null :
 			turnoff()
@@ -11,6 +11,9 @@ func got_shot():
 		$timer.connect("timeout", self, "queue_free")
 		$timer.set_wait_time(1.4)
 		$timer.start()
+		if $Audio/death.playing == false and audio_played == false :
+			$Audio/death.play()
+			audio_played = true
 		$Sprite.play("dead")
 		gotShot = true
 		$Timer2.set_wait_time(1.4)
@@ -56,6 +59,9 @@ func _on_attackRange_body_entered(body):
 		player = body
 		$Sprite.play("fire")
 	elif player != null and gotShot ==true :
+		if $Audio/death.playing == false and audio_played == false :
+			$Audio/death.play()
+			audio_played = true
 		$Sprite.play("dead")
 
 # warning-ignore:unused_argument
@@ -65,6 +71,9 @@ func _on_attackRange_body_exited(body):
 		$Sprite.play("idle")
 	else:
 		$Sprite.play("dead")
+		if $Audio/death.playing == false and audio_played == false :
+			$Audio/death.play()
+			audio_played = true
 
 
 func _on_Timer2_timeout():

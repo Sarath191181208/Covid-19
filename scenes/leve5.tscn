@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/follow_rocket.tscn" type="PackedScene" id=2]
@@ -13,15 +13,17 @@
 [ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Health_powerup.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Mastercoin.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44.7822, 61.7336 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 192, 17.7039 )
+extents = Vector2( 225.844, 17.7039 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 721.248, 5.15234 )
+extents = Vector2( 2334.94, 13.9544 )
 
 [node name="leve5" type="Node2D"]
 
@@ -42,29 +44,20 @@ cell_size = Vector2( 256, 256 )
 format = 1
 tile_data = PoolIntArray( 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0 )
 
-[node name="coins" type="Node2D" parent="."]
-position = Vector2( 181.766, 373.098 )
-
-[node name="coin" parent="coins" instance=ExtResource( 1 )]
-position = Vector2( 542.905, -23.9165 )
-
-[node name="coin2" parent="coins" instance=ExtResource( 1 )]
-position = Vector2( 368.314, -11.9582 )
-
-[node name="coin3" parent="coins" instance=ExtResource( 1 )]
-position = Vector2( 1703.15, -113.406 )
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="enemy" parent="Enemies" instance=ExtResource( 12 )]
 position = Vector2( 1252.85, 459.686 )
 
 [node name="enemy2" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 2907.13, 424.747 )
+position = Vector2( 2796.95, 488.315 )
 
 [node name="playerFollower" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 358, 244 )
 speed = 2.0
+
+[node name="playerFollower2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 567.872, 275.46 )
 
 [node name="changeScene" type="Area2D" parent="."]
 position = Vector2( 3232.04, 491.681 )
@@ -112,12 +105,31 @@ collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
+position = Vector2( 1777.89, -19.0488 )
 shape = SubResource( 3 )
 
 [node name="tanks" type="Node2D" parent="."]
 
 [node name="follow_rocket" parent="tanks" instance=ExtResource( 2 )]
 position = Vector2( 1632, 528 )
+
+[node name="coins" type="Node2D" parent="."]
+position = Vector2( 181.766, 373.098 )
+
+[node name="coin" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 542.905, -23.9165 )
+
+[node name="coin2" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 368.314, -11.9582 )
+
+[node name="coin3" parent="coins" instance=ExtResource( 1 )]
+position = Vector2( 1703.15, -113.406 )
+
+[node name="Mastercoin" parent="coins" instance=ExtResource( 15 )]
+position = Vector2( 2864.46, 67.8057 )
+
+[node name="Health_powerup" parent="coins" instance=ExtResource( 14 )]
+position = Vector2( 283.306, 131.853 )
 
 [node name="movingPlatforms" type="Node2D" parent="."]
 

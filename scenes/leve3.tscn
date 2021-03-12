@@ -22,10 +22,10 @@ extents = Vector2( 44.7822, 61.7336 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 192, 17.7039 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 125.65, 10 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 721.248, 5.15234 )
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -102,7 +102,7 @@ texture = ExtResource( 9 )
 [node name="player" parent="." instance=ExtResource( 15 )]
 position = Vector2( 53.8058, 155.314 )
 JUMPFORCE = -1000
-time = 60
+time = 120
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="player"]
 layer = 50
@@ -126,7 +126,7 @@ position = Vector2( 4687.12, -192 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D2"]
 position = Vector2( 141.893, 35.6762 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 one_way_collision = true
 
 [node name="collisionObjects" parent="collisions" instance=ExtResource( 5 )]
@@ -141,7 +141,7 @@ collision_layer = 2
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Area2D2" type="Area2D" parent="collisions"]
 position = Vector2( 787.675, 1030.84 )

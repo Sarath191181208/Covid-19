@@ -29,6 +29,7 @@ func _physics_process(delta):
 	
 	move = Vector2.ZERO
 	move.y = move.y + GRAVITY
+
 	if is_on_floor():
 		move.y = 0
 	move = move_and_slide(move,Vector2.UP)
@@ -48,6 +49,8 @@ func _physics_process(delta):
 			$AnimatedSprite.flip_h = true
 		else :
 			$AnimatedSprite.play("idle")
+			if $Audio/idle.playing == false :
+				$Audio/idle.play()
 			
 	else :
 		move.x = Vector2.ZERO.x
@@ -55,7 +58,11 @@ func _physics_process(delta):
 	if not $floor_checker.is_colliding():
 		move.x = 0
 		if player != null :
+			if $Audio/idle.playing == false :
+				$Audio/idle.play()
 			$AnimatedSprite.play("idle")
+	if $Audio/walk.playing == false and is_on_floor() and move.x != 0 and player != null :
+		$Audio/walk.play()
 	move = move_and_collide(move)
 
 func got_shot():
@@ -92,6 +99,8 @@ func _on_detecting_range_body_exited(body) :
 	move = Vector2.ZERO
 	if gotShot == false:
 		$AnimatedSprite.play("idle")
+		if $Audio/idle.playing == false :
+			$Audio/idle.play()
 	player = null
 
 
@@ -111,8 +120,9 @@ func _on_collision_range_body_entered(body):
 	is_colliding = true
 	colliding_player = body
 	if gotShot == false :
+		if $Audio/attack.playing == false :
+			$Audio/attack.play()
 		$AnimatedSprite.play("attack")
-		
 	$attackTimer.set_wait_time(1)
 	$attackTimer.start()
 	
@@ -127,6 +137,8 @@ func _on_collision_range_body_exited(body):
 		colliding_player = null
 		if gotShot == false :
 			$AnimatedSprite.play("idle")
+			if $Audio/idle.playing == false :
+				$Audio/idle.play()
 		else :
 			if $Audio/dead.playing == false and is_played_dead == false:
 				$Audio/dead.play()

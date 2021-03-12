@@ -3,6 +3,7 @@ var add = false
 var random = RandomNumberGenerator.new()
 func _on_coin_body_entered(body):
 #goes to body that entered  and checks for add coin function
+	print(body.name)
 	body.addcoin()
 	$AudioStreamPlayer.play()
 	if add == true :

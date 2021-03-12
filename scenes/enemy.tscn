@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Animations/enemy.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://Assets/sounds/pepSound2.ogg" type="AudioStream" id=2]
-[ext_resource path="res://Assets/sounds/pepSound4.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Assets/sounds/collect.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/music_and_bg/zombie_walk.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/music_and_bg/enemy_death.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/music_and_bg/zombie_idle.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/music_and_bg/zombie_attack.wav" type="AudioStream" id=5]
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=46]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -27,7 +28,7 @@ __meta__ = {
 scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 9
+frame = 5
 playing = true
 flip_h = true
 
@@ -75,12 +76,20 @@ shape = SubResource( 3 )
 
 [node name="dead" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 3 )
+volume_db = -20.0
+pitch_scale = 2.81
 
 [node name="walk" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 2 )
+volume_db = -10.0
 
 [node name="idle" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="attack" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+volume_db = -10.0
 [connection signal="body_entered" from="detecting_range" to="." method="_on_detecting_range_body_entered"]
 [connection signal="body_exited" from="detecting_range" to="." method="_on_detecting_range_body_exited"]
 [connection signal="timeout" from="timer2" to="." method="_on_timer2_timeout"]

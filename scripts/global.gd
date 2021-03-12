@@ -1,7 +1,12 @@
 extends Node
-var coins = 11
+
+export (Script) var game_save_class = load("res://game_save.gd")
+var save_vars = ['coins','levels','collected','unlocked_levels']
+
 var  ammo = 0
 var shield = false
+
+var coins = 0
 var levels = []
 var collected = {}
 var unlocked_levels = 1
@@ -97,4 +102,55 @@ func save(name):
 	else :
 		collected[int(name)] = name
 		return true
+		
+
+func _ready():
+	if not load_world():
+		coins = 0
+		levels = []
+		collected = {}
+		unlocked_levels = 1
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("save"):
+		save_world()
+		
+func _on_Main_tree_exiting():
+	save_world()
+		
+func save_world():
+	var new_save = game_save_class.new()
+	new_save.coins = coins
+	new_save.levels = levels
+	new_save.collected = collected
+	new_save.unlocked_levels = unlocked_levels
+	var dir = Directory.new()
+	if not dir.dir_exists("user://saves/"):
+		dir.make_dir_recursive("user://saves/")
+		
+	ResourceSaver.save("user://saves/save_01.tres",new_save)
+
+
+func verify_save(world_save):
+	for v in save_vars :
+		if world_save.get(v) == null :
+			return false
+	return true
+	
+func load_world():
+	var dir = Directory.new()
+	if not dir.file_exists("user://saves/save_01.tres"):
+		return false
+	var world_save = load("user://saves/save_01.tres")
+	if not verify_save(world_save):
+		return false
+		
+	
+	coins = world_save.coins
+	levels = world_save.levels
+	collected = world_save.collected
+	unlocked_levels = world_save.unlocked_levels
+	
+	return true
+
 

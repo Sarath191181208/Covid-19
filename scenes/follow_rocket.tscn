@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/follow_rocket.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Animations/follow_rocket.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://Assets/music_and_bg/tank_death.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 170.024, 24.6947 )
@@ -28,7 +29,6 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "idle"
-frame = 10
 playing = true
 
 [node name="Position2D" type="Position2D" parent="."]
@@ -57,10 +57,10 @@ position = Vector2( -5.66965, 4.40972 )
 scale = Vector2( 0.3, 1 )
 shape = SubResource( 3 )
 
-[node name="Node" type="Node" parent="."]
+[node name="Audio" type="Node" parent="."]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node"]
-attenuation = 2.82843
+[node name="death" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
 [connection signal="body_entered" from="attackRange" to="." method="_on_attackRange_body_entered"]
 [connection signal="body_exited" from="attackRange" to="." method="_on_attackRange_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -11,6 +11,8 @@ var snap = Vector2.ZERO
 
 var coins_zero = false
 var alreadyPlayed = true
+var Timer_once = false
+
 
 const GRAVITY = 30
 
@@ -22,6 +24,8 @@ func _ready():
 		var shield = SHIELD.instance()
 		add_child(shield)
 		shield.position = $shieldPosition.position 
+		if $Musics/shield.playing == false:
+			$Musics/shield.play()
 		Global.shield = false
 	$CanvasLayer/time.text = String(time)
 	$CanvasLayer/coins_collected.text = String(coins)
@@ -34,8 +38,12 @@ func Time():
 # warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 func _physics_process(delta):
-	if health <= 0 :
-		get_tree().change_scene("res://scenes/levelSelector.tscn")
+	if health <= 0 and Timer_once == false :
+		$Musics/death.play()
+		$timer.set_wait_time(1)
+		$timer.start()
+		Timer_once = true
+		
 	$CanvasLayer/lifeBar.value = health
 #Doing this because of sprite being on oneside which causes problems with collission layers
 	if $AnimatedSprite.flip_h == true :
@@ -53,8 +61,9 @@ func _physics_process(delta):
 		$AnimatedSprite.flip_h = false
 		if $Musics/walk.playing == false:
 			$Musics/walk.play()
-	elif Input.is_action_pressed("left"):
+	elif Input.is_action_pressed("left") :
 		velocity.x = -speed
+
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = true
 		if $Musics/walk.playing == false:
@@ -65,6 +74,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
 		velocity.y = JUMPFORCE
 		snap = Vector2.ZERO
+		if $Musics/jump.playing == false and alreadyPlayed == false :
+			$Musics/jump.play()
+			alreadyPlayed = true
 		alreadyPlayed = false
 	if Input.is_action_just_pressed("fire"):
 		Input.vibrate_handheld(350)
@@ -84,10 +96,6 @@ func _physics_process(delta):
 			
 	if not is_on_floor():
 		snap = Vector2.DOWN
-		$AnimatedSprite.play("jump")
-		if $Musics/jump.playing == false and alreadyPlayed == false :
-			$Musics/jump.play()
-			alreadyPlayed = true
 
 #Adding gravity to player this function runs about 60 times per second 
 # 	=> body accelerates due to continious change in velocity
@@ -114,3 +122,13 @@ func get_position():
 
 func _on_level_timer_timeout():
 	Time()
+
+
+func _on_timer_timeout():
+	get_tree().change_scene("res://scenes/levelSelector.tscn")
+
+
+func addMastercoin():
+	Global.coins += 2000
+	_ready()
+

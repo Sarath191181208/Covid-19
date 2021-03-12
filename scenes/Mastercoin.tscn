@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Animations/coin.tres" type="Animation" id=1]
+[ext_resource path="res://scripts/Mastercoin.gd" type="Script" id=2]
+[ext_resource path="res://Assets/HUD/coin_gold.png" type="Texture" id=3]
+[ext_resource path="res://Assets/sounds/collect.ogg" type="AudioStream" id=4]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 129.04
+
+[node name="Mastercoin" type="Area2D"]
+collision_layer = 16
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.68175, -1.68182 )
+scale = Vector2( 4.14302, 4.14302 )
+frames = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bounce = ExtResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+[connection signal="body_entered" from="." to="." method="_on_coin_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

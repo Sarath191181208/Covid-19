@@ -1,7 +1,5 @@
 extends ColorRect
 
-	
-var random = RandomNumberGenerator.new()
 var questions = [
 {"Question":"What is CORONA VIRUS ?","Answer1":"It is a Large Family of Virus","Answer2":"It belongs to family of Nido Virus","Answer3":"Both","CorrectAnswer":"Both"},
 
@@ -28,6 +26,10 @@ var questions = [
 {"Question":"Which type of food increases immunity ?","Answer1":"Dry fruits & Helathy Vegetables","Answer2":"Junk Food","Answer3":"None","CorrectAnswer":"Dry fruits & Helathy Vegetables"}
 
 ]
+
+
+var random = RandomNumberGenerator.new()
+
 func _ready():
 	get_tree().paused = true
 	random.randomize()
@@ -40,8 +42,7 @@ func _ready():
 		answer.connect('pressed',self,'check_answer',[answer.text,random_number])
 func check_answer(answer,random_number):
 	if answer == questions[random_number]["CorrectAnswer"]:
-		Global.coins += 5
-		
+		Global.coins += 2
 		$correct.play()
 	else :
 		$incorrect.play()

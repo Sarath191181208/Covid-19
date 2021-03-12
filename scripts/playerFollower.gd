@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var damage = 10
-export var speed = 0.8
+export var speed = 1.3
 var move = Vector2.ZERO
 var colliding_player = null
 var is_colliding = false
@@ -29,6 +29,8 @@ func got_shot():
 		$timer.connect("timeout", self, "queue_free")
 		$timer.set_wait_time(0.5)
 		$timer.start()
+		if $music/death.playing == false:
+			$music/death.play()
 		$AnimatedSprite.play("hit")
 		gotShot = true
 		$Timer2.set_wait_time(0.5)
@@ -42,6 +44,8 @@ func turnoff():
 	set_collision_mask_bit(5,false)
 	$detection_range.queue_free()
 	$detection_range/CollisionShape2D.queue_free()
+	if $music/death.playing == false:
+		$music/death.play()
 	$AnimatedSprite.play("hit")
 
 func _on_detection_range_body_entered(body):
@@ -54,6 +58,8 @@ func _on_detection_range_body_exited(body):
 	if gotShot == false :
 		$AnimatedSprite.play("flying")
 	else:
+		if $music/death.playing == false:
+			$music/death.play()
 		$AnimatedSprite.play("hit")
 
 func _on_Timer_timeout():
@@ -81,7 +87,9 @@ func _on_collision_range_body_exited(body):
 		if gotShot == false :
 			$AnimatedSprite.play("idle")
 		else :
-			$AnimatedSprite.play("dead")
+			if $music/death.playing == false:
+				$music/death.play()
+			$AnimatedSprite.play("hit")
 
 
 

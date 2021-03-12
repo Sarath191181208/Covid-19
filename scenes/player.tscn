@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -14,15 +14,18 @@
 [ext_resource path="res://Assets/buttons/tile137.png" type="Texture" id=12]
 [ext_resource path="res://scripts/Node2D.gd" type="Script" id=13]
 [ext_resource path="res://Assets/healthBar/health.png" type="Texture" id=14]
-[ext_resource path="res://Assets/sounds/jump1.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/music_and_bg/jump_music.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/sounds/footsteps.wav" type="AudioStream" id=16]
 [ext_resource path="res://Assets/sounds/healthDecrease.ogg" type="AudioStream" id=17]
 [ext_resource path="res://Assets/sounds/shoot.ogg" type="AudioStream" id=18]
+[ext_resource path="res://Assets/music_and_bg/hero_death.wav" type="AudioStream" id=19]
+[ext_resource path="res://Assets/music_and_bg/shield_music.wav" type="AudioStream" id=20]
+[ext_resource path="res://Assets/png/img2.jpg" type="Texture" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.022, 41.6507 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.0470588, 0.0470588, 0.0470588, 0.529412 )
 border_width_right = 1
 border_width_bottom = 1
@@ -30,11 +33,11 @@ border_color = Color( 0, 0, 0, 1 )
 border_blend = true
 corner_radius_bottom_right = 10
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 52
 font_data = ExtResource( 4 )
 
@@ -51,7 +54,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 12
+frame = 3
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -150,7 +153,7 @@ action = "restart"
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 margin_right = 295.0
 margin_bottom = 142.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -162,7 +165,7 @@ margin_left = 67.1427
 margin_top = 73.3385
 margin_right = -6.48126
 margin_bottom = 54.5385
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
 text = "##
 "
@@ -180,7 +183,7 @@ margin_left = 136.671
 margin_top = 70.5285
 margin_right = 235.671
 margin_bottom = 135.529
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "##"
 align = 1
 valign = 1
@@ -237,7 +240,6 @@ autostart = true
 [node name="jump" type="AudioStreamPlayer" parent="Musics"]
 stream = ExtResource( 15 )
 volume_db = -20.0
-pitch_scale = 0.63
 
 [node name="walk" type="AudioStreamPlayer" parent="Musics"]
 stream = ExtResource( 16 )
@@ -248,4 +250,29 @@ volume_db = 10.0
 
 [node name="fire" type="AudioStreamPlayer" parent="Musics"]
 stream = ExtResource( 18 )
+volume_db = -20.0
+
+[node name="death" type="AudioStreamPlayer" parent="Musics"]
+stream = ExtResource( 19 )
+volume_db = -6.0
+
+[node name="shield" type="AudioStreamPlayer" parent="Musics"]
+stream = ExtResource( 20 )
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="background" type="CanvasLayer" parent="."]
+layer = -30
+
+[node name="TextureRect" type="TextureRect" parent="background"]
+self_modulate = Color( 1, 1, 1, 0.52549 )
+margin_right = 1920.0
+margin_bottom = 1144.0
+rect_scale = Vector2( 0.533, 0.6 )
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

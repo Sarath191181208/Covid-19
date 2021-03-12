@@ -21,7 +21,7 @@ extents = Vector2( 44.7822, 61.7336 )
 extents = Vector2( 193.682, 17.7039 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 704, 0 )
+extents = Vector2( 704, 4.96484 )
 
 [node name="leve2" type="Node2D"]
 
@@ -144,7 +144,7 @@ collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D3"]
-position = Vector2( 2615.13, 594.242 )
+position = Vector2( 2079.01, 601.793 )
 shape = SubResource( 3 )
 
 [node name="box_level2" parent="." instance=ExtResource( 13 )]
@@ -186,6 +186,6 @@ move_to = Vector2( 0, -1024 )
 position = Vector2( 63.9998, 0 )
 move_to = Vector2( 0, -1024 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D3" to="collisions/Area2D3" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D3" to="collisions/Area2D3" method="_on_body_entered"]
