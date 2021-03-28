@@ -54,7 +54,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 3
+frame = 5
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

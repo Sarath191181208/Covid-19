@@ -7,3 +7,4 @@ func _on_body_entered(body):
 
 func _on_Area2D2_body_entered(body):
 	get_tree().change_scene("res://scenes/levelSelector.tscn")
+

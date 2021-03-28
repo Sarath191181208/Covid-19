@@ -8,21 +8,19 @@
 [ext_resource path="res://scenes/changeScene.gd" type="Script" id=6]
 [ext_resource path="res://Assets/tile_sets/Objects/DoorLocked.png" type="Texture" id=7]
 [ext_resource path="res://Assets/tile_sets/tres/1.tres" type="TileSet" id=8]
-[ext_resource path="res://Assets/tile_sets/tres/2.tres" type="TileSet" id=9]
+[ext_resource path="res://scenes/fallingTile.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/tile_sets/Objects/DoorOpen.png" type="Texture" id=10]
 [ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/Health_powerup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Mastercoin.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/slimeEnemy.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44.7822, 61.7336 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 225.844, 17.7039 )
-
-[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 2334.94, 13.9544 )
 
 [node name="leve5" type="Node2D"]
@@ -35,14 +33,6 @@ collision_layer = 8
 collision_mask = 5
 format = 1
 tile_data = PoolIntArray( 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589867, 1, 0, 589868, 1, 0, 589869, 1, 0, 589870, 1, 0, 589871, 1, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0 )
-
-[node name="TileMap2" type="TileMap" parent="."]
-position = Vector2( 79.37, -41.2725 )
-scale = Vector2( 0.25, 0.25 )
-tile_set = ExtResource( 9 )
-cell_size = Vector2( 256, 256 )
-format = 1
-tile_data = PoolIntArray( 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -74,13 +64,8 @@ shape = SubResource( 1 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 10 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 49.5678, 159.552 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 7 )
-
 [node name="player" parent="." instance=ExtResource( 13 )]
-position = Vector2( 2583.22, 478.218 )
+position = Vector2( 0.773804, -3.1579 )
 JUMPFORCE = -1000
 time = 60
 
@@ -91,22 +76,14 @@ layer = 50
 
 [node name="collisions" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="collisions"]
-position = Vector2( 1968, 360 )
-collision_layer = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D"]
-shape = SubResource( 2 )
-one_way_collision = true
-
 [node name="Area2D" type="Area2D" parent="collisions"]
-position = Vector2( -311.131, 941.758 )
+position = Vector2( -311.131, 936.038 )
 collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
-position = Vector2( 1777.89, -19.0488 )
-shape = SubResource( 3 )
+position = Vector2( 1777.89, -30.4887 )
+shape = SubResource( 2 )
 
 [node name="tanks" type="Node2D" parent="."]
 
@@ -146,5 +123,24 @@ position = Vector2( 127.376, -0.0632629 )
 
 [node name="movingPlatform4" parent="movingPlatforms/1" instance=ExtResource( 3 )]
 position = Vector2( 191.376, -0.0632629 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 49.5678, 159.552 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 7 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 2000, 0 )
+
+[node name="fallingTile" parent="Node2D" instance=ExtResource( 9 )]
+position = Vector2( -108.528, 387.386 )
+
+[node name="fallingTile2" parent="Node2D" instance=ExtResource( 9 )]
+position = Vector2( 27.1321, 259.262 )
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="slimeEnemy" parent="Node2D2" instance=ExtResource( 16 )]
+position = Vector2( 128, 64 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]

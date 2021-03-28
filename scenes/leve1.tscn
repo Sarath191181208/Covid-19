@@ -10,10 +10,10 @@
 [ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/changeScene.tscn" type="PackedScene" id=9]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 221.242, 17.7039 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 721.248, 5.15234 )
 
 [node name="leve1" type="Node2D"]
@@ -81,7 +81,7 @@ collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D"]
 position = Vector2( 199.787, -20.2165 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="Area2D" type="Area2D" parent="collisions"]
@@ -90,7 +90,7 @@ collision_layer = 2
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Area2D2" type="Area2D" parent="collisions"]
 position = Vector2( 3968.5, 808.416 )
@@ -98,6 +98,6 @@ collision_layer = 2
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D2"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 [connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D_body_entered"]

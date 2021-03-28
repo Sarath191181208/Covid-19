@@ -1,6 +1,8 @@
 extends Node2D
 
 func _ready():
+	if Global.coins < 100 :
+		$Add_boomerang.disabled = true
 	if Global.coins < 10 :
 		$Add_shield.disabled = true
 	if Global.coins < 1 :
@@ -8,6 +10,7 @@ func _ready():
 	$Add_ammo.connect("pressed",self,"addCoin")
 	$Button.connect("pressed",self,"changeScene")
 	$Add_shield.connect("pressed",self,"addShield")
+	$Add_boomerang.connect("pressed",self,"addBoomerang")
 	$CanvasLayer/Label.text = String(Global.coins)
 	
 func updateCoins():
@@ -29,6 +32,11 @@ func addShield():
 		Global.shield = true
 		Global.coins -= 10
 	updateCoins()
-
+func addBoomerang():
+	if Global.boomerang == false and Global.coins >= 100:
+		$Add_boomerang.disabled = true
+		Global.boomerang = true
+		Global.coins -= 100
+	updateCoins()
 func changeScene():
 	get_tree().change_scene("res://scenes/levelSelector.tscn")
