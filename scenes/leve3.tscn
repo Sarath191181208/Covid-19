@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/follow_rocket.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/movingPlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/acidTiles.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/collisionObjects.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Health_powerup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/Area2D.gd" type="Script" id=7]
@@ -77,7 +78,7 @@ position = Vector2( 2907.13, 424.747 )
 position = Vector2( 4647.22, 1214.19 )
 
 [node name="tank2" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 7019.06, 723.226 )
+position = Vector2( 4346.36, 1236.38 )
 
 [node name="changeScene" type="Area2D" parent="."]
 position = Vector2( 5888, -256 )
@@ -100,7 +101,7 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 9 )
 
 [node name="player" parent="." instance=ExtResource( 15 )]
-position = Vector2( 53.8058, 155.314 )
+position = Vector2( 3891.94, 937.396 )
 JUMPFORCE = -1000
 time = 120
 
@@ -236,6 +237,13 @@ move_to = Vector2( 640, 0 )
 
 [node name="Health_powerup" parent="powerUps" instance=ExtResource( 6 )]
 position = Vector2( 6406.9, 833.31 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 3891.94, 937.396 )
+
+[node name="acidTiles" parent="Node2D" instance=ExtResource( 4 )]
+position = Vector2( 211.125, 250.81 )
+rotation = -1.5708
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D2_body_entered"]
