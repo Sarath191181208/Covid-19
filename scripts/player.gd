@@ -25,6 +25,7 @@ const SHIELD = preload("res://scenes/shield.tscn")
 var FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
+	$input_buttons/fire/TextureProgress.value = 0
 	experienceUpdate()
 	if Global.boomerang == true :
 		FIREBALL = preload("res://scenes/boomerang.tscn")
@@ -88,8 +89,8 @@ func _physics_process(delta):
 		jump()
 	if Input.is_action_pressed("fire"):
 		heldTime += 1
-		print(heldTime)
-		if heldTime >= 20:
+		$input_buttons/fire/TextureProgress.value = heldTime
+		if heldTime >= 10:
 			held = true
 	if Input.is_action_just_released("fire"):
 		held = false 
@@ -152,16 +153,23 @@ func jump(force = null):
 		alreadyPlayed = false
 
 func experienceUpdate():
-	$CanvasLayer/expBar.max_value = Global.expLevel * 50 + 50
-	$CanvasLayer/exp.text = String(Global.expLevel)
-	$CanvasLayer/expBar.value = Global.experience
-	if $CanvasLayer/expBar.value == $CanvasLayer/expBar.max_value:
+
+	if Global.experience >= $CanvasLayer/expBar.max_value:
+		var extra = Global.experience - $CanvasLayer/expBar.max_value
 		Global.coins += Global.expLevel * 5 + 1
 		Global.expLevel += 1
-		Global.experience = 0
+		Global.experience = 0  + int(extra)
 		$CanvasLayer/exp.text = String(Global.expLevel)
+		$CanvasLayer/expBar/Particles2D.set_emitting(true)
+		$CanvasLayer/expBar/Timer.start()
 		$CanvasLayer/expBar.value = Global.experience
-
+		
+	$CanvasLayer/expBar.max_value = Global.expLevel * 50 + 50
+	$CanvasLayer/exp.text = String(Global.expLevel)
+#	$CanvasLayer/expBar.value = Global.experience
+	$exp.interpolate_property($CanvasLayer/expBar,"value",$CanvasLayer/expBar.value,Global.experience,0.7,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$exp.start()
+	
 func updateHub():
 	$CanvasLayer/time.text = String(time)
 	$CanvasLayer/coins_collected.text = String(coins)
@@ -172,23 +180,28 @@ func addMastercoin():
 
 
 func _on_attackChangingTimer_timeout():
-			var fireball = FIREBALL.instance()
-			Input.vibrate_handheld(350)
+	var fireball = FIREBALL.instance()
+	Input.vibrate_handheld(350)
 # --> changing the direction of fireball based on players facing direction
-			if $AnimatedSprite.flip_h == true :
-				fireball.changingDirection(-1)
-			else :
-				fireball.changingDirection(1)
-			fireball.addExperienceTo(self)
-			if Input.is_action_just_released("fire"):
-				held = false
-				heldTime = 0
-			if held == false:
-			#adding fireball
-				get_parent().add_child(fireball)
-				fireball.position = $Position2D.global_position
-			else:
-				add_child(fireball)
-				fireball.position = Vector2(0,0)
-			heldTime = 0
-			held = false
+	if $AnimatedSprite.flip_h == true :
+		fireball.changingDirection(-1)
+	else :
+		fireball.changingDirection(1)
+	fireball.addExperienceTo(self)
+	if Input.is_action_just_released("fire"):
+		held = false
+		heldTime = 0
+	if held == false:
+	#adding fireball
+		get_parent().add_child(fireball)
+		fireball.position = $Position2D.global_position
+	else:
+		add_child(fireball)
+		fireball.position = Vector2(0,0)
+	heldTime = 0
+	$input_buttons/fire/TextureProgress.value = 0
+	held = false
+
+
+func _on_Timer_timeout():
+	$CanvasLayer/expBar/Particles2D.set_emitting(false)

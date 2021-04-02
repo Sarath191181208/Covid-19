@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/levelSelector.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/Montserrat-MediumItalic.ttf" type="DynamicFontData" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Assets/themes/disable.tres" type="StyleBox" id=5]
 [ext_resource path="res://Assets/shop/pharmacy-removebg-preview.png" type="Texture" id=6]
 [ext_resource path="res://Assets/music/Swinging Pants.ogg" type="AudioStream" id=7]
-[ext_resource path="res://Assets/png/save-removebg-preview.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -252,12 +251,6 @@ __meta__ = {
 stream = ExtResource( 7 )
 volume_db = -10.0
 autoplay = true
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2( 54.5269, 449.576 )
-scale = Vector2( 0.18871, 0.168613 )
-normal = ExtResource( 8 )
-action = "save"
 
 [node name="Label" type="Label" parent="."]
 margin_left = 64.7798

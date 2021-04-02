@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Assets/music_and_bg/shield_music.wav" type="AudioStream" id=20]
 [ext_resource path="res://Assets/png/img2.jpg" type="Texture" id=21]
 [ext_resource path="res://scenes/ScreenShake.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Assets/png/ringProgressBar.png" type="Texture" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.022, 41.6507 )
@@ -45,6 +46,10 @@ font_data = ExtResource( 4 )
 size = 52
 font_data = ExtResource( 4 )
 
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.77305, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1 )
+
 [node name="player" type="KinematicBody2D"]
 collision_mask = 16
 script = ExtResource( 2 )
@@ -58,7 +63,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 6
+frame = 12
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -84,37 +89,6 @@ collision_mask = 8
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -4, 2 )
 shape = SubResource( 1 )
-
-[node name="input_buttons" type="CanvasLayer" parent="."]
-
-[node name="up" type="TouchScreenButton" parent="input_buttons"]
-position = Vector2( 862.825, 440.25 )
-rotation = -1.5708
-scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 8 )
-action = "jump"
-visibility_mode = 1
-
-[node name="left" type="TouchScreenButton" parent="input_buttons"]
-position = Vector2( 128, 552 )
-rotation = 3.14159
-scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 8 )
-action = "left"
-visibility_mode = 1
-
-[node name="right" type="TouchScreenButton" parent="input_buttons"]
-position = Vector2( 160, 448 )
-scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 8 )
-action = "right"
-visibility_mode = 1
-
-[node name="fire" type="TouchScreenButton" parent="input_buttons"]
-position = Vector2( 865.733, 475.191 )
-scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 3 )
-action = "fire"
 
 [node name="pause_screen" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -153,6 +127,191 @@ normal = ExtResource( 10 )
 position = Vector2( 304, -128 )
 normal = ExtResource( 9 )
 action = "restart"
+
+[node name="input_buttons" type="CanvasLayer" parent="."]
+
+[node name="up" type="TouchScreenButton" parent="input_buttons"]
+position = Vector2( 862.825, 432.699 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 8 )
+action = "jump"
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="input_buttons"]
+position = Vector2( 128, 552 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 8 )
+action = "left"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="input_buttons"]
+position = Vector2( 160, 448 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 8 )
+action = "right"
+visibility_mode = 1
+
+[node name="fire" type="TouchScreenButton" parent="input_buttons"]
+position = Vector2( 865.733, 469.191 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 3 )
+action = "fire"
+
+[node name="TextureProgress" type="TextureProgress" parent="input_buttons/fire"]
+margin_left = -53.9646
+margin_top = -38.3969
+margin_right = 486.035
+margin_bottom = 501.603
+rect_scale = Vector2( 0.55, 0.55 )
+max_value = 10.0
+value = 100.0
+allow_greater = true
+texture_progress = ExtResource( 23 )
+fill_mode = 4
+tint_progress = Color( 0.141176, 0.937255, 0.0509804, 0.670588 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+margin_right = 295.0
+margin_bottom = 142.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coins_collected" type="Label" parent="CanvasLayer"]
+anchor_right = 0.151
+anchor_bottom = 0.133
+margin_left = 67.1427
+margin_top = 73.3385
+margin_right = -6.48126
+margin_bottom = 54.5385
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
+text = "##
+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time" type="Label" parent="CanvasLayer"]
+modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
+margin_left = 136.671
+margin_top = 70.5285
+margin_right = 235.671
+margin_bottom = 135.529
+custom_fonts/font = SubResource( 4 )
+text = "##"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exp" type="Label" parent="CanvasLayer"]
+modulate = Color( 0.0862745, 0.305882, 0.737255, 1 )
+margin_left = 314.641
+margin_top = 40.7183
+margin_right = 413.641
+margin_bottom = 169.718
+custom_fonts/font = SubResource( 4 )
+text = "##
+"
+align = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="expBar" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 310.082
+margin_top = 16.9603
+margin_right = 810.082
+margin_bottom = 516.96
+rect_min_size = Vector2( 50, 50 )
+rect_scale = Vector2( 0.2, 0.2 )
+value = 40.0
+rounded = true
+texture_under = ExtResource( 23 )
+texture_progress = ExtResource( 23 )
+fill_mode = 5
+tint_progress = Color( 0, 0.286275, 0.796078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="CPUParticles2D" parent="CanvasLayer/expBar"]
+position = Vector2( 276.281, 272.866 )
+rotation = -1.5708
+emitting = false
+amount = 20
+lifetime = 2.0
+preprocess = 15.0
+speed_scale = 3.0
+randomness = 1.0
+emission_shape = 2
+emission_rect_extents = Vector2( 50, 50 )
+spread = 0.0
+gravity = Vector2( -98, -46 )
+initial_velocity = 200.0
+initial_velocity_random = 0.7
+linear_accel = 25.0
+angle = 45.0
+scale_amount = 25.0
+color_ramp = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/expBar"]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_left = 17.7456
+margin_top = 78.0735
+margin_right = 62.7456
+margin_bottom = 123.074
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+margin_left = 18.9994
+margin_top = 12.534
+margin_right = 530.999
+margin_bottom = 132.534
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
+anchor_left = 0.00203037
+anchor_right = 0.00203037
+margin_left = 81.937
+margin_top = 28.8212
+margin_right = 593.938
+margin_bottom = 148.821
+rect_scale = Vector2( 0.5, 0.5 )
+value = 100.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position2D2" type="Position2D" parent="CanvasLayer"]
 
 [node name="level_timer" type="Timer" parent="."]
 autostart = true
@@ -197,132 +356,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-margin_right = 295.0
-margin_bottom = 142.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="expPanel" type="Panel" parent="CanvasLayer"]
-margin_left = 421.0
-margin_top = 20.0
-margin_right = 662.0
-margin_bottom = 61.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="coins_collected" type="Label" parent="CanvasLayer"]
-anchor_right = 0.151
-anchor_bottom = 0.133
-margin_left = 67.1427
-margin_top = 73.3385
-margin_right = -6.48126
-margin_bottom = 54.5385
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
-text = "##
-"
-align = 1
-valign = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="time" type="Label" parent="CanvasLayer"]
-modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
-margin_left = 136.671
-margin_top = 70.5285
-margin_right = 235.671
-margin_bottom = 135.529
-custom_fonts/font = SubResource( 4 )
-text = "##"
-align = 1
-valign = 1
-autowrap = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="exp" type="Label" parent="CanvasLayer"]
-modulate = Color( 0.0862745, 0.305882, 0.737255, 1 )
-margin_left = 646.0
-margin_top = 13.0
-margin_right = 745.0
-margin_bottom = 142.0
-custom_fonts/font = SubResource( 4 )
-text = "##
-"
-align = 1
-autowrap = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="expBar" type="TextureProgress" parent="CanvasLayer"]
-modulate = Color( 0, 1, 1, 1 )
-margin_left = 424.735
-margin_top = 22.0
-margin_right = 758.735
-margin_bottom = 122.0
-rect_min_size = Vector2( 50, 100 )
-rect_scale = Vector2( 0.7, 0.7 )
-value = 4.0
-rounded = true
-texture_progress = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_left = 17.7456
-margin_top = 78.0735
-margin_right = 62.7456
-margin_bottom = 123.074
-texture = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-margin_left = 18.9994
-margin_top = 12.534
-margin_right = 530.999
-margin_bottom = 132.534
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
-anchor_left = 0.00203037
-anchor_right = 0.00203037
-margin_left = 81.937
-margin_top = 28.8212
-margin_right = 593.938
-margin_bottom = 148.821
-rect_scale = Vector2( 0.5, 0.5 )
-value = 100.0
-texture_progress = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Position2D2" type="Position2D" parent="CanvasLayer"]
-
 [node name="attackChangingTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="exp" type="Tween" parent="."]
+[connection signal="timeout" from="CanvasLayer/expBar/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="attackChangingTimer" to="." method="_on_attackChangingTimer_timeout"]

@@ -3,6 +3,7 @@ export var speed = 300
 var direction = 1
 var velocity = Vector2()
 var player
+var random = RandomNumberGenerator.new()
 
 const EXP_ANIMATION = preload("res://scenes/ExperiencePoints.tscn")
 
@@ -22,9 +23,14 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_attack_body_entered(body):
 	# goes to the body entered and checks for function got shot
 	body.got_shot()
-	Global.experience += body.experience
+	random.randomize()
+	var random_number = random.randf_range(0,10)
+	random_number = int(random_number)
+	
+	var experience = body.experience + random_number
+	Global.experience += experience
 	var exp_animation = EXP_ANIMATION.instance()
-	exp_animation.text(body.experience)
+	exp_animation.text(experience)
 	body.add_child(exp_animation)
 	exp_animation.position = Vector2(0,0)
 	player.experienceUpdate()

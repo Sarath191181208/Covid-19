@@ -117,10 +117,13 @@ func _ready():
 		collected = {}
 		unlocked_levels = 1
 		boomerang = false
+		experience = 0
+		expLevel = 0
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("save"):
-		save_world()
+	save_world()
+#	var dir = Directory.new()
+#	dir.remove("user://saves/save_01.tres")
 		
 func _on_Main_tree_exiting():
 	save_world()
@@ -132,6 +135,8 @@ func save_world():
 	new_save.collected = collected
 	new_save.unlocked_levels = unlocked_levels
 	new_save.boomerang = boomerang
+	new_save.experience = experience
+	new_save.expLevel = expLevel
 	var dir = Directory.new()
 	if not dir.dir_exists("user://saves/"):
 		dir.make_dir_recursive("user://saves/")
@@ -159,6 +164,8 @@ func load_world():
 	collected = world_save.collected
 	unlocked_levels = world_save.unlocked_levels
 	boomerang = world_save.boomerang
+	experience = world_save.experience
+	expLevel = world_save.expLevel
 	
 	return true
 

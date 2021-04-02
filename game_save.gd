@@ -4,3 +4,5 @@ export (Array) var levels
 export (Dictionary) var collected 
 export (int) var unlocked_levels
 export (bool) var boomerang
+export (int) var expLevel
+export (float) var experience
