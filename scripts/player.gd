@@ -17,9 +17,11 @@ var Timer_once = false
 const GRAVITY = 30
 
 const SHIELD = preload("res://scenes/shield.tscn")
-const FIREBALL = preload("res://scenes/attack.tscn")
+var FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
+	if Global.boomerang == true :
+		FIREBALL = preload("res://scenes/boomerang.tscn")
 	if Global.shield == true:
 		var shield = SHIELD.instance()
 		add_child(shield)
@@ -72,12 +74,7 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite.play("Idle")
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
-		velocity.y = JUMPFORCE
-		snap = Vector2.ZERO
-		if $Musics/jump.playing == false and alreadyPlayed == false :
-			$Musics/jump.play()
-			alreadyPlayed = true
-		alreadyPlayed = false
+		jump()
 	if Input.is_action_just_pressed("fire"):
 		Input.vibrate_handheld(350)
 		if coins > 1:
@@ -127,6 +124,16 @@ func _on_level_timer_timeout():
 func _on_timer_timeout():
 	get_tree().change_scene("res://scenes/levelSelector.tscn")
 
+func jump(force = null):
+		if force == null:
+			velocity.y = JUMPFORCE
+		else:
+			velocity.y = force
+		snap = Vector2.ZERO
+		if $Musics/jump.playing == false and alreadyPlayed == false :
+			$Musics/jump.play()
+			alreadyPlayed = true
+		alreadyPlayed = false
 
 func addMastercoin():
 	Global.coins += 2000

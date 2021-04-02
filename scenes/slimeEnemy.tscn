@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/enemies/slimeBlue_squashed.png" type="Texture" id=1]
+[ext_resource path="res://Assets/enemies/slimeBlue.png" type="Texture" id=2]
+[ext_resource path="res://Assets/enemies/slimeBlue_blue.png" type="Texture" id=3]
+[ext_resource path="res://scripts/slimeEnemy.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21.7412, 10.2445 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 18.7554, 3.35794 )
+
+[node name="slimeEnemy" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 7.77292 )
+shape = SubResource( 2 )
+
+[node name="floor_checker" type="RayCast2D" parent="."]
+position = Vector2( 0, 15 )
+scale = Vector2( 1, 0.7 )
+enabled = true
+cast_to = Vector2( 0, 30 )
+collision_mask = 8
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="Position2D" type="Position2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0.315559, -5.68006 )
+shape = SubResource( 3 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -6,10 +6,12 @@ var save_vars = ['coins','levels','collected','unlocked_levels']
 var  ammo = 0
 var shield = false
 
+
 var coins = 0
 var levels = []
 var collected = {}
 var unlocked_levels = 1
+var boomerang = false
 
 var PlayeHappy = load("res://Assets/dialogs/PlayerHappy.png")
 var DoctorHappy = load("res://Assets/dialogs/DoctorHappy.png")
@@ -111,6 +113,7 @@ func _ready():
 		levels = []
 		collected = {}
 		unlocked_levels = 1
+		boomerang = false
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("save"):
@@ -125,6 +128,7 @@ func save_world():
 	new_save.levels = levels
 	new_save.collected = collected
 	new_save.unlocked_levels = unlocked_levels
+	new_save.boomerang = boomerang
 	var dir = Directory.new()
 	if not dir.dir_exists("user://saves/"):
 		dir.make_dir_recursive("user://saves/")
@@ -151,6 +155,7 @@ func load_world():
 	levels = world_save.levels
 	collected = world_save.collected
 	unlocked_levels = world_save.unlocked_levels
+	boomerang = world_save.boomerang
 	
 	return true
 

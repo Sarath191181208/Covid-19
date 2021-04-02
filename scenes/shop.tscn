@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/fonts/Montserrat-MediumItalic.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/healthBar/HealthPowerup.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/png/fireball/rocket1-removebg-preview.png" type="Texture" id=6]
 [ext_resource path="res://Assets/shop/shield-removebg-preview.png" type="Texture" id=7]
+[ext_resource path="res://Assets/png/fireball/tile032.png" type="Texture" id=8]
 [ext_resource path="res://Assets/shop/shoopBackground.webp" type="Texture" id=10]
 [ext_resource path="res://Assets/buttons/tile100-removebg-preview.png" type="Texture" id=11]
 
@@ -43,8 +44,9 @@ script = ExtResource( 3 )
 
 [node name="ColorRect" type="TextureRect" parent="."]
 self_modulate = Color( 1, 1, 1, 0.27451 )
+margin_top = -1.54755
 margin_right = 1280.0
-margin_bottom = 632.0
+margin_bottom = 630.452
 texture = ExtResource( 10 )
 expand = true
 
@@ -116,6 +118,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureRect3" type="TextureRect" parent="."]
+margin_left = 396.095
+margin_top = 144.751
+margin_right = 584.095
+margin_bottom = 285.751
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TextureRect2" type="TextureRect" parent="."]
 margin_left = 800.0
 margin_top = 160.0
@@ -153,6 +166,20 @@ icon = ExtResource( 2 )
 flat = true
 clip_text = true
 align = 0
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Add_boomerang" type="Button" parent="."]
+modulate = Color( 0, 0, 1, 1 )
+margin_left = 477.0
+margin_top = 307.226
+margin_right = 556.0
+margin_bottom = 407.226
+icon = ExtResource( 2 )
+flat = true
+clip_text = true
 expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
