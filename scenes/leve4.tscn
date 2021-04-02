@@ -220,11 +220,21 @@ position = Vector2( 2312, 288 )
 move_to = Vector2( 0, -330 )
 
 [node name="4" type="Node2D" parent="movingPlatforms"]
-position = Vector2( 6016, 768 )
+position = Vector2( 6091.27, 763.364 )
 
 [node name="movingPlatform" parent="movingPlatforms/4" instance=ExtResource( 3 )]
 
 [node name="movingPlatform2" parent="movingPlatforms/4" instance=ExtResource( 3 )]
+position = Vector2( -64, 0 )
+
+[node name="5" type="Node2D" parent="movingPlatforms"]
+position = Vector2( 6447.05, 747.301 )
+
+[node name="movingPlatform" parent="movingPlatforms/5" instance=ExtResource( 3 )]
+move_to = Vector2( 0, -1024 )
+
+[node name="movingPlatform2" parent="movingPlatforms/5" instance=ExtResource( 3 )]
 position = Vector2( 64.0005, 0 )
+move_to = Vector2( 0, -1024 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]

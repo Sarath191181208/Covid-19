@@ -3,8 +3,9 @@ extends Node2D
 const IDLE_DURATION = 1.0
 var move_to = Vector2(0,20) * 256
 export var speed = 3.0
+export var damage = 3
 var start = false
-var follow = Vector2.ZERO	
+var follow = Vector2.ZERO
 
 onready var platform = $KinematicBody2D
 onready var tween = $Tween
@@ -12,8 +13,9 @@ onready var tween = $Tween
 
 func _on_Area2D_body_entered(body):
 	$KinematicBody2D/Area2D/Sprite.modulate = "ff0000"
-	$KinematicBody2D/Timer.set_wait_time(0.5)
+	$KinematicBody2D/Timer.set_wait_time(0.1)
 	$KinematicBody2D/Timer.start()
+	body.got_shot(damage)
 
 func _init_tween():
 	var duration = move_to.length() / float(speed * 256)
@@ -30,8 +32,6 @@ func _physics_process(delta):
 func _on_Timer_timeout():	
 	_init_tween()
 	
-
-
 func _on_VisibilityNotifier2D_screen_exited():
 	$KinematicBody2D.queue_free()
 	queue_free()

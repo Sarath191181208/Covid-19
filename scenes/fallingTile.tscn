@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 collision_layer = 8
 
 [node name="Timer" type="Timer" parent="KinematicBody2D"]
+wait_time = 0.2
 one_shot = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="KinematicBody2D"]

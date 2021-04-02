@@ -20,7 +20,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_attack_body_entered(body):
 	# goes to the body entered and checks for function got shot
 	body.got_shot(damage)
-	print(body.name)
 	# frees the object <fireball from space>
 	queue_free()
 

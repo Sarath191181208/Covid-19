@@ -1,55 +1,36 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/follow_rocket.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Area2D.gd" type="Script" id=2]
 [ext_resource path="res://scenes/movingPlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/acidTiles.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/collisionObjects.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Health_powerup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/Area2D.gd" type="Script" id=7]
-[ext_resource path="res://scenes/changeScene.gd" type="Script" id=8]
-[ext_resource path="res://Assets/tile_sets/Objects/DoorLocked.png" type="Texture" id=9]
-[ext_resource path="res://Assets/tile_sets/tres/1.tres" type="TileSet" id=10]
-[ext_resource path="res://Assets/tile_sets/tres/2.tres" type="TileSet" id=11]
-[ext_resource path="res://Assets/tile_sets/Objects/DoorOpen.png" type="Texture" id=12]
-[ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/box_level.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/changeScene.gd" type="Script" id=4]
+[ext_resource path="res://Assets/tile_sets/Objects/DoorLocked.png" type="Texture" id=5]
+[ext_resource path="res://scenes/collisionObjects.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/tile_sets/tres/1.tres" type="TileSet" id=7]
+[ext_resource path="res://scenes/fallingTile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/tile_sets/Objects/DoorOpen.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Dialog_box.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/box_level.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/slimeEnemy.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44.7822, 61.7336 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 192, 17.7039 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 125.65, 10 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 721.248, 5.15234 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 1059.29, 2.58594 )
+extents = Vector2( 704, 4.96484 )
 
 [node name="leve3" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.25, 0.25 )
-tile_set = ExtResource( 10 )
+tile_set = ExtResource( 7 )
 cell_size = Vector2( 256, 256 )
 collision_layer = 8
 collision_mask = 5
 format = 1
-tile_data = PoolIntArray( 75, 1, 0, 76, 1, 0, 131150, 1, 0, 262224, 1, 0, 327761, 1, 0, 393298, 1, 0, 458835, 1, 0, 524373, 1, 0, 524374, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589869, 1, 0, 589870, 1, 0, 589871, 1, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0, 589876, 0, 0, 786535, 1, 0, 786536, 1, 0, 786537, 1, 0, 786538, 1, 0, 786539, 1, 0, 786540, 1, 0, 786541, 1, 0, 917559, 1, 0, 917560, 1, 0, 917561, 1, 0, 917562, 1, 0, 917563, 1, 0, 917576, 1, 0, 917577, 1, 0, 917578, 1, 0, 917579, 1, 0, 917580, 1, 0, 917581, 1, 0, 917602, 1, 0, 917603, 1, 0, 917604, 1, 0, 917605, 1, 0, 983099, -1610612735, 0, 983112, -1073741823, 0, 983166, 1, 0, 1048635, -1610612735, 0, 1048648, -1073741823, 0, 1048669, 1, 0, 1048670, 1, 0, 1048671, 1, 0, 1048672, 1, 0, 1048688, 1, 0, 1114171, -1610612735, 0, 1114184, -1073741823, 0, 1114236, 1, 0, 1179707, -1610612735, 0, 1179736, 1, 0, 1179737, 1, 0, 1179738, 1, 0, 1179739, 1, 0, 1179762, 1, 0, 1245243, -1610612735, 0, 1245306, 1, 0, 1310779, -1073741823, 0, 1310780, 1, 0, 1310781, 1, 0, 1310782, 1, 0, 1310783, 1, 0, 1310784, 1, 0, 1310785, 1, 0, 1310786, 1, 0, 1310787, 1, 0, 1310788, 1, 0, 1310789, 1, 0, 1310790, 1, 0, 1310791, 1, 0, 1310792, -1610612735, 0, 1310805, 1, 0, 1310806, 1, 0, 1310836, 1, 0, 1310838, 1, 0, 1310840, 1, 0 )
-
-[node name="TileMap2" type="TileMap" parent="."]
-position = Vector2( 79.37, -41.2725 )
-scale = Vector2( 0.25, 0.25 )
-tile_set = ExtResource( 11 )
-cell_size = Vector2( 256, 256 )
-format = 1
-tile_data = PoolIntArray( -131000, 0, 0, -130999, 0, 0, -130998, 0, 0, -130997, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0 )
+tile_data = PoolIntArray( 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 720903, 2, 0, 786439, 2, 0, 851975, 2, 0, 852009, 0, 0, 852010, 1, 0, 852011, 1, 0, 852012, 1, 0, 852013, 1, 0, 852014, 1, 0, 852015, 1, 0, 852016, 1, 0, 852017, 1, 0, 852018, 1, 0, 917511, 2, 0, 917512, 2, 0, 917513, 2, 0, 917516, 2, 0, 917517, 2, 0, 917518, 2, 0, 917519, 2, 0, 917520, 2, 0, 917521, 2, 0, 917522, 2, 0, 917523, 2, 0, 917524, 2, 0, 917525, 2, 0, 917526, 2, 0, 917527, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0, 1245217, 0, 0 )
 
 [node name="coins" type="Node2D" parent="."]
 position = Vector2( 181.766, 373.098 )
@@ -63,27 +44,21 @@ position = Vector2( 368.314, -11.9582 )
 [node name="coin3" parent="coins" instance=ExtResource( 1 )]
 position = Vector2( 1703.15, -113.406 )
 
-[node name="box_level" parent="coins" instance=ExtResource( 16 )]
-position = Vector2( 7915.12, 551.946 )
-
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="enemy" parent="Enemies" instance=ExtResource( 14 )]
+[node name="enemy" parent="Enemies" instance=ExtResource( 11 )]
 position = Vector2( 1252.85, 459.686 )
 
-[node name="enemy2" parent="Enemies" instance=ExtResource( 14 )]
-position = Vector2( 2907.13, 424.747 )
+[node name="enemy2" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 3008, 704 )
 
-[node name="tank" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 4647.22, 1214.19 )
-
-[node name="tank2" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 4346.36, 1236.38 )
+[node name="slimeEnemy" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( 1263.57, 839.095 )
 
 [node name="changeScene" type="Area2D" parent="."]
-position = Vector2( 5888, -256 )
+position = Vector2( 3236.53, 635.356 )
 collision_layer = 2
-script = ExtResource( 8 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -93,164 +68,124 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="changeScene"]
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 12 )
+texture = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 49.5678, 159.552 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 9 )
+texture = ExtResource( 5 )
 
-[node name="player" parent="." instance=ExtResource( 15 )]
-<<<<<<< HEAD
-position = Vector2( 3891.94, 937.396 )
-=======
-position = Vector2( 3344.25, 456.671 )
->>>>>>> f4f2a932d2eec1bdb8f65b6cc7ab3411316125c9
+[node name="player" parent="." instance=ExtResource( 12 )]
+position = Vector2( 53.8058, 155.314 )
 JUMPFORCE = -1000
-time = 120
+time = 60
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="player"]
 layer = 50
 
-[node name="Dialog_box" parent="player/CanvasLayer3" instance=ExtResource( 13 )]
+[node name="Dialog_box" parent="player/CanvasLayer3" instance=ExtResource( 10 )]
 
 [node name="collisions" type="Node2D" parent="."]
-position = Vector2( -15.119, 0 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="collisions"]
-position = Vector2( 1968, 360 )
-collision_layer = 8
+[node name="collisionObjects" parent="collisions" instance=ExtResource( 6 )]
+position = Vector2( 2496, 896 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D"]
-position = Vector2( 47.119, 0 )
-shape = SubResource( 2 )
-one_way_collision = true
+[node name="collisionObjects6" parent="collisions" instance=ExtResource( 6 )]
+position = Vector2( 704, 896 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="collisions"]
-position = Vector2( 4687.12, -192 )
+[node name="collisionObjects3" parent="collisions" instance=ExtResource( 6 )]
+position = Vector2( 640, 896 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D2"]
-position = Vector2( 141.893, 35.6762 )
-shape = SubResource( 3 )
-one_way_collision = true
+[node name="collisionObjects4" parent="collisions" instance=ExtResource( 6 )]
+position = Vector2( 2560, 896 )
 
-[node name="collisionObjects" parent="collisions" instance=ExtResource( 5 )]
-position = Vector2( 2831.12, 576 )
+[node name="collisionObjects5" parent="collisions" instance=ExtResource( 6 )]
+position = Vector2( 2624, 896 )
 
-[node name="collisionObjects2" parent="collisions" instance=ExtResource( 5 )]
-position = Vector2( 2767.12, 576 )
+[node name="collisionObjects2" parent="collisions" instance=ExtResource( 6 )]
+position = Vector2( 1152, 1152 )
 
 [node name="Area2D" type="Area2D" parent="collisions"]
 position = Vector2( -311.131, 941.758 )
 collision_layer = 2
-script = ExtResource( 7 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Area2D2" type="Area2D" parent="collisions"]
-position = Vector2( 787.675, 1030.84 )
+position = Vector2( -311.131, 941.758 )
+scale = Vector2( 1.46877, 1 )
 collision_layer = 2
-script = ExtResource( 7 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D2"]
-position = Vector2( 1379.88, -145.072 )
-shape = SubResource( 5 )
+position = Vector2( 2615.13, 594.242 )
+shape = SubResource( 2 )
 
-[node name="Area2D8" type="Area2D" parent="collisions"]
-position = Vector2( 787.675, 1030.84 )
+[node name="Area2D3" type="Area2D" parent="collisions"]
+position = Vector2( -311.131, 941.758 )
 collision_layer = 2
-script = ExtResource( 7 )
+script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D8"]
-position = Vector2( 2055.19, 540.326 )
-shape = SubResource( 5 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D3"]
+position = Vector2( 2079.01, 601.793 )
+shape = SubResource( 2 )
 
-[node name="Area2D9" type="Area2D" parent="collisions"]
-position = Vector2( 787.675, 1030.84 )
-collision_layer = 2
-script = ExtResource( 7 )
+[node name="box_level2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 356, 588 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D9"]
-position = Vector2( 4625.43, 550.405 )
-shape = SubResource( 5 )
+[node name="moving platforms" type="Node2D" parent="."]
 
-[node name="Area2D10" type="Area2D" parent="collisions"]
-position = Vector2( 1687.41, -2199.85 )
-rotation = 0.785398
-collision_layer = 2
-script = ExtResource( 7 )
+[node name="1" type="Node2D" parent="moving platforms"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D10"]
-position = Vector2( 3644.09, -448.324 )
-shape = SubResource( 5 )
+[node name="movingPlatform" parent="moving platforms/1" instance=ExtResource( 3 )]
+position = Vector2( 1792, 832 )
+move_to = Vector2( 256, -200 )
 
-[node name="movingPlatforms" type="Node2D" parent="."]
+[node name="movingPlatform2" parent="moving platforms/1/movingPlatform" instance=ExtResource( 3 )]
+position = Vector2( 64, 0 )
+move_to = Vector2( 256, -200 )
 
-[node name="1" type="Node2D" parent="movingPlatforms"]
-position = Vector2( 2120.62, 144.063 )
-
-[node name="movingPlatform" parent="movingPlatforms/1" instance=ExtResource( 3 )]
-
-[node name="movingPlatform2" parent="movingPlatforms/1" instance=ExtResource( 3 )]
-position = Vector2( 63.3765, -0.0632629 )
-
-[node name="movingPlatform3" parent="movingPlatforms/1" instance=ExtResource( 3 )]
-position = Vector2( 127.376, -0.0632629 )
-
-[node name="movingPlatform4" parent="movingPlatforms/1" instance=ExtResource( 3 )]
-position = Vector2( 191.376, -0.0632629 )
-
-[node name="2" type="Node2D" parent="movingPlatforms"]
-position = Vector2( 4748.88, 1279.23 )
+[node name="2" type="Node2D" parent="moving platforms"]
+position = Vector2( 2240, 1280 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="movingPlatform" parent="movingPlatforms/2" instance=ExtResource( 3 )]
-position = Vector2( -35.1055, 45.218 )
-move_to = Vector2( 786, 0 )
+[node name="movingPlatform" parent="moving platforms/2" instance=ExtResource( 3 )]
+move_to = Vector2( 1280, 0 )
 
-[node name="movingPlatform2" parent="movingPlatforms/2" instance=ExtResource( 3 )]
-position = Vector2( 28.8945, 45.218 )
-move_to = Vector2( 786, 0 )
+[node name="movingPlatform2" parent="moving platforms/2" instance=ExtResource( 3 )]
+position = Vector2( 64, 0 )
+move_to = Vector2( 1280, 0 )
 
-[node name="movingPlatform3" parent="movingPlatforms/2" instance=ExtResource( 3 )]
-position = Vector2( 92.8945, 45.218 )
-move_to = Vector2( 786, 0 )
+[node name="3" type="Node2D" parent="moving platforms"]
+position = Vector2( 3584, 1280 )
 
-[node name="3" type="Node2D" parent="movingPlatforms"]
-position = Vector2( 5632, 1024 )
+[node name="movingPlatform" parent="moving platforms/3" instance=ExtResource( 3 )]
+position = Vector2( -0.000244141, 0 )
+move_to = Vector2( 0, -1024 )
 
-[node name="movingPlatform" parent="movingPlatforms/3" instance=ExtResource( 3 )]
-move_to = Vector2( 0, -512 )
+[node name="movingPlatform2" parent="moving platforms/3" instance=ExtResource( 3 )]
+position = Vector2( 63.9998, 0 )
+move_to = Vector2( 0, -1024 )
 
-[node name="4" type="Node2D" parent="movingPlatforms"]
-position = Vector2( 4992, -128 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="fallingPlatforms" type="Node2D" parent="moving platforms"]
 
-[node name="movingPlatform" parent="movingPlatforms/4" instance=ExtResource( 3 )]
-move_to = Vector2( 640, 0 )
+[node name="fallingTile" parent="moving platforms/fallingPlatforms" instance=ExtResource( 8 )]
+position = Vector2( 2240, 512 )
+damage = 20
 
-[node name="movingPlatform2" parent="movingPlatforms/4" instance=ExtResource( 3 )]
-move_to = Vector2( 640, 0 )
+[node name="fallingTile2" parent="moving platforms/fallingPlatforms" instance=ExtResource( 8 )]
+position = Vector2( 2304, 512 )
 
-[node name="powerUps" type="Node2D" parent="."]
+[node name="fallingTile3" parent="moving platforms/fallingPlatforms" instance=ExtResource( 8 )]
+position = Vector2( 2368, 512 )
 
-[node name="Health_powerup" parent="powerUps" instance=ExtResource( 6 )]
-position = Vector2( 6406.9, 833.31 )
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 3891.94, 937.396 )
-
-[node name="acidTiles" parent="Node2D" instance=ExtResource( 4 )]
-position = Vector2( 211.125, 250.81 )
-rotation = -1.5708
+[node name="fallingTile4" parent="moving platforms/fallingPlatforms" instance=ExtResource( 8 )]
+position = Vector2( 2432, 512 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D2_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D8" to="collisions/Area2D8" method="_on_Area2D2_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D9" to="collisions/Area2D9" method="_on_Area2D2_body_entered"]
-[connection signal="body_entered" from="collisions/Area2D10" to="collisions/Area2D10" method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D3" to="collisions/Area2D3" method="_on_body_entered"]
