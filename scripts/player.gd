@@ -4,11 +4,15 @@ export(int) var health = 100
 export var JUMPFORCE = -700
 export var speed = 300
 export var time = 0
+export var costAttack = 2
 
 var coins = 0  + Global.ammo
 var velocity = Vector2(0,0)
 var snap = Vector2.ZERO
+var heldTime = 0
 
+var held = false
+var isJumping = false
 var coins_zero = false
 var alreadyPlayed = true
 var Timer_once = false
@@ -16,10 +20,12 @@ var Timer_once = false
 
 const GRAVITY = 30
 
+onready var camera = $Camera2D/ScreenShake
 const SHIELD = preload("res://scenes/shield.tscn")
 var FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
+	experienceUpdate()
 	if Global.boomerang == true :
 		FIREBALL = preload("res://scenes/boomerang.tscn")
 	if Global.shield == true:
@@ -33,6 +39,8 @@ func _ready():
 	$CanvasLayer/coins_collected.text = String(coins)
 	$level_timer.set_wait_time(1)
 	$level_timer.start()
+	if not is_on_floor():
+		isJumping = true
 func Time():
 	time -= 1
 	$CanvasLayer/time.text = String(time)
@@ -40,6 +48,9 @@ func Time():
 # warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 func _physics_process(delta):
+	if isJumping == true and is_on_floor():
+		camera.shake()
+		isJumping = false
 	if health <= 0 and Timer_once == false :
 		$Musics/death.play()
 		$timer.set_wait_time(1)
@@ -75,22 +86,25 @@ func _physics_process(delta):
 		$AnimatedSprite.play("Idle")
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
 		jump()
+	if Input.is_action_pressed("fire"):
+		heldTime += 1
+		print(heldTime)
+		if heldTime >= 20:
+			held = true
+	if Input.is_action_just_released("fire"):
+		held = false 
+		heldTime = 0
 	if Input.is_action_just_pressed("fire"):
-		Input.vibrate_handheld(350)
 		if coins > 1:
 			$Musics/fire.play()
-			var fireball = FIREBALL.instance()
-			coins -= 2
-			_ready()
-# --> changing the direction of fireball based on players facing direction
-			if $AnimatedSprite.flip_h == true :
-				fireball.changingDirection(-1)
-			else :
-				fireball.changingDirection(1)
-			#adding fireball
-			get_parent().add_child(fireball)
-			fireball.position = $Position2D.global_position
-			
+			coins -= costAttack
+			updateHub()
+			$attackChangingTimer.set_wait_time(float(0.2))
+			$attackChangingTimer.start()
+				
+		else:
+			Input.vibrate_handheld(200)
+
 	if not is_on_floor():
 		snap = Vector2.DOWN
 
@@ -102,16 +116,17 @@ func _physics_process(delta):
 
 func addcoin():
 	coins += 1
-	_ready()
+	updateHub()
 
 # warning-ignore:unused_argument
 
 
 func got_shot(enemy_damage):
 # warning-ignore:return_value_discarded
+	camera.shake()
 	health -= enemy_damage
 	$Musics/damage.play()
-	Input.vibrate_handheld(350)
+	Input.vibrate_handheld(300)
 
 
 func get_position():
@@ -125,6 +140,7 @@ func _on_timer_timeout():
 	get_tree().change_scene("res://scenes/levelSelector.tscn")
 
 func jump(force = null):
+		isJumping = true
 		if force == null:
 			velocity.y = JUMPFORCE
 		else:
@@ -135,7 +151,44 @@ func jump(force = null):
 			alreadyPlayed = true
 		alreadyPlayed = false
 
+func experienceUpdate():
+	$CanvasLayer/expBar.max_value = Global.expLevel * 50 + 50
+	$CanvasLayer/exp.text = String(Global.expLevel)
+	$CanvasLayer/expBar.value = Global.experience
+	if $CanvasLayer/expBar.value == $CanvasLayer/expBar.max_value:
+		Global.coins += Global.expLevel * 5 + 1
+		Global.expLevel += 1
+		Global.experience = 0
+		$CanvasLayer/exp.text = String(Global.expLevel)
+		$CanvasLayer/expBar.value = Global.experience
+
+func updateHub():
+	$CanvasLayer/time.text = String(time)
+	$CanvasLayer/coins_collected.text = String(coins)
 func addMastercoin():
 	Global.coins += 2000
-	_ready()
+	updateHub()
 
+
+
+func _on_attackChangingTimer_timeout():
+			var fireball = FIREBALL.instance()
+			Input.vibrate_handheld(350)
+# --> changing the direction of fireball based on players facing direction
+			if $AnimatedSprite.flip_h == true :
+				fireball.changingDirection(-1)
+			else :
+				fireball.changingDirection(1)
+			fireball.addExperienceTo(self)
+			if Input.is_action_just_released("fire"):
+				held = false
+				heldTime = 0
+			if held == false:
+			#adding fireball
+				get_parent().add_child(fireball)
+				fireball.position = $Position2D.global_position
+			else:
+				add_child(fireball)
+				fireball.position = Vector2(0,0)
+			heldTime = 0
+			held = false

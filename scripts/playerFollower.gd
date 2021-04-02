@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export var experience = 20
 export var damage = 10
 export var speed = 1.3
 var move = Vector2.ZERO

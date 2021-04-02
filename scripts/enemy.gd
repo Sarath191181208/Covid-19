@@ -1,6 +1,7 @@
 extends KinematicBody2D
 export var speed = 0.9
 export var damage = 10
+export var experience = 20
 
 var random = RandomNumberGenerator.new()
 # if a player enters the range the player == .the object 

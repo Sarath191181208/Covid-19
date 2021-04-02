@@ -12,6 +12,9 @@ var levels = []
 var collected = {}
 var unlocked_levels = 1
 var boomerang = false
+#still need to save 
+var experience = 0 
+var expLevel = 0
 
 var PlayeHappy = load("res://Assets/dialogs/PlayerHappy.png")
 var DoctorHappy = load("res://Assets/dialogs/DoctorHappy.png")

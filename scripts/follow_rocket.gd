@@ -2,6 +2,7 @@ extends KinematicBody2D
 var player = null
 const FIREBALL = preload("res://scenes/attackPlayer.tscn")
 const LOOT = preload("res://scenes/coin.tscn")
+export var experience = 20 
 var gotShot = false
 var audio_played = false
 func got_shot():

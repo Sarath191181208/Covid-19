@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Assets/music_and_bg/hero_death.wav" type="AudioStream" id=19]
 [ext_resource path="res://Assets/music_and_bg/shield_music.wav" type="AudioStream" id=20]
 [ext_resource path="res://Assets/png/img2.jpg" type="Texture" id=21]
+[ext_resource path="res://scenes/ScreenShake.tscn" type="PackedScene" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.022, 41.6507 )
@@ -31,7 +32,10 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0, 0, 0, 1 )
 border_blend = true
-corner_radius_bottom_right = 10
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -54,7 +58,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 5
+frame = 6
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -63,6 +67,8 @@ current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 editor_draw_limits = true
+
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 22 )]
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 10, 0 )
@@ -148,90 +154,6 @@ position = Vector2( 304, -128 )
 normal = ExtResource( 9 )
 action = "restart"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-margin_right = 295.0
-margin_bottom = 142.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="coins_collected" type="Label" parent="CanvasLayer"]
-anchor_right = 0.151
-anchor_bottom = 0.133
-margin_left = 67.1427
-margin_top = 73.3385
-margin_right = -6.48126
-margin_bottom = 54.5385
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
-text = "##
-"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="time" type="Label" parent="CanvasLayer"]
-modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
-margin_left = 136.671
-margin_top = 70.5285
-margin_right = 235.671
-margin_bottom = 135.529
-custom_fonts/font = SubResource( 4 )
-text = "##"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_left = 17.7456
-margin_top = 78.0735
-margin_right = 62.7456
-margin_bottom = 123.074
-texture = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-margin_left = 18.9994
-margin_top = 12.534
-margin_right = 530.999
-margin_bottom = 132.534
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
-anchor_left = 0.00203037
-anchor_right = 0.00203037
-margin_left = 81.937
-margin_top = 28.8212
-margin_right = 593.938
-margin_bottom = 148.821
-rect_scale = Vector2( 0.5, 0.5 )
-value = 100.0
-texture_progress = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Position2D2" type="Position2D" parent="CanvasLayer"]
-
 [node name="level_timer" type="Timer" parent="."]
 autostart = true
 
@@ -274,5 +196,133 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+margin_right = 295.0
+margin_bottom = 142.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="expPanel" type="Panel" parent="CanvasLayer"]
+margin_left = 421.0
+margin_top = 20.0
+margin_right = 662.0
+margin_bottom = 61.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coins_collected" type="Label" parent="CanvasLayer"]
+anchor_right = 0.151
+anchor_bottom = 0.133
+margin_left = 67.1427
+margin_top = 73.3385
+margin_right = -6.48126
+margin_bottom = 54.5385
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
+text = "##
+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time" type="Label" parent="CanvasLayer"]
+modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
+margin_left = 136.671
+margin_top = 70.5285
+margin_right = 235.671
+margin_bottom = 135.529
+custom_fonts/font = SubResource( 4 )
+text = "##"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exp" type="Label" parent="CanvasLayer"]
+modulate = Color( 0.0862745, 0.305882, 0.737255, 1 )
+margin_left = 646.0
+margin_top = 13.0
+margin_right = 745.0
+margin_bottom = 142.0
+custom_fonts/font = SubResource( 4 )
+text = "##
+"
+align = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="expBar" type="TextureProgress" parent="CanvasLayer"]
+modulate = Color( 0, 1, 1, 1 )
+margin_left = 424.735
+margin_top = 22.0
+margin_right = 758.735
+margin_bottom = 122.0
+rect_min_size = Vector2( 50, 100 )
+rect_scale = Vector2( 0.7, 0.7 )
+value = 4.0
+rounded = true
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_left = 17.7456
+margin_top = 78.0735
+margin_right = 62.7456
+margin_bottom = 123.074
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+margin_left = 18.9994
+margin_top = 12.534
+margin_right = 530.999
+margin_bottom = 132.534
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
+anchor_left = 0.00203037
+anchor_right = 0.00203037
+margin_left = 81.937
+margin_top = 28.8212
+margin_right = 593.938
+margin_bottom = 148.821
+rect_scale = Vector2( 0.5, 0.5 )
+value = 100.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position2D2" type="Position2D" parent="CanvasLayer"]
+
+[node name="attackChangingTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="attackChangingTimer" to="." method="_on_attackChangingTimer_timeout"]

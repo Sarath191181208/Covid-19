@@ -23,14 +23,14 @@ radius = 30.0403
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "hit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "flying",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "hit",
 "speed": 5.0
 } ]
 
@@ -79,7 +79,7 @@ rotation = -0.523599
 scale = Vector2( 0.05, 0.05 )
 frames = SubResource( 5 )
 animation = "flying"
-frame = 2
+frame = 3
 playing = true
 
 [node name="attackTimer" type="Timer" parent="."]

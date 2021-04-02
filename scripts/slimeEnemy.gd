@@ -1,4 +1,5 @@
 extends KinematicBody2D
+
 export var speed = 50
 export(int) var damage = 10
 const GRAVITY = 5
