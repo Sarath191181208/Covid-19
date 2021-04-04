@@ -29,11 +29,12 @@ const GRAVITY = 30
 
 onready var end_position = get_parent().get_node("changeScene").position
 onready var camera = $Camera2D/ScreenShake
+const CHAIN = preload("res://scenes/Chain.tscn")
 const SHIELD = preload("res://scenes/shield.tscn")
 var FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
-	$input_buttons/fire/TextureProgress.value = 0
+	$input_buttons/joyStick/TextureProgress.value = 0
 	experienceUpdate()
 	if Global.boomerang == true :
 		FIREBALL = preload("res://scenes/boomerang.tscn")
@@ -54,13 +55,13 @@ func _ready():
 func Time():
 	time -= 1
 	$CanvasLayer/time.text = String(time)
-	if time <= 0 :
+	if time == 0 :
 # warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 func _physics_process(delta):
 	$CanvasLayer/marker.rotation = (global_position - end_position).angle() - PI
 	if held == false:
-		$input_buttons/fire/TextureProgress.value = 0
+		$input_buttons/joyStick/TextureProgress.value = 0
 	if isJumping == true and is_on_floor():
 		if beforeVelocity >= 700:
 			camera.shake()
@@ -112,25 +113,25 @@ func _physics_process(delta):
 		jump()
 	if Input.is_action_pressed("fire"):
 		heldTime += 1
-		$input_buttons/fire/TextureProgress.value = heldTime
+		$input_buttons/joyStick/TextureProgress.value = heldTime
 		if heldTime >= 10:
 			held = true
+			
+
 	if Input.is_action_just_released("fire"):
-		held = false 
-		heldTime = 0
-	if Input.is_action_just_pressed("fire"):
-		if coins > 1:
+		if coins > costAttack:
 			$Musics/fire.play()
 			coins -= costAttack
 			updateHub()
-			$attackChangingTimer.set_wait_time(float(0.2))
-			$attackChangingTimer.start()
 			camera.y = 0
 			camera.shake()
-
-
+			fire()
 		else:
+			held = false
+			heldTime = 0
+			$input_buttons/joyStick/TextureProgress.value = 0
 			Input.vibrate_handheld(200)
+
 
 	if not is_on_floor():
 		snap = Vector2.DOWN
@@ -201,30 +202,34 @@ func addMastercoin():
 	Global.coins += 2000
 	updateHub()
 
-
-
-func _on_attackChangingTimer_timeout():
-	var fireball = FIREBALL.instance()
-	Input.vibrate_handheld(350)
-# --> changing the direction of fireball based on players facing direction
-	if $AnimatedSprite.flip_h == true :
-		fireball.changingDirection(-1)
-	else :
-		fireball.changingDirection(1)
-	fireball.addExperienceTo(self)
-	if Input.is_action_just_released("fire"):
-		held = false
-		heldTime = 0
-	if held == false:
-	#adding fireball
-		get_parent().add_child(fireball)
-		fireball.position = $Position2D.global_position
-	else:
-		add_child(fireball)
+func fire():
+	if Global.dragging == false:
+		var fireball = FIREBALL.instance()
+		Input.vibrate_handheld(350)
+	# --> changing the direction of fireball based on players facing direction
+		if $AnimatedSprite.flip_h == true :
+			fireball.changingDirection(-1)
+		else :
+			fireball.changingDirection(1)
+		fireball.addExperienceTo(self)
+		if held == false:
+		#adding fireball
+			get_parent().add_child(fireball)
+			fireball.position = $Position2D.global_position
+		else:
+			add_child(fireball)
 		fireball.position = Vector2(0,0)
 	heldTime = 0
-	$input_buttons/fire/TextureProgress.value = 0
+	$input_buttons/joyStick/TextureProgress.value = 0
 	held = false
+	if Global.dragging == true:
+		var chain = CHAIN.instance()
+		get_parent().add_child(chain)
+		chain.global_position = global_position 
+		chain.shoot(Vector2(global_position - Vector2(0,90)))
+		
+		
+
 func cameraDamp(side):
 	if Side != side:
 		$Camera2D/Tween.interpolate_property($Camera2D,"position",$Camera2D.position,Vector2(side * look_ahed,$Camera2D.position.y),1,Tween.TRANS_QUAD,Tween.EASE_IN)	

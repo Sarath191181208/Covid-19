@@ -5,6 +5,7 @@ var save_vars = ['coins','levels','collected','unlocked_levels',"boomerang","exp
 
 var  ammo = 0
 var shield = false
+var dragging = false
 
 
 var coins = 0
@@ -27,7 +28,7 @@ var dictionary = {
 
 var Dialogs = [
 	[
-		{"Name": "Player","Emotion" : "Happy","Text" : "Where am I ?"},
+	{"Name": "Player","Emotion" : "Happy","Text" : "Where am I ?"},
 	{"Name": "MadDoctor","Emotion" : "Happy","Text" : "Hey there i am a doctor working in a laboratory . You are in my lab "},
 	{"Name": "MadDoctor","Emotion" : "Happy","Text" : "I didnt like the way the humans keep themselves"},
 	{"Name": "Player","Emotion" : "Happy","Text" : " So?"},
@@ -52,43 +53,33 @@ var Dialogs = [
 	{"Name": "Doctor","Emotion" : "Happy","Text" : "This room is filled with virus you will be infected too if you remain in a certain room for too long "},
 	{"Name": "Doctor","Emotion" : "Happy","Text" : "See you later if you remain "},
 	{"Name": "Player","Emotion" : "Happy","Text" : "What ???"},
-],
-#level 1 story ends
-[
-	{"Name": "MadDoctor","Emotion" : "Happy","Text" : "Where are all my money"},
-		{"Name": "MadDoctor","Emotion" : "Happy","Text" : "Stupid Zombies might have picked them up and would have dropped them"},
+],[{"Name": "MadDoctor","Emotion" : "Happy","Text" : "Where are all my money"},{"Name": "MadDoctor","Emotion" : "Happy","Text" : "Stupid Zombies might have picked them up and would have dropped them"},
 	{"Name": "Doctor","Emotion" : "Happy","Text" : "Hey there you are doing well , The MadDoctor is trying to keep you away from his final floor"}
 	,{"Name": "Doctor","Emotion" : "Happy","Text" : "He is experimenting with new animals and materials be aware !"},
 	{"Name": "Doctor","Emotion" : "Happy","Text" : "Zombies drop some containers in a level which can only be found in first try so dont lose !!"},
 	{"Name": "Doctor","Emotion" : "Happy","Text" : "See a Zombie dropped a box you can collect it and answer a question to get coins"}
   ],
-#level 2 story ends
 [
 {"Name": "Doctor","Emotion" : "Happy","Text" : "Hey there I hope you are doing well ? "},
 {"Name": "Doctor","Emotion" : "Happy","Text" : "Let me tell you that doofus had succeded in creating a tank he is using it to stop you BEWARE !!! "},
 {"Name": "Doctor","Emotion" : "Happy","Text" : "If you hit the tank you will die"}
 ],
-#level 3 story ends
 [
 {"Name": "Doctor","Emotion" : "Happy","Text" : "Hey there I hope you are doing well ? "},
 {"Name": "Doctor","Emotion" : "Happy","Text" : "The docotor is trying to make a  wild bird beware"}
 ],
-#level 4 story ends
 [
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Hey there  "},
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Let me tell  "}
 ],
-#level 5 story ends
 [
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Hey there  "},
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Let me tell  "}
 ],
-#level 6 story ends
 [
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Hey there  "},
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Let me tell  "}
 ],
-#level 7 story ends
 [
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Hey there  "},
 {"Name": "MadDoctor","Emotion" : "Happy","Text" : "Let me tell  "}
