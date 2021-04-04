@@ -6,16 +6,19 @@ export var speed = 3.0
 export var damage = 3
 var start = false
 var follow = Vector2.ZERO
+var onPlatform  = false
 
 onready var platform = $KinematicBody2D
 onready var tween = $Tween
 
 
 func _on_Area2D_body_entered(body):
+	body.camera.shake(2,2,15,20)
 	$KinematicBody2D/Area2D/Sprite.modulate = "ff0000"
 	$KinematicBody2D/Timer.set_wait_time(0.1)
 	$KinematicBody2D/Timer.start()
 	body.got_shot(damage)
+	onPlatform = true
 
 func _init_tween():
 	var duration = move_to.length() / float(speed * 256)
@@ -33,5 +36,10 @@ func _on_Timer_timeout():
 	_init_tween()
 	
 func _on_VisibilityNotifier2D_screen_exited():
-	$KinematicBody2D.queue_free()
-	queue_free()
+	if onPlatform == true:
+		$KinematicBody2D.queue_free()
+		queue_free()
+
+
+func _on_Area2D_body_exited(body):
+	body.camera.shake(0,5,10,10)

@@ -2,7 +2,9 @@ extends Area2D
 export var damage = 10
 export var speed = 300
 var direction = 1
+var y_direction = 1
 var velocity = Vector2()
+var shortGun = false
 
 func changingDirection(dir):
 	direction = dir
@@ -11,6 +13,8 @@ func changingDirection(dir):
 
 func _physics_process(delta):
 	velocity.x = speed * delta * direction
+	if shortGun == true:
+		velocity.y = speed/2 * delta * y_direction
 	translate(velocity)
 
 

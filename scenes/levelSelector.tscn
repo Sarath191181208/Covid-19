@@ -25,7 +25,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 1038.0
 margin_bottom = 616.0
-color = Color( 0.207843, 0.788235, 0.145098, 0.345098 )
+color = Color( 0.152941, 0.643137, 0.368627, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -251,15 +251,3 @@ __meta__ = {
 stream = ExtResource( 7 )
 volume_db = -10.0
 autoplay = true
-
-[node name="Label" type="Label" parent="."]
-margin_left = 64.7798
-margin_top = 483.52
-margin_right = 134.78
-margin_bottom = 500.52
-text = "Save"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}

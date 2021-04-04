@@ -83,7 +83,7 @@ func got_shot():
 	timer.start()
 
 func turnoff():
-	$CollisionShape2D.disabled = true
+	
 	set_collision_layer_bit(3,false)
 	set_collision_mask_bit(5,false)
 	if $detecting_range != null :

@@ -5,7 +5,14 @@ export var JUMPFORCE = -700
 export var speed = 300
 export var time = 0
 export var costAttack = 2
+export var look_ahed = 256
 
+var Side
+var rotationOfCompass 
+
+
+
+var beforeVelocity
 var coins = 0  + Global.ammo
 var velocity = Vector2(0,0)
 var snap = Vector2.ZERO
@@ -20,6 +27,7 @@ var Timer_once = false
 
 const GRAVITY = 30
 
+onready var end_position = get_parent().get_node("changeScene").position
 onready var camera = $Camera2D/ScreenShake
 const SHIELD = preload("res://scenes/shield.tscn")
 var FIREBALL = preload("res://scenes/attack.tscn")
@@ -41,16 +49,21 @@ func _ready():
 	$level_timer.set_wait_time(1)
 	$level_timer.start()
 	if not is_on_floor():
+		$particleMove.emitting = false
 		isJumping = true
 func Time():
 	time -= 1
 	$CanvasLayer/time.text = String(time)
-	if time == 0 :
+	if time <= 0 :
 # warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 func _physics_process(delta):
+	$CanvasLayer/marker.rotation = (global_position - end_position).angle() - PI
+	if held == false:
+		$input_buttons/fire/TextureProgress.value = 0
 	if isJumping == true and is_on_floor():
-		camera.shake()
+		if beforeVelocity >= 700:
+			camera.shake()
 		isJumping = false
 	if health <= 0 and Timer_once == false :
 		$Musics/death.play()
@@ -70,21 +83,31 @@ func _physics_process(delta):
 	if $Musics/walk.playing == true and Input.is_action_just_released("left"):
 		$Musics/walk.stop()
 	if Input.is_action_pressed("right"):
+		cameraDamp(1)
+		$particleMove.emitting = true
+		$particleMove.scale.x = 1
+		$particleMove.position.x = -20
 		velocity.x = speed
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = false
 		if $Musics/walk.playing == false:
 			$Musics/walk.play()
 	elif Input.is_action_pressed("left") :
+		cameraDamp(-1)
 		velocity.x = -speed
-
 		$AnimatedSprite.play("walk")
+		$particleMove.emitting = true
+		$particleMove.scale.x = -1
+		$particleMove.position.x = 20
 		$AnimatedSprite.flip_h = true
 		if $Musics/walk.playing == false:
 			$Musics/walk.play()
 	
 	else:
+		$particleMove.emitting = false
 		$AnimatedSprite.play("Idle")
+	if Input.is_action_just_released("jump") and not is_on_floor():
+		velocity.y *= 0.5
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
 		jump()
 	if Input.is_action_pressed("fire"):
@@ -102,15 +125,16 @@ func _physics_process(delta):
 			updateHub()
 			$attackChangingTimer.set_wait_time(float(0.2))
 			$attackChangingTimer.start()
-				
+			camera.y = 0
+			camera.shake()
+
+
 		else:
 			Input.vibrate_handheld(200)
 
 	if not is_on_floor():
 		snap = Vector2.DOWN
-
-#Adding gravity to player this function runs about 60 times per second 
-# 	=> body accelerates due to continious change in velocity
+	beforeVelocity = velocity.y
 	velocity.y = velocity.y + GRAVITY
 	velocity = move_and_slide_with_snap(velocity,snap * 64 ,Vector2.UP)
 	velocity.x = lerp(velocity.x , 0 , 0.2)
@@ -140,8 +164,10 @@ func _on_level_timer_timeout():
 func _on_timer_timeout():
 	get_tree().change_scene("res://scenes/levelSelector.tscn")
 
-func jump(force = null):
+func jump(force = null,x_velo = null ):
 		isJumping = true
+		if x_velo != null:
+			velocity.x = x_velo
 		if force == null:
 			velocity.y = JUMPFORCE
 		else:
@@ -153,7 +179,7 @@ func jump(force = null):
 		alreadyPlayed = false
 
 func experienceUpdate():
-
+	$CanvasLayer/expBar.max_value = Global.expLevel * 50 + 50
 	if Global.experience >= $CanvasLayer/expBar.max_value:
 		var extra = Global.experience - $CanvasLayer/expBar.max_value
 		Global.coins += Global.expLevel * 5 + 1
@@ -163,8 +189,6 @@ func experienceUpdate():
 		$CanvasLayer/expBar/Particles2D.set_emitting(true)
 		$CanvasLayer/expBar/Timer.start()
 		$CanvasLayer/expBar.value = Global.experience
-		
-	$CanvasLayer/expBar.max_value = Global.expLevel * 50 + 50
 	$CanvasLayer/exp.text = String(Global.expLevel)
 #	$CanvasLayer/expBar.value = Global.experience
 	$exp.interpolate_property($CanvasLayer/expBar,"value",$CanvasLayer/expBar.value,Global.experience,0.7,Tween.TRANS_LINEAR,Tween.EASE_OUT)
@@ -201,7 +225,13 @@ func _on_attackChangingTimer_timeout():
 	heldTime = 0
 	$input_buttons/fire/TextureProgress.value = 0
 	held = false
-
-
+func cameraDamp(side):
+	if Side != side:
+		$Camera2D/Tween.interpolate_property($Camera2D,"position",$Camera2D.position,Vector2(side * look_ahed,$Camera2D.position.y),1,Tween.TRANS_QUAD,Tween.EASE_IN)	
+		$Camera2D/Tween.start()
+		Side = side
+#	$Camera2D.position.x = side * look_ahed
+func getDistance(vector1,vector2):
+	return sqrt((vector1.x - vector2.x)*(vector1.x - vector2.x) + (vector1.y - vector2.y) * (vector1.y - vector2.y))
 func _on_Timer_timeout():
 	$CanvasLayer/expBar/Particles2D.set_emitting(false)

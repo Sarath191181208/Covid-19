@@ -40,3 +40,8 @@ func addExperienceTo(body):
 	player = body
 func _on_Sprite_animation_finished():
 	queue_free()
+
+
+# warning-ignore:unused_argument
+func _on_attack_area_entered(area):
+	pass # Replace with function body.

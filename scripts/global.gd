@@ -1,7 +1,7 @@
 extends Node
 
 export (Script) var game_save_class = load("res://game_save.gd")
-var save_vars = ['coins','levels','collected','unlocked_levels']
+var save_vars = ['coins','levels','collected','unlocked_levels',"boomerang","experience","expLevel"]
 
 var  ammo = 0
 var shield = false
@@ -12,7 +12,6 @@ var levels = []
 var collected = {}
 var unlocked_levels = 1
 var boomerang = false
-#still need to save 
 var experience = 0 
 var expLevel = 0
 
@@ -120,6 +119,7 @@ func _ready():
 		experience = 0
 		expLevel = 0
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	save_world()
 #	var dir = Directory.new()
@@ -141,6 +141,7 @@ func save_world():
 	if not dir.dir_exists("user://saves/"):
 		dir.make_dir_recursive("user://saves/")
 		
+# warning-ignore:return_value_discarded
 	ResourceSaver.save("user://saves/save_01.tres",new_save)
 
 

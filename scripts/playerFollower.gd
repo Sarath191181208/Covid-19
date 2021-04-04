@@ -77,7 +77,7 @@ func _on_kill_range_body_entered(body):
 func _on_collision_range_body_entered(body):
 		is_colliding = true
 		colliding_player = body
-		$AnimatedSprite.play("attack")
+		
 		$attackTimer.set_wait_time(1)
 		$attackTimer.start()
 
@@ -86,7 +86,7 @@ func _on_collision_range_body_exited(body):
 	if colliding_player != null :
 		colliding_player = null
 		if gotShot == false :
-			$AnimatedSprite.play("idle")
+			$AnimatedSprite.play("flying")
 		else :
 			if $music/death.playing == false:
 				$music/death.play()

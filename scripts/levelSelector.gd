@@ -11,6 +11,7 @@ func _ready():
 			level.connect('pressed',self,'change_level',[level.name])
 		else :
 			level.disabled = true
+# warning-ignore:return_value_discarded
 	$Button.connect("pressed",self,"changeScene")
 # warning-ignore:unused_argumen
 	
@@ -20,4 +21,5 @@ func change_level(lvl_number):
 	get_tree().change_scene("res://scenes/leve" + String(lvl_number) + ".tscn")
 	
 func changeScene():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/shop.tscn")

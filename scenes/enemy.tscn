@@ -29,7 +29,7 @@ __meta__ = {
 scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 14
+frame = 11
 playing = true
 flip_h = true
 

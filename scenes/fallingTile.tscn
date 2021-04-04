@@ -41,4 +41,5 @@ position = Vector2( -1.73415, -9.43526 )
 scale = Vector2( 2.9412, 0.773548 )
 [connection signal="timeout" from="KinematicBody2D/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="KinematicBody2D/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="KinematicBody2D/Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -14,6 +14,7 @@ func _ready():
 	$Timer.wait_time = textSpeed
 	dialog = getDialog()
 	nextPhrase()
+# warning-ignore:return_value_discarded
 	$skip.connect('pressed',self,'set_nextPhrase')
 func _process(_delta):
 	if finished == true :

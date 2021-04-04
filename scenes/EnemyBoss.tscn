@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/enemies/golem-alolan.png" type="Texture" id=1]
+[ext_resource path="res://game/index.png" type="Texture" id=2]
+[ext_resource path="res://scripts/EnemyBoss.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 50.9026, 69.6524 )
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -78.3837, 45.2548, 0, 0, 0, 0, -49.3959, -62.9289, 0, 0, 0, 0, -65.9604, -1.10961 )
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7.68837, 8.55446 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 55.0659, 69.8112 )
+
+[node name="EnemyBoss" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 1.33484, 2.66968 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 1 )
+
+[node name="Path2D" type="Path2D" parent="KinematicBody2D"]
+rotation = -0.261799
+curve = SubResource( 2 )
+
+[node name="attackTimer" type="Timer" parent="KinematicBody2D"]
+wait_time = 20.0
+
+[node name="spwanTimer" type="Timer" parent="KinematicBody2D"]
+wait_time = 4.0
+
+[node name="shootTimer" type="Timer" parent="KinematicBody2D"]
+wait_time = 7.0
+
+[node name="damageTimer" type="Timer" parent="KinematicBody2D"]
+wait_time = 15.0
+
+[node name="return" type="Timer" parent="KinematicBody2D"]
+
+[node name="dashCompleted" type="Timer" parent="KinematicBody2D"]
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D/Area2D"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
+position = Vector2( -7.62939e-06, -7.13524 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="KinematicBody2D"]
+
+[node name="attackArea" type="Area2D" parent="KinematicBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/attackArea"]
+shape = SubResource( 4 )
+[connection signal="timeout" from="KinematicBody2D/attackTimer" to="." method="_on_attackTimer_timeout"]
+[connection signal="timeout" from="KinematicBody2D/spwanTimer" to="." method="_on_spwanTimer_timeout"]
+[connection signal="timeout" from="KinematicBody2D/shootTimer" to="." method="_on_shootTimer_timeout"]
+[connection signal="timeout" from="KinematicBody2D/damageTimer" to="." method="_on_damageTimer_timeout"]
+[connection signal="timeout" from="KinematicBody2D/return" to="." method="_on_return_timeout"]
+[connection signal="timeout" from="KinematicBody2D/dashCompleted" to="." method="_on_dashCompleted_timeout"]
+[connection signal="screen_entered" from="KinematicBody2D/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="body_entered" from="KinematicBody2D/attackArea" to="." method="_on_attackArea_body_entered"]

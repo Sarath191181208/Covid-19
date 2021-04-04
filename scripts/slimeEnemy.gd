@@ -9,9 +9,11 @@ const LOOT = preload("res://scenes/coin.tscn")
 func _ready():
 	$floor_checker.position.x = $CollisionShape2D.shape.get_extents().x * direction
 	velocity.x = speed
+# warning-ignore:unused_argument
 func _physics_process(delta):
-	if is_on_wall() or not $floor_checker.is_colliding():
-		direction = (-direction)
+	if not $floor_checker.is_colliding() :
+
+		direction = (direction) * -1
 		if direction == -1 :
 			$AnimatedSprite.flip_h = false
 			velocity.x = -speed
@@ -23,6 +25,7 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	if is_on_floor():
 		velocity.y = 0
+# warning-ignore:return_value_discarded
 	move_and_slide(velocity,Vector2.UP)
 
 

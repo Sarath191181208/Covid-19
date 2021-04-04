@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Run!!"
+config/name="Protocol-19"
 run/main_scene="res://scenes/levelSelector.tscn"
 config/use_custom_user_dir=true
 config/icon="res://logo.jpg"
@@ -88,6 +88,8 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_5="items"
 2d_physics/layer_6="attacks"
 2d_physics/layer_7="attackPlayer"
+2d_physics/layer_8="switch"
+2d_physics/layer_9="springBoard"
 
 [rendering]
 

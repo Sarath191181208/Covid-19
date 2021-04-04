@@ -12,7 +12,7 @@ func _on_Health_powerup_body_entered(body):
 		body.health = 100
 	$AnimationPlayer.play("bounce")
 	set_collision_layer_bit(4,false)
-	$CollisionShape2D.disabled = true
 
+# warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 	queue_free()

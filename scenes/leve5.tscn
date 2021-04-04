@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/follow_rocket.tscn" type="PackedScene" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://scenes/Health_powerup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Mastercoin.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/slimeEnemy.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/collisionObjects.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/switch.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/springBoard.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/EnemyBoss.tscn" type="PackedScene" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44.7822, 61.7336 )
@@ -65,9 +69,9 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 10 )
 
 [node name="player" parent="." instance=ExtResource( 13 )]
-position = Vector2( 0.773804, -3.1579 )
+position = Vector2( 11.8624, 2.06031 )
 JUMPFORCE = -1000
-time = 60
+time = 200
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="player"]
 layer = 50
@@ -94,10 +98,10 @@ position = Vector2( 1632, 528 )
 position = Vector2( 181.766, 373.098 )
 
 [node name="coin" parent="coins" instance=ExtResource( 1 )]
-position = Vector2( 542.905, -23.9165 )
+position = Vector2( 51.4603, 145.392 )
 
 [node name="coin2" parent="coins" instance=ExtResource( 1 )]
-position = Vector2( 368.314, -11.9582 )
+position = Vector2( 116.598, 139.371 )
 
 [node name="coin3" parent="coins" instance=ExtResource( 1 )]
 position = Vector2( 1703.15, -113.406 )
@@ -106,7 +110,13 @@ position = Vector2( 1703.15, -113.406 )
 position = Vector2( 2864.46, 67.8057 )
 
 [node name="Health_powerup" parent="coins" instance=ExtResource( 14 )]
-position = Vector2( 283.306, 131.853 )
+position = Vector2( 625.025, 139.862 )
+
+[node name="Health_powerup2" parent="coins" instance=ExtResource( 14 )]
+position = Vector2( 1134.93, 166.559 )
+
+[node name="Health_powerup3" parent="coins" instance=ExtResource( 14 )]
+position = Vector2( 972.083, 163.889 )
 
 [node name="movingPlatforms" type="Node2D" parent="."]
 
@@ -142,5 +152,40 @@ position = Vector2( 27.1321, 259.262 )
 
 [node name="slimeEnemy" parent="Node2D2" instance=ExtResource( 16 )]
 position = Vector2( 128, 64 )
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2( 1000, 0 )
+
+[node name="switch" parent="Node2D3" instance=ExtResource( 18 )]
+position = Vector2( 744, 472 )
+
+[node name="Node2D" type="Node2D" parent="Node2D3/switch"]
+position = Vector2( 0.647461, 5.73438 )
+rotation = -1.5708
+
+[node name="collisionObjects" parent="Node2D3/switch/Node2D" instance=ExtResource( 17 )]
+position = Vector2( -106.266, -96.6475 )
+
+[node name="collisionObjects2" parent="Node2D3/switch/Node2D" instance=ExtResource( 17 )]
+position = Vector2( -42.2656, -96.6475 )
+
+[node name="collisionObjects3" parent="Node2D3/switch/Node2D" instance=ExtResource( 17 )]
+position = Vector2( 29.7344, -144.647 )
+
+[node name="collisionObjects4" parent="Node2D3/switch/Node2D" instance=ExtResource( 17 )]
+position = Vector2( 189.734, 111.353 )
+rotation = 1.5708
+
+[node name="collisionObjects5" parent="Node2D3/switch/Node2D" instance=ExtResource( 17 )]
+position = Vector2( 325.734, 247.353 )
+rotation = 1.5708
+
+[node name="springBoard" parent="Node2D3" instance=ExtResource( 19 )]
+position = Vector2( -849.49, 513.464 )
+
+[node name="Node2D4" type="Node2D" parent="."]
+
+[node name="EnemyBoss" parent="Node2D4" instance=ExtResource( 20 )]
+position = Vector2( 552.776, 491.839 )
 [connection signal="body_entered" from="changeScene" to="changeScene" method="_on_changeScene_body_entered"]
 [connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_body_entered"]

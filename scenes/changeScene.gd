@@ -4,8 +4,10 @@ var entered = false
 
 const QUESTION = preload("res://scenes/questions.tscn")
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 		if get_tree().paused == false and entered == true :
+# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://scenes/leve"+str(int(get_tree().current_scene.name)+1) + ".tscn")
 # warning-ignore:unused_argument
 func _on_changeScene_body_entered(body):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -23,9 +23,13 @@
 [ext_resource path="res://Assets/png/img2.jpg" type="Texture" id=21]
 [ext_resource path="res://scenes/ScreenShake.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Assets/png/ringProgressBar.png" type="Texture" id=23]
+[ext_resource path="res://scenes/marker.tscn" type="PackedScene" id=24]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.022, 41.6507 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.985808 ), 0.0, 0.0, 0, 0, Vector2( 0.993711, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.0470588, 0.0470588, 0.0470588, 0.529412 )
@@ -35,8 +39,7 @@ border_color = Color( 0, 0, 0, 1 )
 border_blend = true
 corner_radius_top_left = 2
 corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+corner_radius_bottom_right = 20
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -47,13 +50,14 @@ size = 52
 font_data = ExtResource( 4 )
 
 [sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.77305, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1 )
+offsets = PoolRealArray( 0, 0.772059, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.029587, 0.306676, 0.68857, 1, 0.0626221, 0.0682354, 0.421875, 1 )
 
 [node name="player" type="KinematicBody2D"]
-collision_mask = 16
+collision_mask = 272
 script = ExtResource( 2 )
 JUMPFORCE = -900
+costAttack = 0
 
 [node name="shieldPosition" type="Position2D" parent="."]
 position = Vector2( -4.57764e-05, 0 )
@@ -63,7 +67,7 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 12
+frame = 9
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -74,6 +78,8 @@ drag_margin_v_enabled = true
 editor_draw_limits = true
 
 [node name="ScreenShake" parent="Camera2D" instance=ExtResource( 22 )]
+
+[node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 10, 0 )
@@ -166,7 +172,7 @@ margin_right = 486.035
 margin_bottom = 501.603
 rect_scale = Vector2( 0.55, 0.55 )
 max_value = 10.0
-value = 100.0
+value = 10.0
 allow_greater = true
 texture_progress = ExtResource( 23 )
 fill_mode = 4
@@ -175,143 +181,6 @@ nine_patch_stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-margin_right = 295.0
-margin_bottom = 142.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="coins_collected" type="Label" parent="CanvasLayer"]
-anchor_right = 0.151
-anchor_bottom = 0.133
-margin_left = 67.1427
-margin_top = 73.3385
-margin_right = -6.48126
-margin_bottom = 54.5385
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
-text = "##
-"
-align = 1
-valign = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="time" type="Label" parent="CanvasLayer"]
-modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
-margin_left = 136.671
-margin_top = 70.5285
-margin_right = 235.671
-margin_bottom = 135.529
-custom_fonts/font = SubResource( 4 )
-text = "##"
-align = 1
-valign = 1
-autowrap = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="exp" type="Label" parent="CanvasLayer"]
-modulate = Color( 0.0862745, 0.305882, 0.737255, 1 )
-margin_left = 314.641
-margin_top = 40.7183
-margin_right = 413.641
-margin_bottom = 169.718
-custom_fonts/font = SubResource( 4 )
-text = "##
-"
-align = 1
-autowrap = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="expBar" type="TextureProgress" parent="CanvasLayer"]
-margin_left = 310.082
-margin_top = 16.9603
-margin_right = 810.082
-margin_bottom = 516.96
-rect_min_size = Vector2( 50, 50 )
-rect_scale = Vector2( 0.2, 0.2 )
-value = 40.0
-rounded = true
-texture_under = ExtResource( 23 )
-texture_progress = ExtResource( 23 )
-fill_mode = 5
-tint_progress = Color( 0, 0.286275, 0.796078, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Particles2D" type="CPUParticles2D" parent="CanvasLayer/expBar"]
-position = Vector2( 276.281, 272.866 )
-rotation = -1.5708
-emitting = false
-amount = 20
-lifetime = 2.0
-preprocess = 15.0
-speed_scale = 3.0
-randomness = 1.0
-emission_shape = 2
-emission_rect_extents = Vector2( 50, 50 )
-spread = 0.0
-gravity = Vector2( -98, -46 )
-initial_velocity = 200.0
-initial_velocity_random = 0.7
-linear_accel = 25.0
-angle = 45.0
-scale_amount = 25.0
-color_ramp = SubResource( 5 )
-
-[node name="Timer" type="Timer" parent="CanvasLayer/expBar"]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_left = 17.7456
-margin_top = 78.0735
-margin_right = 62.7456
-margin_bottom = 123.074
-texture = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-margin_left = 18.9994
-margin_top = 12.534
-margin_right = 530.999
-margin_bottom = 132.534
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
-anchor_left = 0.00203037
-anchor_right = 0.00203037
-margin_left = 81.937
-margin_top = 28.8212
-margin_right = 593.938
-margin_bottom = 148.821
-rect_scale = Vector2( 0.5, 0.5 )
-value = 100.0
-texture_progress = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Position2D2" type="Position2D" parent="CanvasLayer"]
 
 [node name="level_timer" type="Timer" parent="."]
 autostart = true
@@ -361,7 +230,163 @@ wait_time = 0.2
 one_shot = true
 
 [node name="exp" type="Tween" parent="."]
-[connection signal="timeout" from="CanvasLayer/expBar/Timer" to="." method="_on_Timer_timeout"]
+
+[node name="particleMove" type="CPUParticles2D" parent="."]
+position = Vector2( -19.21, 43.0724 )
+rotation = -3.14159
+lifetime = 2.0
+spread = 20.0
+gravity = Vector2( 0, -4 )
+initial_velocity = 40.0
+angle = 45.0
+angle_random = 1.0
+scale_amount = 6.0
+scale_amount_curve = SubResource( 6 )
+color = Color( 0.639216, 0.439216, 0.0431373, 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+margin_right = 411.0
+margin_bottom = 191.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coins_collected" type="Label" parent="CanvasLayer"]
+anchor_right = 0.151
+anchor_bottom = 0.133
+margin_left = 326.686
+margin_top = 14.1222
+margin_right = 253.062
+margin_bottom = 14.3222
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
+text = "##f
+"
+align = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time" type="Label" parent="CanvasLayer"]
+modulate = Color( 0.815686, 0.223529, 0.223529, 1 )
+margin_left = 165.358
+margin_top = 97.0198
+margin_right = 264.358
+margin_bottom = 162.02
+custom_fonts/font = SubResource( 4 )
+text = "##"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exp" type="Label" parent="CanvasLayer"]
+modulate = Color( 0.0862745, 0.305882, 0.737255, 1 )
+margin_left = 22.7945
+margin_top = 96.5557
+margin_right = 121.794
+margin_bottom = 225.556
+custom_fonts/font = SubResource( 4 )
+text = "##
+"
+align = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="expBar" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 17.0
+margin_top = 72.0
+margin_right = 557.0
+margin_bottom = 612.0
+rect_min_size = Vector2( 50, 50 )
+rect_scale = Vector2( 0.2, 0.2 )
+value = 40.0
+rounded = true
+texture_under = ExtResource( 23 )
+texture_progress = ExtResource( 23 )
+fill_mode = 5
+tint_progress = Color( 0, 0.286275, 0.796078, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="CPUParticles2D" parent="CanvasLayer/expBar"]
+position = Vector2( 276.281, 272.866 )
+rotation = -1.5708
+emitting = false
+amount = 20
+lifetime = 3.0
+preprocess = 15.0
+speed_scale = 3.0
+randomness = 1.0
+emission_shape = 2
+emission_rect_extents = Vector2( 50, 50 )
+spread = 148.76
+gravity = Vector2( -98, -46 )
+initial_velocity = 200.0
+initial_velocity_random = 0.7
+linear_accel = 25.0
+angle = 45.0
+scale_amount = 25.0
+color_ramp = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/expBar"]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_left = 287.369
+margin_top = 18.8572
+margin_right = 332.369
+margin_bottom = 63.8577
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+margin_left = 18.9994
+margin_top = 12.534
+margin_right = 530.999
+margin_bottom = 132.534
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lifeBar" type="TextureProgress" parent="CanvasLayer"]
+anchor_left = 0.00203037
+anchor_right = 0.00203037
+margin_left = 81.937
+margin_top = 28.8212
+margin_right = 593.938
+margin_bottom = 148.821
+rect_scale = Vector2( 0.5, 0.5 )
+value = 100.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position2D2" type="Position2D" parent="CanvasLayer"]
+
+[node name="marker" parent="CanvasLayer" instance=ExtResource( 24 )]
+position = Vector2( 328.571, 122.789 )
+rotation = 0.0
+script = null
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="attackChangingTimer" to="." method="_on_attackChangingTimer_timeout"]
+[connection signal="timeout" from="CanvasLayer/expBar/Timer" to="." method="_on_Timer_timeout"]
