@@ -39,5 +39,11 @@ func _input(event):
 #drag of  an other finger
 	if event is InputEventScreenTouch and !event.is_pressed() and event.get_index() == ongoing_drag:
 		ongoing_drag = -1
+func get_value():
+	if get_button_pos().length() > limit:
+		return get_button_pos().normalized()
+	return Vector2(0, 0)
+		
+		
 	
 

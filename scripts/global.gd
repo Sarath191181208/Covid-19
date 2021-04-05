@@ -6,6 +6,7 @@ var save_vars = ['coins','levels','collected','unlocked_levels',"boomerang","exp
 var  ammo = 0
 var shield = false
 var dragging = false
+var player_position
 
 
 var coins = 0

@@ -23,7 +23,7 @@ var isJumping = false
 var coins_zero = false
 var alreadyPlayed = true
 var Timer_once = false
-
+var chain_shot = false
 
 const GRAVITY = 30
 
@@ -59,6 +59,7 @@ func Time():
 # warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 func _physics_process(delta):
+	Global.player_position = self.global_position
 	$CanvasLayer/marker.rotation = (global_position - end_position).angle() - PI
 	if held == false:
 		$input_buttons/joyStick/TextureProgress.value = 0
@@ -222,11 +223,12 @@ func fire():
 	heldTime = 0
 	$input_buttons/joyStick/TextureProgress.value = 0
 	held = false
-	if Global.dragging == true:
+	if Global.dragging == true and chain_shot == false:
 		var chain = CHAIN.instance()
 		get_parent().add_child(chain)
 		chain.global_position = global_position 
-		chain.shoot(Vector2(global_position - Vector2(0,90)))
+		chain.shoot($input_buttons/joyStick/TouchScreenButton.get_value())
+		chain_shot = true
 		
 		
 
