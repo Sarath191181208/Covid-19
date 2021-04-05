@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
+[ext_resource path="res://Joystick/Joystick.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/HUD/coin_gold.png" type="Texture" id=5]
 [ext_resource path="res://Assets/buttons/tile030-removebg-preview.png" type="Texture" id=6]
@@ -23,7 +24,6 @@
 [ext_resource path="res://scenes/ScreenShake.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Assets/png/ringProgressBar.png" type="Texture" id=23]
 [ext_resource path="res://scenes/marker.tscn" type="PackedScene" id=24]
-[ext_resource path="res://scenes/joyStick.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.022, 41.6507 )
@@ -67,7 +67,6 @@ position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -86,6 +85,7 @@ position = Vector2( 10, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0.858824, 0.0313726, 0.0313726, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -96,19 +96,14 @@ collision_mask = 8
 position = Vector2( -4, 2 )
 shape = SubResource( 1 )
 
-[node name="input_buttons" type="CanvasLayer" parent="."]
+[node name="JoyStick" type="CanvasLayer" parent="."]
 
-[node name="joyStick" parent="input_buttons" instance=ExtResource( 25 )]
-position = Vector2( 924.758, 516.672 )
-scale = Vector2( 2, 2 )
-z_index = 3
-
-[node name="TextureProgress" type="TextureProgress" parent="input_buttons/joyStick"]
-margin_left = -39.761
-margin_top = -40.761
-margin_right = 500.239
-margin_bottom = 499.239
-rect_scale = Vector2( 0.15, 0.15 )
+[node name="TextureProgress" type="TextureProgress" parent="JoyStick"]
+margin_left = 809.761
+margin_top = 404.103
+margin_right = 1349.76
+margin_bottom = 944.103
+rect_scale = Vector2( 0.3, 0.3 )
 max_value = 10.0
 value = 10.0
 allow_greater = true
@@ -120,8 +115,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Joystick" parent="JoyStick" instance=ExtResource( 3 )]
+margin_left = 751.952
+margin_top = -251.527
+margin_right = 1051.95
+margin_bottom = 48.4725
+
+[node name="input_buttons" type="CanvasLayer" parent="."]
+
 [node name="up" type="TouchScreenButton" parent="input_buttons"]
-position = Vector2( 862.825, 432.699 )
+position = Vector2( 840.602, 402.538 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 8 )

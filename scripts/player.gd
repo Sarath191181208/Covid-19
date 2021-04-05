@@ -9,7 +9,8 @@ export var look_ahed = 256
 
 var Side
 var rotationOfCompass 
-
+var drag
+var output
 
 
 var beforeVelocity
@@ -23,10 +24,10 @@ var isJumping = false
 var coins_zero = false
 var alreadyPlayed = true
 var Timer_once = false
-var chain_shot = false
+var teleport_shot = false
 
 const GRAVITY = 30
-
+onready var joystick = $JoyStick/Joystick
 onready var end_position = get_parent().get_node("changeScene").position
 onready var camera = $Camera2D/ScreenShake
 const CHAIN = preload("res://scenes/Chain.tscn")
@@ -34,7 +35,7 @@ const SHIELD = preload("res://scenes/shield.tscn")
 var FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
-	$input_buttons/joyStick/TextureProgress.value = 0
+	$JoyStick/TextureProgress.value  = 0
 	experienceUpdate()
 	if Global.boomerang == true :
 		FIREBALL = preload("res://scenes/boomerang.tscn")
@@ -62,7 +63,7 @@ func _physics_process(delta):
 	Global.player_position = self.global_position
 	$CanvasLayer/marker.rotation = (global_position - end_position).angle() - PI
 	if held == false:
-		$input_buttons/joyStick/TextureProgress.value = 0
+		$JoyStick/TextureProgress.value   = 0
 	if isJumping == true and is_on_floor():
 		if beforeVelocity >= 700:
 			camera.shake()
@@ -114,7 +115,12 @@ func _physics_process(delta):
 		jump()
 	if Input.is_action_pressed("fire"):
 		heldTime += 1
-		$input_buttons/joyStick/TextureProgress.value = heldTime
+		$JoyStick/TextureProgress.value    = heldTime
+		if joystick.output == Vector2.ZERO:
+			drag = false
+		else:
+			drag = true
+			output = joystick.output
 		if heldTime >= 10:
 			held = true
 			
@@ -126,11 +132,14 @@ func _physics_process(delta):
 			updateHub()
 			camera.y = 0
 			camera.shake()
-			fire()
+			if teleport_shot == false:
+				fire()
+			else:
+				teleport()
 		else:
 			held = false
 			heldTime = 0
-			$input_buttons/joyStick/TextureProgress.value = 0
+			$JoyStick/TextureProgress.value   = 0
 			Input.vibrate_handheld(200)
 
 
@@ -204,7 +213,7 @@ func addMastercoin():
 	updateHub()
 
 func fire():
-	if Global.dragging == false:
+	if drag  == false:
 		var fireball = FIREBALL.instance()
 		Input.vibrate_handheld(350)
 	# --> changing the direction of fireball based on players facing direction
@@ -215,23 +224,29 @@ func fire():
 		fireball.addExperienceTo(self)
 		if held == false:
 		#adding fireball
+			fireball.position = global_position
 			get_parent().add_child(fireball)
-			fireball.position = $Position2D.global_position
 		else:
 			add_child(fireball)
-		fireball.position = Vector2(0,0)
+			fireball.position = Vector2(0,0)
 	heldTime = 0
-	$input_buttons/joyStick/TextureProgress.value = 0
+	$JoyStick/TextureProgress.value = 0
 	held = false
-	if Global.dragging == true and chain_shot == false:
+	if drag == true and teleport_shot == false:
+		Engine.time_scale = 0.1
 		var chain = CHAIN.instance()
 		get_parent().add_child(chain)
 		chain.global_position = global_position 
-		chain.shoot($input_buttons/joyStick/TouchScreenButton.get_value())
-		chain_shot = true
+		chain.shoot(output)
+		teleport_shot = true
 		
 		
-
+func teleport():
+	Engine.time_scale = 1
+	var teleporter = get_parent().get_node("Tip")
+	self.position = teleporter.global_position
+	teleporter.queue_free()
+	teleport_shot = false
 func cameraDamp(side):
 	if Side != side:
 		$Camera2D/Tween.interpolate_property($Camera2D,"position",$Camera2D.position,Vector2(side * look_ahed,$Camera2D.position.y),1,Tween.TRANS_QUAD,Tween.EASE_IN)	

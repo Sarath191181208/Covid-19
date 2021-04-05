@@ -39,16 +39,22 @@ func _ready():
 	$answeButtons/answer2.text = questions[random_number]["Answer2"]
 	$answeButtons/answer3.text = questions[random_number]["Answer3"]
 	for answer in $answeButtons.get_children():
-		answer.connect('pressed',self,'check_answer',[answer.text,random_number])
+		answer.connect('pressed',self,'check_answer',[answer,random_number])
 func check_answer(answer,random_number):
-	if answer == questions[random_number]["CorrectAnswer"]:
+	if answer.text == questions[random_number]["CorrectAnswer"]:
 		Global.coins += 2
 		$correct.play()
 	else :
 		$incorrect.play()
 	$correctAnswer.text = questions[random_number]["CorrectAnswer"]
 	for answer in $answeButtons.get_children():
-		answer.disabled = true
+		if answer.text == questions[random_number]["CorrectAnswer"]:
+			answer.disabled = true
+			answer.hover = true
+			
+			pass
+		else:
+			answer.disabled = true
 	$timer.start()
 
 func _on_timer_timeout():
