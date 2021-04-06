@@ -3,7 +3,6 @@
 [ext_resource path="res://scripts/Dialog Box.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/fonts/Montserrat-MediumItalic.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Assets/buttons/doctor-removebg-preview(1).png" type="Texture" id=4]
 [ext_resource path="res://Assets/sounds/Typing (2).wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/fonts/Montserrat-SemiBold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Assets/themes/pressed.tres" type="StyleBox" id=7]
@@ -36,7 +35,11 @@ tracks/0/keys = {
 "values": [ Vector2( 232, 56 ), Vector2( 232, 50 ), Vector2( 232, 45 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://.import/doctor-removebg-preview(1).png-778b93f439f79ab1224cbf470054e294.stex"
+
+[sub_resource type="DynamicFont" id=5]
 size = 22
 font_data = ExtResource( 6 )
 
@@ -86,7 +89,7 @@ anims/load = SubResource( 3 )
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Indicator"]
 position = Vector2( 885.334, 89.5999 )
 scale = Vector2( 0.197531, 0.17747 )
-normal = ExtResource( 4 )
+normal = SubResource( 4 )
 action = "ui_accept"
 
 [node name="Portrait" type="Sprite" parent="."]
@@ -109,7 +112,7 @@ custom_styles/pressed = ExtResource( 7 )
 custom_styles/focus = ExtResource( 7 )
 custom_styles/disabled = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Skip"
 clip_text = true
 expand_icon = true

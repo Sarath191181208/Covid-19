@@ -1,9 +1,8 @@
 extends Node2D
 
+# warning-ignore:unused_argument
 func _on_acidTiles_body_entered(body):
-	print('sldkfj')
 	for i in $image.get_children():
-		print('sldkfj')
 		i.self_modulate = 'ff0000'
 
 #
