@@ -50,9 +50,6 @@ func check_answer(answer,random_number):
 	for answer in $answeButtons.get_children():
 		if answer.text == questions[random_number]["CorrectAnswer"]:
 			answer.disabled = true
-			answer.hover = true
-			
-			pass
 		else:
 			answer.disabled = true
 	$timer.start()

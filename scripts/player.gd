@@ -4,13 +4,14 @@ export(int) var health = 100
 export var JUMPFORCE = -700
 export var speed = 300
 export var time = 0
-export var costAttack = 2
+export var costAttack = 0
 export var look_ahed = 256
 
 var Side
 var rotationOfCompass 
 var drag
 var output
+var isTeleporting
 
 
 var beforeVelocity
@@ -233,6 +234,7 @@ func fire():
 	$JoyStick/TextureProgress.value = 0
 	held = false
 	if drag == true and teleport_shot == false:
+		Input.vibrate_handheld(350)
 		Engine.time_scale = 0.1
 		var chain = CHAIN.instance()
 		get_parent().add_child(chain)
@@ -242,11 +244,19 @@ func fire():
 		
 		
 func teleport():
+	$AnimatedSprite/AnimationPlayer.play("fadeIn")
+	isTeleporting = true
+	yield($AnimatedSprite/AnimationPlayer,"animation_finished")
+	isTeleporting = false
 	Engine.time_scale = 1
+	camera.y = 0
+	camera.shake()
 	var teleporter = get_parent().get_node("Tip")
 	self.position = teleporter.global_position
 	teleporter.queue_free()
+	$AnimatedSprite/AnimationPlayer.play("fadeOut")
 	teleport_shot = false
+
 func cameraDamp(side):
 	if Side != side:
 		$Camera2D/Tween.interpolate_property($Camera2D,"position",$Camera2D.position,Vector2(side * look_ahed,$Camera2D.position.y),1,Tween.TRANS_QUAD,Tween.EASE_IN)	

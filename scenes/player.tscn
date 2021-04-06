@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Assets/Animations/player_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -25,10 +25,105 @@
 [ext_resource path="res://Assets/png/ringProgressBar.png" type="Texture" id=23]
 [ext_resource path="res://scenes/marker.tscn" type="PackedScene" id=24]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Shader" id=1]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/teleport-effect
+
+This shader is under CC0 license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result on godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0);
+uniform float noise_desnity = 60;
+uniform float beam_size : hint_range(0.01, 0.15);
+uniform vec4 color : hint_color = vec4(0.0, 1.02, 1.2, 1.0);
+
+// We are generating our own noise here. You could experiment with the 
+// built in SimplexNoise or your own noise texture for other effects.
+vec2 random(vec2 uv){
+    uv = vec2( dot(uv, vec2(127.1,311.7) ),
+               dot(uv, vec2(269.5,183.3) ) );
+    return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
+}
+
+float noise(vec2 uv) {
+    vec2 uv_index = floor(uv);
+    vec2 uv_fract = fract(uv);
+
+    vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+
+    return mix( mix( dot( random(uv_index + vec2(0.0,0.0) ), uv_fract - vec2(0.0,0.0) ),
+                     dot( random(uv_index + vec2(1.0,0.0) ), uv_fract - vec2(1.0,0.0) ), blur.x),
+                mix( dot( random(uv_index + vec2(0.0,1.0) ), uv_fract - vec2(0.0,1.0) ),
+                     dot( random(uv_index + vec2(1.0,1.0) ), uv_fract - vec2(1.0,1.0) ), blur.x), blur.y) * 0.5 + 0.5;
+}
+
+void fragment()
+{
+	vec4 tex = texture(TEXTURE, UV);
+	
+	float noise = noise(UV * noise_desnity) * UV.y;
+	
+	float d1 = step(progress, noise);
+	float d2 = step(progress - beam_size, noise);
+	
+	vec3 beam = vec3(d2 - d1) * color.rgb;
+	
+	tex.rgb += beam;
+	tex.a *= d2;
+	
+	COLOR = tex;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/progress = 0.0
+shader_param/noise_desnity = 60.0
+shader_param/beam_size = 0.15
+shader_param/color = Color( 0.0588235, 0.819608, 0.952941, 1 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "fadeIn"
+length = 0.035
+step = 0.005
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.035 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "fadeOut"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 13.022, 41.6507 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0470588, 0.0470588, 0.0470588, 0.529412 )
 border_width_right = 1
 border_width_bottom = 1
@@ -38,36 +133,40 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 20
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 50
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 52
 font_data = ExtResource( 4 )
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0, 0.772059, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.029587, 0.306676, 0.68857, 1, 0.0626221, 0.0682354, 0.421875, 1 )
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=8]
 _data = [ Vector2( 0, 0.985808 ), 0.0, 0.0, 0, 0, Vector2( 0.993711, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="player" type="KinematicBody2D"]
 collision_mask = 272
 script = ExtResource( 2 )
 JUMPFORCE = -900
-costAttack = 0
 
 [node name="shieldPosition" type="Position2D" parent="."]
 position = Vector2( -4.57764e-05, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 2 )
 position = Vector2( 30, 0 )
 scale = Vector2( 0.199, 0.2 )
 frames = ExtResource( 1 )
 animation = "Idle"
 playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/fadeIn = SubResource( 9 )
+anims/fadeOut = SubResource( 10 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 0.199, 0.2 )
@@ -86,7 +185,7 @@ position = Vector2( 10, 0 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0.858824, 0.0313726, 0.0313726, 1 )
 self_modulate = Color( 1, 0, 0, 1 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -94,7 +193,7 @@ collision_mask = 8
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -4, 2 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="JoyStick" type="CanvasLayer" parent="."]
 
@@ -189,7 +288,7 @@ action = "restart"
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 margin_right = 411.0
 margin_bottom = 191.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -201,7 +300,7 @@ margin_left = 326.686
 margin_top = 14.1222
 margin_right = 253.062
 margin_bottom = 14.3222
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.866667, 0.8, 0.141176, 1 )
 text = "##f
 "
@@ -218,7 +317,7 @@ margin_left = 165.358
 margin_top = 97.0198
 margin_right = 264.358
 margin_bottom = 162.02
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "##"
 align = 1
 valign = 1
@@ -234,7 +333,7 @@ margin_left = 22.7945
 margin_top = 96.5557
 margin_right = 121.794
 margin_bottom = 225.556
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "##
 "
 align = 1
@@ -280,7 +379,7 @@ initial_velocity_random = 0.7
 linear_accel = 25.0
 angle = 45.0
 scale_amount = 25.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="CanvasLayer/expBar"]
 
@@ -382,7 +481,7 @@ initial_velocity = 40.0
 angle = 45.0
 angle_random = 1.0
 scale_amount = 6.0
-scale_amount_curve = SubResource( 6 )
+scale_amount_curve = SubResource( 8 )
 color = Color( 0.639216, 0.439216, 0.0431373, 1 )
 [connection signal="timeout" from="CanvasLayer/expBar/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
