@@ -35,7 +35,7 @@ func _on_Area2D_body_entered(body):
 	$AnimatedSprite.play("dead")
 	var loot = LOOT.instance()
 	loot.moreLoot()
-	get_parent().add_child(loot)
+	get_parent().call_deferred("add_child","loot")
 	loot.position = $Position2D.global_position
 	queue_free()
 

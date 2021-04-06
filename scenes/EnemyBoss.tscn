@@ -13,7 +13,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 7.68837, 8.55446 )
+extents = Vector2( 9.07153, 9.8035 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 55.0659, 69.8112 )
@@ -36,16 +36,16 @@ rotation = -0.261799
 curve = SubResource( 2 )
 
 [node name="attackTimer" type="Timer" parent="KinematicBody2D"]
-wait_time = 20.0
+wait_time = 15.0
 
 [node name="spwanTimer" type="Timer" parent="KinematicBody2D"]
-wait_time = 4.0
-
-[node name="shootTimer" type="Timer" parent="KinematicBody2D"]
 wait_time = 7.0
 
+[node name="shootTimer" type="Timer" parent="KinematicBody2D"]
+wait_time = 10.0
+
 [node name="damageTimer" type="Timer" parent="KinematicBody2D"]
-wait_time = 15.0
+wait_time = 20.0
 
 [node name="return" type="Timer" parent="KinematicBody2D"]
 
@@ -53,7 +53,7 @@ wait_time = 15.0
 
 [node name="Area2D" type="Area2D" parent="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 32
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D/Area2D"]
 scale = Vector2( 0.1, 0.1 )
@@ -77,5 +77,6 @@ shape = SubResource( 4 )
 [connection signal="timeout" from="KinematicBody2D/damageTimer" to="." method="_on_damageTimer_timeout"]
 [connection signal="timeout" from="KinematicBody2D/return" to="." method="_on_return_timeout"]
 [connection signal="timeout" from="KinematicBody2D/dashCompleted" to="." method="_on_dashCompleted_timeout"]
+[connection signal="area_entered" from="KinematicBody2D/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="screen_entered" from="KinematicBody2D/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="body_entered" from="KinematicBody2D/attackArea" to="." method="_on_attackArea_body_entered"]

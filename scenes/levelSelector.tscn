@@ -36,10 +36,10 @@ anchor_left = 10.0
 anchor_top = 10.0
 anchor_right = 10.0
 anchor_bottom = 10.0
-margin_left = 41.0
-margin_top = 22.0
-margin_right = 1027.0
-margin_bottom = 327.0
+margin_left = 25.126
+margin_top = 15.6504
+margin_right = 1011.13
+margin_bottom = 320.65
 grow_horizontal = 0
 grow_vertical = 0
 rect_clip_content = true
@@ -243,6 +243,28 @@ margin_bottom = 861.0
 rect_scale = Vector2( 0.3, 0.3 )
 icon = ExtResource( 6 )
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tutorial" type="Button" parent="."]
+light_mask = -2147483647
+margin_left = 33.4492
+margin_top = 523.184
+margin_right = 198.449
+margin_bottom = 579.184
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_disabled = Color( 0.223529, 0.0980392, 0.298039, 1 )
+custom_colors/font_color = Color( 0.627451, 0.529412, 1, 0.792157 )
+custom_colors/font_color_hover = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+custom_colors/font_color_pressed = Color( 0.466667, 0.32549, 0.996078, 0.890196 )
+text = "Tutorial"
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

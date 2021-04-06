@@ -26,6 +26,7 @@ var coins_zero = false
 var alreadyPlayed = true
 var Timer_once = false
 var teleport_shot = false
+var cancelTele = false
 
 const GRAVITY = 30
 onready var joystick = $JoyStick/Joystick
@@ -36,6 +37,9 @@ const SHIELD = preload("res://scenes/shield.tscn")
 var FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
+	$JoyStick/cancelTeleport.visible = false
+# warning-ignore:return_value_discarded
+	$JoyStick/cancelTeleport.connect("pressed",self,"cancelTeleport")
 	$JoyStick/TextureProgress.value  = 0
 	experienceUpdate()
 	if Global.boomerang == true :
@@ -122,7 +126,7 @@ func _physics_process(delta):
 		else:
 			drag = true
 			output = joystick.output
-		if heldTime >= 10:
+		if heldTime >= $JoyStick/TextureProgress.max_value:
 			held = true
 			
 
@@ -234,6 +238,7 @@ func fire():
 	$JoyStick/TextureProgress.value = 0
 	held = false
 	if drag == true and teleport_shot == false:
+		$JoyStick/cancelTeleport.visible = true
 		Input.vibrate_handheld(350)
 		Engine.time_scale = 0.1
 		var chain = CHAIN.instance()
@@ -244,19 +249,26 @@ func fire():
 		
 		
 func teleport():
-	$AnimatedSprite/AnimationPlayer.play("fadeIn")
-	isTeleporting = true
-	yield($AnimatedSprite/AnimationPlayer,"animation_finished")
-	isTeleporting = false
-	Engine.time_scale = 1
+	$JoyStick/cancelTeleport.visible = false
 	camera.y = 0
 	camera.shake()
 	var teleporter = get_parent().get_node("Tip")
-	self.position = teleporter.global_position
+	if cancelTele == false:
+		$AnimatedSprite/AnimationPlayer.play("fadeIn")
+		isTeleporting = true
+		yield($AnimatedSprite/AnimationPlayer,"animation_finished")
+		self.position = teleporter.global_position
+		Engine.time_scale = 1
+		$AnimatedSprite/AnimationPlayer.play("fadeOut")
 	teleporter.queue_free()
-	$AnimatedSprite/AnimationPlayer.play("fadeOut")
+	Engine.time_scale = 1
+	isTeleporting = false
+	cancelTele = false
 	teleport_shot = false
-
+func cancelTeleport():
+	cancelTele = true
+	teleport()
+	
 func cameraDamp(side):
 	if Side != side:
 		$Camera2D/Tween.interpolate_property($Camera2D,"position",$Camera2D.position,Vector2(side * look_ahed,$Camera2D.position.y),1,Tween.TRANS_QUAD,Tween.EASE_IN)	

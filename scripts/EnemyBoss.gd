@@ -9,16 +9,13 @@ export (int) var speed = 400
 export(int) var DashDamage = 20
 var move = false
 var bullet = preload("res://scenes/attackPlayer.tscn")
-
+var health = 100
 
 func _on_VisibilityNotifier2D_screen_entered():
 	$KinematicBody2D/attackTimer.start()
 	$KinematicBody2D/spwanTimer.start()
 	$KinematicBody2D/shootTimer.start()
 	$KinematicBody2D/damageTimer.start()
-	
-
-
 
 func _on_spwanTimer_timeout():
 	var random_number = random.randi_range(0,enemies.size()-1)
@@ -29,15 +26,12 @@ func _on_spwanTimer_timeout():
 		enemy.position = $KinematicBody2D/Path2D.get_curve().get_point_position(2)+global_position
 	else:
 		enemy.position = $KinematicBody2D/Path2D.get_curve().get_point_position(0)+global_position
-	
-	
-
 
 func _on_damageTimer_timeout():
 	var random_number = random.randi_range(0,2)
 	$KinematicBody2D/Area2D.position = $KinematicBody2D/Path2D.get_curve().get_point_position(random_number)
 	$KinematicBody2D/Area2D/CollisionShape2D.disabled = false
-	
+	$KinematicBody2D/Area2D/Sprite.visible = true
 
 func _physics_process(delta):
 	if move == true:
@@ -89,3 +83,17 @@ func _on_shootTimer_timeout():
 	bullet_a.position = $KinematicBody2D/Path2D.get_curve().get_point_position(1)+global_position
 	bullet_b.position = $KinematicBody2D/Path2D.get_curve().get_point_position(1)+global_position
 	bullet_c.position = $KinematicBody2D/Path2D.get_curve().get_point_position(1)+global_position
+
+
+# warning-ignore:unused_argument
+func _on_Area2D_area_entered(area):
+	health -= 10
+	$KinematicBody2D/Area2D/CollisionShape2D.set_deferred("set_disabled","true")
+	$KinematicBody2D/Area2D/Sprite.visible = false
+	for i in 15:
+		modulate.a = 0
+		yield(get_tree(),"idle_frame")
+		modulate.a = 1
+		yield(get_tree(),"idle_frame")
+	if health == 0 :
+		queue_free()

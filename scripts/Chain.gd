@@ -23,4 +23,5 @@ func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	if get_parent().get_node("player").isTeleporting == false:
 		Engine.time_scale = 1
 		queue_free()
+		get_parent().get_node("player").get_node("JoyStick").get_node("cancelTeleport").visible = false
 		get_parent().get_node("player").teleport_shot = false

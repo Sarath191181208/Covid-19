@@ -1,6 +1,8 @@
 extends Control
 
 func _ready():
+# warning-ignore:return_value_discarded
+	$tutorial.connect("pressed",self,'tutorial')
 	for i in $levels.get_children():
 		i.text = i.name
 	for i in range($levels.get_child_count()):
@@ -14,7 +16,10 @@ func _ready():
 # warning-ignore:return_value_discarded
 	$Button.connect("pressed",self,"changeScene")
 # warning-ignore:unused_argumen
-	
+
+func tutorial():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://scenes/tutorial.tscn")
 			
 func change_level(lvl_number):
 # warning-ignore:return_value_discarded

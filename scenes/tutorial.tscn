@@ -1,0 +1,233 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/changeScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/tile_sets/Objects/DoorLocked.png" type="Texture" id=5]
+[ext_resource path="res://Assets/tile_sets/tres/2.tres" type="TileSet" id=6]
+[ext_resource path="res://Assets/tile_sets/tres/1.tres" type="TileSet" id=7]
+[ext_resource path="res://scripts/Area2D.gd" type="Script" id=8]
+[ext_resource path="res://scenes/collisionObjects.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/switch.tscn" type="PackedScene" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 221.242, 17.7039 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 721.248, 5.15234 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Assets/fonts/Montserrat-MediumItalic.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = SubResource( 3 )
+
+[node name="tutorial" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.25, 0.25 )
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 256, 256 )
+collision_layer = 8
+collision_mask = 5
+format = 1
+tile_data = PoolIntArray( 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589852, 1, 0, 589853, 1, 0, 589854, 1, 0, 589855, 1, 0, 589856, 1, 0, 589857, 1, 0, 589858, 1, 0, 589859, 1, 0, 589860, 1, 0, 589861, 1, 0, 589862, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589867, 1, 0, 589868, 1, 0, 589869, 1, 0, 589870, 1, 0, 589871, 1, 0, 589872, 1, 0, 589873, 1, 0, 589874, 1, 0, 589875, 1, 0, 589876, 1, 0, 589877, 1, 0, 589878, 1, 0, 589879, 1, 0, 589880, 1, 0, 589881, 1, 0, 589882, 1, 0, 589883, 1, 0, 589884, 1, 0, 589885, 1, 0, 589886, 1, 0, 589887, 1, 0, 589888, 1, 0, 589889, 1, 0, 589890, 1, 0, 589891, 1, 0, 589892, 1, 0, 589893, 1, 0, 589894, 1, 0, 589895, 1, 0, 589896, 1, 0, 589897, 1, 0, 589898, 1, 0, 589899, 1, 0, 589900, 1, 0, 589901, 1, 0, 589902, 1, 0, 589903, 1, 0, 589904, 1, 0, 589905, 1, 0, 589906, 1, 0, 589907, 1, 0, 589908, 1, 0, 589909, 1, 0, 589910, 1, 0, 589911, 1, 0, 589912, 1, 0, 589913, 1, 0, 589914, 1, 0, 589915, 1, 0, 589916, 1, 0, 589917, 1, 0, 589918, 1, 0, 589919, 1, 0, 589920, 1, 0, 589921, 1, 0, 589922, 1, 0, 589923, 1, 0, 589924, 1, 0, 589925, 1, 0, 589926, 1, 0, 589927, 1, 0, 589928, 1, 0, 589929, 1, 0, 589930, 1, 0, 589931, 1, 0, 589932, 1, 0, 589933, 1, 0, 589934, 1, 0, 589935, 1, 0, 589936, 1, 0, 589937, 1, 0, 589938, 1, 0, 589939, 1, 0, 589940, 1, 0, 589941, 1, 0, 589942, 1, 0 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+scale = Vector2( 0.25, 0.25 )
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 256, 256 )
+format = 1
+tile_data = PoolIntArray( 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0 )
+
+[node name="coins" type="Node2D" parent="."]
+position = Vector2( 181.766, 373.098 )
+
+[node name="coin" parent="coins" instance=ExtResource( 4 )]
+position = Vector2( 542.905, -23.9165 )
+
+[node name="coin2" parent="coins" instance=ExtResource( 4 )]
+position = Vector2( 368.314, -11.9582 )
+
+[node name="coin3" parent="coins" instance=ExtResource( 4 )]
+position = Vector2( 1703.15, -113.406 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="enemy" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 2157.67, 504.133 )
+
+[node name="enemy2" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 7215.31, 490.844 )
+
+[node name="changeScene" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
+position = Vector2( 7376.2, 260.336 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 49.5678, 159.552 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 53, 164 )
+time = 999
+
+[node name="collisions" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="collisions"]
+position = Vector2( 2141.24, 416.698 )
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/StaticBody2D"]
+position = Vector2( -251.035, -20.2165 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="collisions"]
+position = Vector2( -311.131, 941.758 )
+collision_layer = 2
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D"]
+shape = SubResource( 2 )
+
+[node name="Area2D2" type="Area2D" parent="collisions"]
+position = Vector2( 3968.5, 808.416 )
+collision_layer = 2
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/Area2D2"]
+shape = SubResource( 2 )
+
+[node name="switch2" parent="collisions" instance=ExtResource( 10 )]
+position = Vector2( 4302.46, 458.329 )
+
+[node name="collisionObjects4" parent="collisions/switch2" instance=ExtResource( 9 )]
+position = Vector2( -120.874, 93.1677 )
+rotation = -1.5708
+
+[node name="switch" parent="collisions" instance=ExtResource( 10 )]
+position = Vector2( 5768.07, 487.72 )
+
+[node name="collisionObjects3" parent="collisions/switch" instance=ExtResource( 9 )]
+position = Vector2( -251.573, 28.7988 )
+rotation = -1.5708
+
+[node name="collisionObjects2" parent="collisions/switch" instance=ExtResource( 9 )]
+position = Vector2( -251.573, 91.7276 )
+rotation = -1.5708
+
+[node name="collisionObjects" parent="collisions/switch" instance=ExtResource( 9 )]
+position = Vector2( -253.783, -43.0605 )
+rotation = -1.5708
+
+[node name="Control" type="Control" parent="."]
+margin_left = -4.0
+margin_top = 7.0
+margin_right = 1019.0
+margin_bottom = 316.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = -135.608
+margin_top = 320.002
+margin_right = 892.392
+margin_bottom = 693.002
+custom_fonts/font = SubResource( 4 )
+text = "Use the buttons to move and collect coins"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+
+[node name="Label2" type="Label" parent="Control"]
+margin_left = 1027.73
+margin_top = 325.51
+margin_right = 2055.73
+margin_bottom = 698.51
+custom_fonts/font = SubResource( 4 )
+text = "tap on the joystick's center to fire"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Control"]
+margin_left = 2174.64
+margin_top = 323.266
+margin_right = 3202.64
+margin_bottom = 696.266
+custom_fonts/font = SubResource( 4 )
+text = "hold on the joystick's center to fire the bullet to follow your movement."
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Control"]
+margin_left = 4269.58
+margin_top = 329.288
+margin_right = 5297.58
+margin_bottom = 702.288
+custom_fonts/font = SubResource( 4 )
+text = "hold and jump to make shot go from above. hit the switch to go ahed
+ "
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Control"]
+margin_left = 5809.73
+margin_top = 252.057
+margin_right = 6837.73
+margin_bottom = 625.056
+custom_fonts/font = SubResource( 4 )
+text = "aim the joystick at some angle and press again to teleport to the location of pointer 
+--> press cross to be free from teleporter"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Control"]
+margin_left = 3230.81
+margin_top = 333.415
+margin_right = 4258.81
+margin_bottom = 706.415
+custom_fonts/font = SubResource( 4 )
+text = "hit the switch with bullet  to remove spike
+ "
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="collisions/Area2D" to="collisions/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="collisions/Area2D2" to="collisions/Area2D2" method="_on_Area2D2_body_entered"]
