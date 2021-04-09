@@ -1,21 +1,26 @@
 extends KinematicBody2D
 
+onready var player = $playerSprite
+onready var animator = $playerSprite/playerAnimations
+
 export(int) var health = 100
-export var JUMPFORCE = -700
-export var speed = 300
-export var time = 0
-export var costAttack = 0
-export var look_ahed = 256
+export(int) var JUMPFORCE = -700
+export(int) var speed = 300
+export(int) var time = 0
+export(int) var costAttack = 0
+export(int) var look_ahed = 256
+export(float) var reloadTime = 5
 
 var Side
 var rotationOfCompass 
 var drag
 var output
-var isTeleporting
+var isTeleporting = false
 
 
 var beforeVelocity
-var coins = 0  + Global.ammo
+var coins = 0 
+var ammo = 2+Global.ammo
 var velocity = Vector2(0,0)
 var snap = Vector2.ZERO
 var heldTime = 0
@@ -38,6 +43,7 @@ var FIREBALL = preload("res://scenes/attack.tscn")
 # warning-ignore:unused_argument
 func _ready():
 	$JoyStick/cancelTeleport.visible = false
+	player.get_node("AnimationPlayer").play("fadeOut")
 # warning-ignore:return_value_discarded
 	$JoyStick/cancelTeleport.connect("pressed",self,"cancelTeleport")
 	$JoyStick/TextureProgress.value  = 0
@@ -51,8 +57,7 @@ func _ready():
 		if $Musics/shield.playing == false:
 			$Musics/shield.play()
 		Global.shield = false
-	$CanvasLayer/time.text = String(time)
-	$CanvasLayer/coins_collected.text = String(coins)
+	updateHub()
 	$level_timer.set_wait_time(1)
 	$level_timer.start()
 	if not is_on_floor():
@@ -81,10 +86,7 @@ func _physics_process(delta):
 		
 	$CanvasLayer/lifeBar.value = health
 #Doing this because of sprite being on oneside which causes problems with collission layers
-	if $AnimatedSprite.flip_h == true :
-		$AnimatedSprite.position.x = -30
-	else :
-		$AnimatedSprite.position.x = 30
+
 #checking the player input and playing animations
 	if $Musics/walk.playing == true and Input.is_action_just_released("right"):
 		$Musics/walk.stop()
@@ -96,24 +98,24 @@ func _physics_process(delta):
 		$particleMove.scale.x = 1
 		$particleMove.position.x = -20
 		velocity.x = speed
-		$AnimatedSprite.play("walk")
-		$AnimatedSprite.flip_h = false
+		animator.play("walk")
+		player.scale.x = float(0.4)
 		if $Musics/walk.playing == false:
 			$Musics/walk.play()
 	elif Input.is_action_pressed("left") :
 		cameraDamp(-1)
 		velocity.x = -speed
-		$AnimatedSprite.play("walk")
+		animator.play("walk")
 		$particleMove.emitting = true
 		$particleMove.scale.x = -1
 		$particleMove.position.x = 20
-		$AnimatedSprite.flip_h = true
+		player.scale.x = float(-0.4)
 		if $Musics/walk.playing == false:
 			$Musics/walk.play()
 	
 	else:
 		$particleMove.emitting = false
-		$AnimatedSprite.play("Idle")
+		animator.play("Idle")
 	if Input.is_action_just_released("jump") and not is_on_floor():
 		velocity.y *= 0.5
 	if Input.is_action_just_pressed("jump")&& is_on_floor():
@@ -128,13 +130,26 @@ func _physics_process(delta):
 			output = joystick.output
 		if heldTime >= $JoyStick/TextureProgress.max_value:
 			held = true
-			
+		if drag == true:
+			Engine.time_scale = 0.4
+		else:
+			Engine.time_scale = 1
 
 	if Input.is_action_just_released("fire"):
-		if coins > costAttack:
+		Engine.time_scale = 1
+
+	if Input.is_action_just_released("fire"):
+		if ammo > costAttack:
 			$Musics/fire.play()
-			coins -= costAttack
+			ammo -= 1
 			updateHub()
+			if ammo < 2+Global.ammo :
+				pass
+			if ammo <= 0:
+				$CanvasLayer/ammo.set_align(0)
+				$CanvasLayer/ammo.text = "reloading...."
+				$reload.set_wait_time(reloadTime)
+				$reload.start()
 			camera.y = 0
 			camera.shake()
 			if teleport_shot == false:
@@ -168,7 +183,11 @@ func got_shot(enemy_damage):
 	health -= enemy_damage
 	$Musics/damage.play()
 	Input.vibrate_handheld(300)
-
+	for i in 4:
+		modulate.a = 0.8
+		yield(get_tree(),"idle_frame")
+		modulate.a = 1
+		yield(get_tree(),"idle_frame")
 
 func get_position():
 	return $CanvasLayer/Position2D2.position
@@ -213,6 +232,8 @@ func experienceUpdate():
 func updateHub():
 	$CanvasLayer/time.text = String(time)
 	$CanvasLayer/coins_collected.text = String(coins)
+	$CanvasLayer/ammo.set_align(1)
+	$CanvasLayer/ammo.text = String(ammo) + " / " + String(2+Global.ammo)
 func addMastercoin():
 	Global.coins += 2000
 	updateHub()
@@ -222,7 +243,7 @@ func fire():
 		var fireball = FIREBALL.instance()
 		Input.vibrate_handheld(350)
 	# --> changing the direction of fireball based on players facing direction
-		if $AnimatedSprite.flip_h == true :
+		if player.scale.x == Vector2(-0.4,0.4).x :
 			fireball.changingDirection(-1)
 		else :
 			fireball.changingDirection(1)
@@ -246,20 +267,19 @@ func fire():
 		chain.global_position = global_position 
 		chain.shoot(output)
 		teleport_shot = true
-		
-		
+
 func teleport():
 	$JoyStick/cancelTeleport.visible = false
 	camera.y = 0
 	camera.shake()
 	var teleporter = get_parent().get_node("Tip")
 	if cancelTele == false:
-		$AnimatedSprite/AnimationPlayer.play("fadeIn")
+		player.get_node("AnimationPlayer").play("fadeIn")
 		isTeleporting = true
-		yield($AnimatedSprite/AnimationPlayer,"animation_finished")
+		yield(player.get_node("AnimationPlayer"),"animation_finished")
 		self.position = teleporter.global_position
 		Engine.time_scale = 1
-		$AnimatedSprite/AnimationPlayer.play("fadeOut")
+		player.get_node("AnimationPlayer").play("fadeOut")
 	teleporter.queue_free()
 	Engine.time_scale = 1
 	isTeleporting = false
@@ -279,3 +299,11 @@ func getDistance(vector1,vector2):
 	return sqrt((vector1.x - vector2.x)*(vector1.x - vector2.x) + (vector1.y - vector2.y) * (vector1.y - vector2.y))
 func _on_Timer_timeout():
 	$CanvasLayer/expBar/Particles2D.set_emitting(false)
+
+
+func _on_reload_timeout():
+	if ammo == Global.ammo + 2:
+		$reload.stop()
+	else:
+		ammo +=1
+		updateHub()
